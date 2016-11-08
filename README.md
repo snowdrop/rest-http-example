@@ -5,9 +5,7 @@
 
 # Test
 
-    http  http://localhost:8080/greeting
+* We can access the REST endpoint using curl or httpie tool
 
-# Check lib
-  
-    mkdir -p target/tmp
-    tar -vxf target/rest-0.0.1-SNAPSHOT.jar -C target/tmp
+    http http://localhost:8080/greeting
+    curl http://localhost:8080/greeting
