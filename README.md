@@ -43,14 +43,16 @@ To test the project against OpenShift using Arquillian, simply run this command
 mvn test -Popenshift -Predhat
 ```
 
-# Launch
+# Launch and test
+
+To start Spring Boot using the embedded Aopache Tomcat jar files, run the following commands in order to start the maven goal of Spring Boot
+
 ```
 mvn spring-boot:run
 ```
 
-# Test
+If the application has been launched without any error, you can access the REST endpoint exposed using curl or httpie tool
 
-* We can access the REST endpoint using curl or httpie tool
 ```
 http http://localhost:8080/greeting
 curl http://localhost:8080/greeting
