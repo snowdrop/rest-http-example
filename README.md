@@ -11,6 +11,31 @@ mvn clean install -Predhat (default profile)
 mvn clean install -Pcommunity
 ```
 
+# OpenShift
+
+Project can be build top of Openshift using minishift tool. For that purpose, you will use the profile `openshift` which has been 
+configured to use the Fabric8 Maven plugin.
+
+```
+minishift start
+minishift docker-env
+oc login --user admin --password admin
+mvn clean install -Popenshift -Predhat
+```
+
+Remark : To use the official Red Hat S2I image, then we must configure the Fabric8 Maven Plugin to use the Java S2I image with this parameter `-Dfabric8.generator.from=registry.access.redhat.com/jboss-fuse-6/fis-java-openshift`
+
+Next we can deploy the POD and test it
+
+```
+mvn -Popenshift -Predhat fabric8:deploy
+```
+
+Then, you can test the service deployed in OpenShift and get a response message 
+
+```
+http $(minishift service rest --url=true)/greeting
+```
 
 # Launch
 ```
