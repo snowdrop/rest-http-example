@@ -1,6 +1,23 @@
 # Introduction
 
-This project packages Apache Tomcat 8.0.36 artifacts with SpringBoot 1.4.1.RELEASE. It can be used with the Apache Tomcat Red Hat Jar or the files
+This project exposes a simple REST endpoint where the service `greeting` is available at this address `http://hostname:port/greeting` and returns a json Greeting message
+
+```
+{
+    "content": "Hello, World!",
+    "id": 1
+}
+
+```
+
+The id of the message is incremented for each request. To customize the message, you can pass as parameter the name of the person that you want to send your greeting.
+
+```
+http http://localhost:8080/greeting name==charles
+curl http://localhost:8080/greeting -d name=James
+```
+
+The project bundles the Apache Tomcat 8.0.36 artifacts with SpringBoot 1.4.1.RELEASE. It can be used with the Apache Tomcat Red Hat Jar or the files
 proposed by the Apache Tomcat Community project. The by default profile will use the Red Hat jar files but you can also make a test using the community files
 
 ```
@@ -13,7 +30,7 @@ mvn clean install -Pcommunity
 
 # OpenShift
 
-Project can be build top of Openshift using minishift tool. For that purpose, you will use the profile `openshift` which has been 
+The Project can be build top of Openshift using minishift tool. For that purpose, you will use the profile `openshift` which has been 
 configured to use the Fabric8 Maven plugin.
 
 ```
