@@ -37,6 +37,12 @@ Then, you can test the service deployed in OpenShift and get a response message
 http $(minishift service rest --url=true)/greeting
 ```
 
+To test the project against OpenShift using Arquillian, simply run this command
+
+```
+mvn test -Popenshift -Predhat
+```
+
 # Launch
 ```
 mvn spring-boot:run
