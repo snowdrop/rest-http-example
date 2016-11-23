@@ -6,4 +6,4 @@ spec:
   strategy:
     type: "JenkinsPipeline"
     jenkinsPipelineStrategy:
-      jenkinsfile: "node('agent') {\nstage 'build'\nopenshiftBuild(buildConfig: 'rest-build', showBuildLogs: 'true')\nstage 'deploy'\nopenshiftDeploy(deploymentConfig: 'rest')\n}"
+      jenkinsfile: "node('rest') {\nstage 'build'\nopenshiftBuild(buildConfig: 'rest-build', showBuildLogs: 'true')\nstage 'deploy'\nopenshiftDeploy(deploymentConfig: 'rest')\n}"
