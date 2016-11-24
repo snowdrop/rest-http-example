@@ -108,7 +108,7 @@ oc new-app jenkins-ephemeral
 
 Remark : The login/password to be used to access the Jenkins Server is admin/password
 
-Next we can build the project and deploy it on Openshift using the profile `openshift-pipeline`.
+Next we can build the project and deploy it on OpenShift using the profile `openshift-pipeline`.
  
 ```
 mvn -Predhat,openshift-pipeline fabric8:deploy -DskipTests
