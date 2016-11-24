@@ -30,22 +30,31 @@ mvn clean install -Pcommunity
 
 # OpenShift
 
-The Project can be build top of Openshift using minishift tool. For that purpose, you will use the profile `openshift` which has been 
-configured to use the Fabric8 Maven plugin.
+The Project can be deployed top of Openshift using the [minishift tool](https://github.com/minishift/minishift) who will take care to install within a Virtual machine (Virtualbox, libvirt or Xhyve) the OpenShift platform
+like also a Docker daemon. For that purpose, you will first issue within a terminal the following commands.
 
 ```
-minishift start
-minishift docker-env
-oc login --user admin --password admin
-mvn clean install -Popenshift -Predhat
+minishift delete
+minishift start --openshift-version=v1.3.1
+eval $(minishift docker-env)
+oc login --username=admin --password=admin
+```
+
+Next, we will use the Fabric8 Maven plugin which is a Java OpenShift/Kubernetes API able to communicate with the prlatform in order to request to build the docker image and next to create using Kubernetes
+a pod from the image of our application.
+
+A maven profile has been defined within this project to configure the Fabric8 Maven plugin
+
+```
+mvn clean fabric8:build -P redhat,openshift -DskipTests
 ```
 
 Remark : To use the official Red Hat S2I image, then we must configure the Fabric8 Maven Plugin to use the Java S2I image with this parameter `-Dfabric8.generator.from=registry.access.redhat.com/jboss-fuse-6/fis-java-openshift`
 
-Next we can deploy the POD and test it
+Next we can deploy the templates top of OpenShift and wait till kubernetes has created the POD
 
 ```
-mvn -Popenshift -Predhat fabric8:deploy
+mvn -Predhat,openshift fabric8:deploy -DskipTests
 ```
 
 Then, you can test the service deployed in OpenShift and get a response message 
@@ -57,7 +66,7 @@ http $(minishift service rest --url=true)/greeting
 To test the project against OpenShift using Arquillian, simply run this command
 
 ```
-mvn test -Popenshift -Predhat
+mvn test -Popenshift,redhat
 ```
 
 # Using OpenShift Pipeline (optional)
@@ -75,7 +84,13 @@ oc new-app jenkins-ephemeral
 
 Remark : The login/password to be used to access the Jenkins Server is admin/password
 
-Next we can build the project and deploy it on Openshift using the profile `openshift-pipeline`. During the fabric8 build process, a `BuildConfig` file will be created
+Next we can build the project and deploy it on Openshift using the profile `openshift-pipeline`.
+ 
+```
+mvn -Predhat,openshift-pipeline fabric8:deploy -DskipTests
+```
+ 
+During the fabric8 build process, a `BuildConfig` file will be created
 containing the description of the Jenkins script to be executed within a job.
 
 ```
