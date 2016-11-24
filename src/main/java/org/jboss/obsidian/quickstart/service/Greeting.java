@@ -1,4 +1,4 @@
-package io.demo.service;
+package org.jboss.obsidian.quickstart.service;
 
 public class Greeting {
 

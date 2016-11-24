@@ -1,6 +1,6 @@
-package io.demo;
+package org.jboss.obsidian.quickstart;
 
-import io.demo.service.Greeting;
+import org.jboss.obsidian.quickstart.service.Greeting;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

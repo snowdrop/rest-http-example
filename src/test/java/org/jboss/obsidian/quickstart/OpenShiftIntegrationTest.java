@@ -1,4 +1,4 @@
-package io.demo;
+package org.jboss.obsidian.quickstart;
 
 import io.fabric8.kubernetes.client.KubernetesClient;
 import org.jboss.arquillian.container.test.api.RunAsClient;

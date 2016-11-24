@@ -12,21 +12,45 @@ This project exposes a simple REST endpoint where the service `greeting` is avai
 
 The id of the message is incremented for each request. To customize the message, you can pass as parameter the name of the person that you want to send your greeting.
 
-```
-http http://localhost:8080/greeting name==charles
-curl http://localhost:8080/greeting -d name=James
-```
+# Build
 
 The project bundles the Apache Tomcat 8.0.36 artifacts with SpringBoot 1.4.1.RELEASE. It can be used with the Apache Tomcat Red Hat Jar or the files
-proposed by the Apache Tomcat Community project. The by default profile will use the Red Hat jar files but you can also make a test using the community files
+proposed by the Apache Tomcat Community project. The by default profile will use the Red Hat jar files but you can also make a test using the community files.
+
+To build the project, use this maven command.
 
 ```
 mvn clean install -Predhat (default profile)
 ```
 
+or
+
 ```
 mvn clean install -Pcommunity
 ```
+
+# Launch and test
+
+To start Spring Boot , run the following commands in order to start the maven goal of Spring Boot
+
+```
+mvn spring-boot:run
+```
+
+If the application has been launched without any error, you can access the REST endpoint exposed using curl or httpie tool
+
+```
+http http://localhost:8080/greeting
+curl http://localhost:8080/greeting
+```
+
+To pass a parameter for the Greeting Service, use this HTTP request
+
+```
+http http://localhost:8080/greeting name==Charles
+curl http://localhost:8080/greeting -d name=Bruno
+```
+
 
 # OpenShift
 
@@ -105,22 +129,6 @@ node('master') {
 Next, this buildConfig file can be used and launched from the OpenShift Web Console or using this openshift command
 
 `oc start-build rest-build`
-
-
-# Launch and test
-
-To start Spring Boot using the embedded Aopache Tomcat jar files, run the following commands in order to start the maven goal of Spring Boot
-
-```
-mvn spring-boot:run
-```
-
-If the application has been launched without any error, you can access the REST endpoint exposed using curl or httpie tool
-
-```
-http http://localhost:8080/greeting
-curl http://localhost:8080/greeting
-```
 
 # Health
 

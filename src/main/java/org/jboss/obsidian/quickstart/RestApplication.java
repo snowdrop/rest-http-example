@@ -1,4 +1,4 @@
-package io.demo;
+package org.jboss.obsidian.quickstart;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
