@@ -45,7 +45,7 @@ Remark : To use the official Red Hat S2I image, then we must configure the Fabri
 Next we can deploy the POD and test it
 
 ```
-mvn -Popenshift -Predhat fabric8:deploy
+mvn -Popenshift -Predhat fabric8:deploy -DskipTests
 ```
 
 Then, you can test the service deployed in OpenShift and get a response message 
