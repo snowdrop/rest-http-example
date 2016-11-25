@@ -93,18 +93,6 @@
       <artifactId>tomcat-embed-websocket</artifactId>
       <version>${tomcat-version}</version>
     </dependency>
-    <!-- Required to avoid this class not found error
-    Caused by: java.lang.NoClassDefFoundError: org/apache/juli/logging/LogFactory
-        at org.apache.catalina.util.LifecycleBase.<clinit>(LifecycleBase.java:37)
-        at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory.getEmbeddedServletContainer(TomcatEmbeddedServletContainerFactory.java:167)
-        at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.createEmbeddedServletContainer(EmbeddedWebApplicationContext.java:164)
-        at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.onRefresh(EmbeddedWebApplicationContext.java:134)
-    -->
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-juli</artifactId>
-      <version>${tomcat-version}</version>
-    </dependency>
 
     <!-- Testing -->
     <dependency>
