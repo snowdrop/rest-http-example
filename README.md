@@ -51,7 +51,6 @@ http http://localhost:8080/greeting name==Charles
 curl http://localhost:8080/greeting -d name=Bruno
 ```
 
-
 # OpenShift
 
 The Project can be deployed top of Openshift using the [minishift tool](https://github.com/minishift/minishift) who will take care to install within a Virtual machine (Virtualbox, libvirt or Xhyve) the OpenShift platform
@@ -91,6 +90,37 @@ To test the project against OpenShift using Arquillian, simply run this command
 
 ```
 mvn test -Popenshift,redhat
+```
+
+# OpenShift Online
+
+- Connect to the OpenShift Online machine (e.g. https://console.dev-preview-int.openshift.com/console/command-line) to get the token to be used by the oc client to be authenticated and access the project
+- Open a terminal and execute this command using the oc client where you will replace the MYTOKEN with the one that you can get from the Web Console
+```
+oc login https://api.dev-preview-int.openshift.com --token=MYTOKEN
+```
+- Use the Fabric8 Maven Plugin to launch the S2I process on the OpenShift Online machine
+```
+mvn clean fabric8:deploy -Predhat,openshift -DskipTests
+```
+- And to run/launch the pod
+```
+mvn fabric8:start -Predhat,openshift -DskipTests
+```
+- Create the route to access the service 
+```
+oc expose service/springboot-rest --port=8080 
+```
+- Get the route url
+```
+oc get route/springboot-rest
+NAME         HOST/PORT                                                    PATH      SERVICE           TERMINATION   LABELS
+springboot-rest   springboot-rest-obsidian.1ec1.dev-preview-int.openshiftapps.com             springboot-rest:8080                 expose=true,group=org.jboss.quickstart,project=springboot-rest,provider=fabric8,version=1.0-SNAPSHOT
+```
+- Use the Host/Port address to access the REST endpoint
+```
+http http://springboot-rest-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting
+http http://springboot-rest-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting name==Bruno
 ```
 
 # Using OpenShift Pipeline (optional)
