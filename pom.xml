@@ -34,8 +34,7 @@
 
     <fabric8.version>2.2.176</fabric8.version>
     <springboot-version>1.4.1.RELEASE</springboot-version>
-    <tomcat.redhat.version>8.0.36.redhat-14</tomcat.redhat.version>
-    <tomcat.community.version>8.0.36</tomcat.community.version>
+    <tomcat.version>8.0.36</tomcat.version>
 
     <fabric8.maven.plugin.version>3.1.92</fabric8.maven.plugin.version>
     <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
@@ -81,17 +80,22 @@
     <dependency>
       <groupId>org.apache.tomcat.embed</groupId>
       <artifactId>tomcat-embed-core</artifactId>
-      <version>${tomcat-version}</version>
+      <version>${tomcat.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.tomcat.embed</groupId>
       <artifactId>tomcat-embed-el</artifactId>
-      <version>${tomcat-version}</version>
+      <version>${tomcat.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.tomcat.embed</groupId>
       <artifactId>tomcat-embed-websocket</artifactId>
-      <version>${tomcat-version}</version>
+      <version>${tomcat.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-juli</artifactId>
+      <version>${tomcat.version}</version>
     </dependency>
 
     <!-- Testing -->
@@ -154,38 +158,7 @@
     </plugins>
   </build>
 
-  <repositories>
-    <repository>
-      <id>redhat-build</id>
-      <name>Red Hat builds Repository</name>
-      <url>http://download-node-02.eng.bos.redhat.com/brewroot/repos/jws-3.1-rhel-7-build/latest/maven/</url>
-      <layout>default</layout>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
   <profiles>
-    <profile>
-      <id>redhat</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <tomcat-version>${tomcat.redhat.version}</tomcat-version>
-      </properties>
-    </profile>
-    <profile>
-      <id>community</id>
-      <properties>
-        <tomcat-version>${tomcat.community.version}</tomcat-version>
-      </properties>
-    </profile>
     <profile>
       <id>openshift</id>
       <properties>

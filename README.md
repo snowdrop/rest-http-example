@@ -14,19 +14,12 @@ The id of the message is incremented for each request. To customize the message,
 
 # Build
 
-The project bundles the Apache Tomcat 8.0.36 artifacts with SpringBoot 1.4.1.RELEASE. It can be used with the Apache Tomcat Red Hat Jar or the files
-proposed by the Apache Tomcat Community project. The by default profile will use the Red Hat jar files but you can also make a test using the community files.
+The project bundles the Apache Tomcat 8.0.36 artifacts with SpringBoot 1.4.1.RELEASE.
 
 To build the project, use this maven command.
 
 ```
-mvn clean install -Predhat (default profile)
-```
-
-or
-
-```
-mvn clean install -Pcommunity
+mvn clean install
 ```
 
 # Launch and test
@@ -69,7 +62,7 @@ a pod from the image of our application.
 A maven profile has been defined within this project to configure the Fabric8 Maven plugin
 
 ```
-mvn clean fabric8:build -P redhat,openshift -DskipTests
+mvn clean fabric8:build -Popenshift -DskipTests
 ```
 
 Remark : To use the official Red Hat S2I image, then we must configure the Fabric8 Maven Plugin to use the Java S2I image with this parameter `-Dfabric8.generator.from=registry.access.redhat.com/jboss-fuse-6/fis-java-openshift`
@@ -77,7 +70,7 @@ Remark : To use the official Red Hat S2I image, then we must configure the Fabri
 Next we can deploy the templates top of OpenShift and wait till kubernetes has created the POD
 
 ```
-mvn -Predhat,openshift fabric8:deploy -DskipTests
+mvn fabric8:deploy -Popenshift -DskipTests
 ```
 
 Then, you can test the service deployed in OpenShift and get a response message 
@@ -89,7 +82,7 @@ http $(minishift service springboot-rest --url=true)/greeting
 To test the project against OpenShift using Arquillian, simply run this command
 
 ```
-mvn test -Popenshift,redhat
+mvn test -Popenshift
 ```
 
 # OpenShift Online
@@ -101,11 +94,11 @@ oc login https://api.dev-preview-int.openshift.com --token=MYTOKEN
 ```
 - Use the Fabric8 Maven Plugin to launch the S2I process on the OpenShift Online machine
 ```
-mvn clean fabric8:deploy -Predhat,openshift -DskipTests
+mvn clean fabric8:deploy -Popenshift -DskipTests
 ```
 - And to run/launch the pod
 ```
-mvn fabric8:start -Predhat,openshift -DskipTests
+mvn fabric8:start -Popenshift -DskipTests
 ```
 - Create the route to access the service 
 ```
@@ -141,7 +134,7 @@ Remark : The login/password to be used to access the Jenkins Server is admin/pas
 Next we can build the project and deploy it on OpenShift using the profile `openshift-pipeline`.
  
 ```
-mvn -Predhat,openshift-pipeline fabric8:deploy -DskipTests
+mvn -Popenshift-pipeline fabric8:deploy -DskipTests
 ```
  
 During the fabric8 build process, a `BuildConfig` file will be created
