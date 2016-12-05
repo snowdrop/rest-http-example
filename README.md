@@ -102,18 +102,24 @@ mvn fabric8:start -Popenshift -DskipTests
 ```
 - Create the route to access the service 
 ```
-oc expose service/springboot-rest --port=8080 
+oc expose service/NAME_OF_THE_SERVICE --port=8080 
 ```
 - Get the route url
 ```
-oc get route/springboot-rest
+oc get route/ROUTE_NAME
 NAME         HOST/PORT                                                    PATH      SERVICE           TERMINATION   LABELS
-springboot-rest   springboot-rest-obsidian.1ec1.dev-preview-int.openshiftapps.com             springboot-rest:8080                 expose=true,group=org.jboss.quickstart,project=springboot-rest,provider=fabric8,version=1.0-SNAPSHOT
+demo   demo-obsidian.1ec1.dev-preview-int.openshiftapps.com             demo:8080                 expose=true,group=org.jboss.quickstart,project=springboot-rest,provider=fabric8,version=1.0-SNAPSHOT
 ```
 - Use the Host/Port address to access the REST endpoint
 ```
-http http://springboot-rest-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting
-http http://springboot-rest-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting name==Bruno
+http http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting
+http http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting name==Bruno
+
+or 
+
+curl http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting
+curl http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting name==Bruno
+
 ```
 
 # Using OpenShift Pipeline (optional)
