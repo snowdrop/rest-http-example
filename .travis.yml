@@ -2,7 +2,7 @@ language: java
 jdk:
 - oraclejdk8
 after_success:
-- ./trigger-build.sh
+- ./.travis/trigger-build.sh
 
 env:
   global:
