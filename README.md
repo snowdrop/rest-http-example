@@ -76,7 +76,7 @@ mvn fabric8:deploy -Popenshift -DskipTests
 Then, you can test the service deployed in OpenShift and get a response message 
 
 ```
-http $(minishift service springboot-rest --url=true)/greeting
+http $(minishift service NAME_OF_THE_SERVICE --url=true)/greeting
 ```
 
 To test the project against OpenShift using Arquillian, simply run this command
