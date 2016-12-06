@@ -122,43 +122,6 @@ curl http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting name==
 
 ```
 
-# Using OpenShift Pipeline (optional)
-
-In order to use the Pipleine Strategy supported by OpenShift for the build process, the server Jenkins should be installed. That should be
-the case when you will use Openshift Enterprise. If this is not the case, please use the following instructions to install it
-
-```
-echo "Add the template containing Openshift Jenkins"
-oc create -f https://raw.githubusercontent.com/openshift/origin/master/examples/jenkins/jenkins-ephemeral-template.json -n openshift
-
-echo "Deploy Jenkins (without persistence)"
-oc new-app jenkins-ephemeral
-```
-
-Remark : The login/password to be used to access the Jenkins Server is admin/password
-
-Next we can build the project and deploy it on OpenShift using the profile `openshift-pipeline`.
- 
-```
-mvn -Popenshift-pipeline fabric8:deploy -DskipTests
-```
- 
-During the fabric8 build process, a `BuildConfig` file will be created
-containing the description of the Jenkins script to be executed within a job.
-
-```
-node('master') {
-  stage 'build'
-  openshiftBuild(buildConfig: 'rest-s2i', showBuildLogs: 'true')
-  stage 'deploy'
-  openshiftDeploy(deploymentConfig: 'rest')
-}
-```
-
-Next, this buildConfig file can be used and launched from the OpenShift Web Console or using this openshift command
-
-`oc start-build rest-build`
-
 # Health
 
 In order to monitor and manage the HTTP Service, this project uses [Spring Actuator°(https://github.com/spring-projects/spring-boot/tree/master/spring-boot-actuator).
