@@ -122,9 +122,9 @@ curl http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting name==
 
 ```
 
-# Using OpenShift Pipeline (optional)
+# Using OpenShift Pipeline
 
-In order to use the Pipleine Strategy supported by OpenShift for the build process, the server Jenkins should be installed. That should be
+In order to use the Pipeline Strategy supported by OpenShift for the build process, the server Jenkins should be installed. That should be
 the case when you will use Openshift Enterprise. If this is not the case, please use the following instructions to install it
 
 ```
