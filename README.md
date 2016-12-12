@@ -62,7 +62,7 @@ a pod from the image of our application.
 A maven profile has been defined within this project to configure the Fabric8 Maven plugin
 
 ```
-mvn clean fabric8:build -Popenshift -DskipTests
+mvn clean fabric8:build -Popenshift
 ```
 
 Remark : To use the official Red Hat S2I image, then we must configure the Fabric8 Maven Plugin to use the Java S2I image with this parameter `-Dfabric8.generator.from=registry.access.redhat.com/jboss-fuse-6/fis-java-openshift`
@@ -70,7 +70,7 @@ Remark : To use the official Red Hat S2I image, then we must configure the Fabri
 Next we can deploy the templates top of OpenShift and wait till kubernetes has created the POD
 
 ```
-mvn fabric8:deploy -Popenshift -DskipTests
+mvn fabric8:deploy -Popenshift
 ```
 
 Then, you can test the service deployed in OpenShift and get a response message 
@@ -82,7 +82,7 @@ http $(minishift service NAME_OF_THE_SERVICE --url=true)/greeting
 To test the project against OpenShift using Arquillian, simply run this command
 
 ```
-mvn test -Popenshift
+mvn clean verify -Popenshift
 ```
 
 # OpenShift Online
