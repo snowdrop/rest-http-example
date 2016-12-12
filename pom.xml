@@ -116,11 +116,6 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <!-- This dep generates this class error not found as the httpcomponents used by Fabric8 Assertion doesn't include it
-             Caused by: java.lang.NoClassDefFoundError: org/apache/http/ssl/TrustStrategy
-            at org.springframework.boot.test.web.client.TestRestTemplate.<init>(TestRestTemplate.java:127)
-            at org.springframework.boot.test.context.SpringBootTestContextCustomizer$TestRestTemplateFactory.setApplicationContext(SpringBootTestContextCustomizer.java:99)
-          -->
           <groupId>org.apache.httpcomponents</groupId>
           <artifactId>httpclient-osgi</artifactId>
         </exclusion>
@@ -129,6 +124,14 @@
   </dependencies>
 
   <build>
+
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+
     <pluginManagement>
       <plugins>
         <plugin>
