@@ -68,11 +68,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-tomcat</artifactId>
     </dependency>
-    <!-- Enable JMX Mbeans -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
 
     <!-- Tomcat -->
     <dependency>
@@ -122,7 +117,6 @@
   </dependencies>
 
   <build>
-
     <testResources>
       <testResource>
         <directory>src/test/resources</directory>

@@ -121,25 +121,3 @@ curl http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting
 curl http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting name==Bruno
 
 ```
-
-# Health
-
-In order to monitor and manage the HTTP Service, this project uses [Spring Actuator°(https://github.com/spring-projects/spring-boot/tree/master/spring-boot-actuator).
-To discover what is the status of the REST endpoint, you will issue this request 
-
-```
-curl $(minishift service rest --url=true)/health
-```
-
-Using the command defined hereafter, you can watch all the resources deployed and query them individually like `/metrics, /env, /dump, /configprops, /beans or /health`
-
-```
-curl $(minishift service rest --url=true)/mappings
-```
-
-It is also possible to use directly the Jolokia HTTP bridge to quety the JMX Mbeans. Here is an example of such request using the IP address of the Spring Boot service 
-deployed on OpenShift to collect the metrics of the application
-
-```
-http 'http://192.168.64.56:31065/jolokia/exec/org.springframework.boot:type=Endpoint,name=metricsEndpoint/getData()'
-```
