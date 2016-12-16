@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.obsidian.quickstart;
+package org.obsidiantoaster.quickstart;
 
-import org.jboss.obsidian.quickstart.service.Greeting;
+import org.obsidiantoaster.quickstart.service.Greeting;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

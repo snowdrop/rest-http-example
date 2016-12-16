@@ -14,24 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.obsidian.quickstart.service;
+package org.obsidiantoaster.quickstart;
 
-import java.util.concurrent.atomic.AtomicLong;
+import io.fabric8.kubernetes.client.KubernetesClient;
+import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import static io.fabric8.kubernetes.assertions.Assertions.assertThat;
 
-@RestController
-public class GreetingController {
+@RunWith(Arquillian.class)
+@RunAsClient
+public class OpenShiftIT {
 
-    private @Value("${message}") String template;
-    private final AtomicLong counter = new AtomicLong();
+    @ArquillianResource
+    KubernetesClient client;
 
-    @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Greeting(counter.incrementAndGet(),
-                            String.format(template, name));
+    @Test
+    public void testAppProvisionsRunningPods() throws Exception {
+        assertThat(client).deployments().pods().isPodReadyForPeriod();
     }
+
 }

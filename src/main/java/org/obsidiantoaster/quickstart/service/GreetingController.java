@@ -14,15 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.obsidian.quickstart;
+package org.obsidiantoaster.quickstart.service;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.concurrent.atomic.AtomicLong;
 
-@SpringBootApplication
-public class RestApplication {
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-	public static void main(String[] args) {
-		SpringApplication.run(RestApplication.class, args);
-	}
+@RestController
+public class GreetingController {
+
+    private @Value("${message}") String template;
+    private final AtomicLong counter = new AtomicLong();
+
+    @RequestMapping("/greeting")
+    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+        return new Greeting(counter.incrementAndGet(),
+                            String.format(template, name));
+    }
 }

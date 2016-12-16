@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.obsidian.quickstart.service;
+package org.obsidiantoaster.quickstart.service;
 
 public class Greeting {
 
