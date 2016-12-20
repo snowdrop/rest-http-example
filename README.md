@@ -103,30 +103,18 @@ mvn clean install
     ```
     oc login https://api.dev-preview-int.openshift.com --token=MYTOKEN
     ```
-1. Use the Fabric8 Maven Plugin to launch the S2I process on the OpenShift Online machine.
+1. Use the Fabric8 Maven Plugin to launch the S2I process on the OpenShift Online machine & start the pod.
 
     ```
-    mvn clean fabric8:deploy -Popenshift
-    ```
-
-1. Launch the pod.
-
-    ```
-    mvn clean fabric8:start -Popenshift -DskipTests
-    ```
-
-1. Create the route to access the service.
-
-    ```
-    oc expose service/NAME_OF_THE_SERVICE --port=8080 
+    mvn clean fabric8:deploy -Popenshift  -DskipTests
     ```
     
 1. Get the route url.
 
     ```
-    oc get route/get route/springboot-rest
+    oc get route/springboot-rest
     NAME              HOST/PORT                                          PATH      SERVICE                TERMINATION   LABELS
-    springboot-rest   springboot-rest-sb.e8ca.engint.openshiftapps.com             springboot-rest:8080
+    springboot-rest   <HOST_PORT_ADDRESS>             springboot-rest:8080
     ```
 
 1. Use the Host or Port address to access the REST endpoint.
