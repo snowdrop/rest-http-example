@@ -92,32 +92,26 @@ mvn clean verify -Popenshift
 ```
 oc login https://api.dev-preview-int.openshift.com --token=MYTOKEN
 ```
-- Use the Fabric8 Maven Plugin to launch the S2I process on the OpenShift Online machine
+- Use the Fabric8 Maven Plugin to launch the S2I process on the OpenShift Online machine and next run the pod
 ```
 mvn clean fabric8:deploy -Popenshift -DskipTests
 ```
-- And to run/launch the pod
+
+- Use the Host/Port address exposed by the route to access the REST endpoint
+
 ```
-mvn fabric8:start -Popenshift -DskipTests
+oc get route/get route/springboot-rest
+NAME              HOST/PORT                                          PATH      SERVICE                TERMINATION   LABELS
+springboot-rest   springboot-rest-sb.e8ca.engint.openshiftapps.com             springboot-rest:8080
 ```
-- Create the route to access the service 
+
+- Call the endpoint using curl or httpie tool
 ```
-oc expose service/NAME_OF_THE_SERVICE --port=8080 
-```
-- Get the route url
-```
-oc get route/ROUTE_NAME
-NAME         HOST/PORT                                                    PATH      SERVICE           TERMINATION   LABELS
-demo   demo-obsidian.1ec1.dev-preview-int.openshiftapps.com             demo:8080                 expose=true,group=org.jboss.quickstart,project=springboot-rest,provider=fabric8,version=1.0-SNAPSHOT
-```
-- Use the Host/Port address to access the REST endpoint
-```
-http http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting
-http http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting name==Bruno
+http http://<HOST_PORT_ADDRESS>/greeting
+http http://<HOST_PORT_ADDRESS>/greeting name==Bruno
 
 or 
 
-curl http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting
-curl http://demo-obsidian.1ec1.dev-preview-int.openshiftapps.com/greeting name==Bruno
-
+curl http://<HOST_PORT_ADDRESS>/greeting
+curl http://<HOST_PORT_ADDRESS>/greeting name==Bruno
 ```
