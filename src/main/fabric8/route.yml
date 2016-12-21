@@ -8,4 +8,3 @@ spec:
   to:
     kind: Service
     name: springboot-rest
-    weight: 100
