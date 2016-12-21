@@ -3,7 +3,7 @@
 To get started with these quickstarts you'll need the following prerequisites:
 
 Name | Description | Version
---- | --- 
+--- | --- | ---
 [java][1] | Java JDK | 8
 [maven][2] | Apache Maven | 3.2.x 
 [git][3] | Git version management | 2.x 
