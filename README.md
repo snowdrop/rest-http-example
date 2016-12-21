@@ -19,6 +19,24 @@ You can perform this task in three different ways:
 1. Build and deploy using OpenShift.
 1. Build, deploy, and authenticate using OpenShift Online.
 
+# Prerequisites
+
+To get started with these quickstarts you'll need the following prerequisites:
+
+Name | Description | Version
+--- | --- | ---
+[java][1] | Java JDK | 8
+[maven][2] | Apache Maven | 3.2.x 
+[oc][3] | OpenShift Client | v3.3.x
+[git][4] | Git version management | 2.x 
+
+[1]: http://www.oracle.com/technetwork/java/javase/downloads/
+[2]: https://maven.apache.org/download.cgi?Preferred=ftp://mirror.reverse.net/pub/apache/
+[3]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+[4]: https://docs.openshift.com/enterprise/3.2/cli_reference/get_started_cli.html
+
+In order to build and deploy this project, you must have an account on an OpenShift Online (OSO): https://console.dev-preview-int.openshift.com/ instance.
+
 # Build the Project
 
 The project bundles the Apache Tomcat 8.0.36 artifacts with SpringBoot 1.4.1.RELEASE.
