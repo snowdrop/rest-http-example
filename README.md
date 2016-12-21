@@ -69,49 +69,6 @@ mvn clean install
     curl http://localhost:8080/greeting -d name=Bruno
     ```
 
-# Build and Deploy Using OpenShift
-
-1. Deploy the project on Openshift using the [minishift tool](https://github.com/minishift/minishift), which installs OpenShift on a virtual machine (Virtualbox, libvirt or Xhyve) like a Docker daemon.
-
-    ```
-    minishift delete
-    minishift start --openshift-version=v1.3.1
-    eval $(minishift docker-env)
-    oc login --username=admin --password=admin
-    ```
-
-1. Configure the Fabric8 Maven plug-in.
-
-    ```
-    mvn clean fabric8:build -Popenshift
-    ```
-
-    The Fabric8 plug-in is a Java OpenShift/Kubernetes API that communicates with the platform to build the Docker image and to create a pod from the application image.
-
-1. To use the official Red Hat S2I image, configure the Fabric8 Maven Plug-in to use the Java S2I image with the following  parameter: 
-
-    ```
-    -Dfabric8.generator.from=registry.access.redhat.com/jboss-fuse-6/fis-java-openshift
-    ```
-
-1. Deploy the application and create the pod.
-
-    ```
-    mvn fabric8:deploy -Popenshift
-    ```
-
-1. Test the service.
-
-    ```
-    http $(minishift service NAME_OF_THE_SERVICE --url=true)/greeting
-    ```
-
-1. To test the project against OpenShift using Arquillian, run the following command:
-
-    ```
-    mvn clean verify -Popenshift
-    ```
-
 # OpenShift Online
 
 1. Go to [OpenShift Online](https://console.dev-preview-int.openshift.com/console/command-line) to get the token used by the oc client for authentication and project access. 
