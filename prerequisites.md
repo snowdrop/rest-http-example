@@ -7,7 +7,7 @@ Name | Description
 [java][1] | Java JDK  
 [maven][2] | Apache Maven 
 [git][3] | Git version management 
-[oc][4] | Openshift Client
+[oc][4] | OpenShift Client
 
 [1]: http://www.oracle.com/technetwork/java/javase/downloads/
 [2]: https://maven.apache.org/download.cgi?Preferred=ftp://mirror.reverse.net/pub/apache/
