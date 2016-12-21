@@ -32,8 +32,8 @@ Name | Description | Version
 
 [1]: http://www.oracle.com/technetwork/java/javase/downloads/
 [2]: https://maven.apache.org/download.cgi?Preferred=ftp://mirror.reverse.net/pub/apache/
-[3]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-[4]: https://docs.openshift.com/enterprise/3.2/cli_reference/get_started_cli.html
+[3]: https://docs.openshift.com/enterprise/3.2/cli_reference/get_started_cli.html
+[4]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
 In order to build and deploy this project, you must have an account on an OpenShift Online (OSO): https://console.dev-preview-int.openshift.com/ instance.
 
