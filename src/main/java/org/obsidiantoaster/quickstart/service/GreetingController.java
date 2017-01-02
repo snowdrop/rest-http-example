@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GreetingController {
 
-    private @Value("${message}") String template;
+    @Value("${message}") private String template;
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/greeting")
