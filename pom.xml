@@ -182,9 +182,9 @@
   </profiles>
 
   <scm>
-    <connection>scm:git:git://github.com/obsidian-toaster/quick_rest_springboot-tomcat.git</connection>
-    <developerConnection>scm:git:git@github.com:obsidian-toaster/quick_rest_springboot-tomcat.git</developerConnection>
-    <url>http://github.com/obsidian-toaster/quick_rest_springboot-tomcat</url>
+    <connection>scm:git:git://github.com/obsidian-toaster-quickstarts/quick_rest_springboot-tomcat.git</connection>
+    <developerConnection>scm:git:git@github.com:obsidian-toaster-quickstarts/quick_rest_springboot-tomcat.git</developerConnection>
+    <url>http://github.com/obsidian-toaster-quickstarts/quick_rest_springboot-tomcat</url>
     <tag>HEAD</tag>
   </scm>
 
