@@ -87,9 +87,9 @@ mvn clean install
 1. Get the route url.
 
     ```
-    oc get route/springboot-rest
+    oc get route/${artifactId}
     NAME              HOST/PORT                                          PATH      SERVICE                TERMINATION   LABELS
-    springboot-rest   <HOST_PORT_ADDRESS>             springboot-rest:8080
+    ${artifactId}     <HOST_PORT_ADDRESS>             springboot-rest:8080
     ```
 
 1. Use the Host or Port address to access the REST endpoint.
