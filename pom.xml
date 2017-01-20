@@ -180,15 +180,4 @@
       </build>
     </profile>
   </profiles>
-
-  <scm>
-    <!-- <connection>scm:git:git://github.com/obsidian-toaster-quickstarts/quick_rest_springboot-tomcat.git</connection>
-    <developerConnection>scm:git:git@github.com:obsidian-toaster-quickstarts/quick_rest_springboot-tomcat.git</developerConnection>
-    <url>http://github.com/obsidian-toaster-quickstarts/quick_rest_springboot-tomcat</url> -->
-    <connection>${obs.scm.git.connection}</connection>
-    <developerConnection>${obs.scm.dev.connection}</developerConnection>
-    <url>${obs.scm.url}</url>
-    <tag>${obs.scm.tag}</tag>
-  </scm>
-
 </project>
