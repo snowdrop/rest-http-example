@@ -39,7 +39,7 @@ In order to build and deploy this project, you must have an account on an OpenSh
 
 # Build the Project
 
-The project bundles the Apache Tomcat 8.0.36 artifacts with SpringBoot 1.4.1.RELEASE.
+The project bundles the Apache Tomcat 8.0.36 artifacts with SpringBoot 1.4.3.RELEASE.
 
 Execute the following maven command:
 
