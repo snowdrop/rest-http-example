@@ -35,10 +35,10 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
 
-    <springboot-version>1.4.1.RELEASE</springboot-version>
+    <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
     <tomcat.version>8.5.6</tomcat.version>
 
-    <fabric8.maven.plugin.version>3.1.92</fabric8.maven.plugin.version>
+    <fabric8-maven-plugin.version>3.1.92</fabric8-maven-plugin.version>
     <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
   </properties>
 
@@ -47,9 +47,26 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>${springboot-version}</version>
+        <version>${spring-boot.version}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <!-- Override Tomcat version -->
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-core</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-el</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-websocket</artifactId>
+        <version>${tomcat.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -58,32 +75,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-tomcat</artifactId>
-    </dependency>
-
-    <!-- Tomcat -->
-    <dependency>
-      <groupId>org.apache.tomcat.embed</groupId>
-      <artifactId>tomcat-embed-core</artifactId>
-      <version>${tomcat.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat.embed</groupId>
-      <artifactId>tomcat-embed-el</artifactId>
-      <version>${tomcat.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat.embed</groupId>
-      <artifactId>tomcat-embed-websocket</artifactId>
-      <version>${tomcat.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-juli</artifactId>
-      <version>${tomcat.version}</version>
     </dependency>
 
     <!-- Testing -->
@@ -102,20 +93,11 @@
       </testResource>
     </testResources>
 
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-          <version>${springboot-version}</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
       </plugin>
     </plugins>
   </build>
@@ -128,7 +110,7 @@
           <plugin>
             <groupId>io.fabric8</groupId>
             <artifactId>fabric8-maven-plugin</artifactId>
-            <version>${fabric8.maven.plugin.version}</version>
+            <version>${fabric8-maven-plugin.version}</version>
             <executions>
               <execution>
                 <goals>
