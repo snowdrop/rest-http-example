@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2016-2017 Red Hat, Inc, and individual contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +15,6 @@
  */
 package org.obsidiantoaster.quickstart.service;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,13 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GreetingController {
 
-    @Autowired
-    private GreetingProperties properties;
-    private final AtomicLong counter = new AtomicLong();
+    private final GreetingProperties properties;
 
-    @RequestMapping("/greeting")
+    @Autowired
+    public GreetingController(GreetingProperties properties) {
+        this.properties = properties;
+    }
+
+    @RequestMapping("/api/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Greeting(counter.incrementAndGet(),
-                            String.format(properties.getMessage(), name));
+        String message = String.format(properties.getMessage(), name);
+        return new Greeting(message);
     }
 }

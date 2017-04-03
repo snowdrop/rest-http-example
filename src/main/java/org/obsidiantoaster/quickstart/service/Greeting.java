@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2016-2017 Red Hat, Inc, and individual contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,21 +17,14 @@ package org.obsidiantoaster.quickstart.service;
 
 public class Greeting {
 
-    private final long id;
     private final String content;
 
     public Greeting() {
-        this.id = 0;
         this.content = null;
     }
 
-    public Greeting(long id, String content) {
-        this.id = id;
+    public Greeting(String content) {
         this.content = content;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getContent() {
