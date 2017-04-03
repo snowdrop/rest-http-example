@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2016-2017 Red Hat, Inc, and individual contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +15,7 @@
  */
 package org.obsidiantoaster.quickstart;
 
+import org.junit.Before;
 import org.obsidiantoaster.quickstart.service.Greeting;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,20 +26,31 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)  // Use a random port
-public class RestApplicationTest {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class BoosterApplicationTest {
 
-    // This will hold the port number the server was started on
     @Value("${local.server.port}")
-    int port;
+    private int port;
 
-    final RestTemplate template = new RestTemplate();
+    private final RestTemplate template = new RestTemplate();
+
+    private String serviceUrl;
+
+    @Before
+    public void beforeTest() {
+        serviceUrl = String.format("http://localhost:%d/api/greeting", port);
+    }
 
     @Test
-    public void callServiceTest() {
-        Greeting message = template.getForObject("http://localhost:" + port + "/greeting",Greeting.class);
-        Assert.assertEquals("Hello, World!", message.getContent());
-        Assert.assertEquals(1, message.getId());
+    public void testGreetingEndpoint() {
+        Greeting greeting = template.getForObject(serviceUrl, Greeting.class);
+        Assert.assertEquals("Hello, World!", greeting.getContent());
+    }
+
+    @Test
+    public void testGreetingEndpointWithNameParameter() {
+        Greeting greeting = template.getForObject(serviceUrl + "?name=John", Greeting.class);
+        Assert.assertEquals("Hello, John!", greeting.getContent());
     }
 
 }

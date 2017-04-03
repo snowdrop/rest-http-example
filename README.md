@@ -1,27 +1,14 @@
 # Introduction
 
-This project exposes a simple REST endpoint where the service `greeting` is available at this address `http://hostname:port/greeting` and returns a json Greeting message
+This Mission showcases a basic mapping of a business operation to a remote endpoint. By taking this approach, clients leverage the HTTP protocol as a transport mechanism to call upon services. Application engineers define their APIs using a broad interpretation of REST fundamentals, encouraging freedom in design and quick prototyping.
 
-```json
-{
-    "content": "Hello, World!",
-    "id": 1
-}
+As an application or service matures, this approach may not scale as desired to properly support clean API design or use cases involving database interactions. Any operations involving shared, mutable state will have to be integrated with an appropriate backing datastore; all requests here will be scoped only to the container servicing the request, and there is no guarantee that subsequent requests will be served by the same container.
 
-```
-
-The id of the message is incremented for each request. 
-To customize the message, you can pass as parameter the name of the person that you want to send your greeting.
-
-You can perform this task in three different ways:
-
-1. Build and launch using Spring Boot.
-1. Build and deploy using OpenShift.
-1. Build, deploy, and authenticate using OpenShift Online.
+This is recommended as an introduction to the mechanics of opening a service to be called upon by remote processes.
 
 # Prerequisites
 
-To get started with these quickstarts you'll need the following prerequisites:
+To get started with this booster you'll need the following prerequisites:
 
 Name | Description | Version
 --- | --- | ---
@@ -39,66 +26,67 @@ In order to build and deploy this project, you must have an account on an OpenSh
 
 # Build the Project
 
-The project bundles the Apache Tomcat 8.0.36 artifacts with SpringBoot 1.4.1.RELEASE.
-
-Execute the following maven command:
+Execute the following maven command to build the project:
 
 ```
 mvn clean install
 ```
 
-# Launch and test
+# Run Locally
 
-1. Run the following command to start the maven goal of Spring Boot:
+1. Execute the following maven command to start the application:
 
     ```
     mvn spring-boot:run
     ```
 
-1. If the application launched without error, use the following command to access the REST endpoint exposed using curl or httpie tool:
+1. If the application launched without errors, use one of the following commands to access the HTTP endpoint using curl or httpie:
 
     ```
-    http http://localhost:8080/greeting
-    curl http://localhost:8080/greeting
+    http http://localhost:8080/api/greeting
+    curl http://localhost:8080/api/greeting
     ```
 
-1. To pass a parameter for the Greeting Service, use the following HTTP request:
+1. To pass a parameter for the Greeting Service, use one of the following commands:
 
     ```
-    http http://localhost:8080/greeting name==Charles
-    curl http://localhost:8080/greeting -d name=Bruno
+    http http://localhost:8080/api/greeting name==Charles
+    curl http://localhost:8080/api/greeting -d name=Bruno
     ```
 
-# OpenShift Online
+# Run on OpenShift Online
 
 1. Go to [OpenShift Online](https://console.dev-preview-int.openshift.com/console/command-line) to get the token used by the oc client for authentication and project access. 
 
-1. On the oc client, execute the following command to replace MYTOKEN with the one from the Web Console:
+1. On the oc client execute the following command to replace MYTOKEN with the one from the Web Console:
 
     ```
     oc login https://api.dev-preview-int.openshift.com --token=MYTOKEN
     ```
-1. Use the Fabric8 Maven Plugin to launch the S2I process on the OpenShift Online machine & start the pod.
+
+1. Use Fabric8 Maven Plugin to launch an S2I process on the OpenShift Online machine & start the pod:
 
     ```
-    mvn clean fabric8:deploy -Popenshift  -DskipTests
+    mvn fabric8:deploy -Popenshift -DskipTests
     ```
     
-1. Get the route url.
+1. Get a route url to access the service:
 
     ```
-    oc get route/${artifactId}
-    NAME              HOST/PORT                                          PATH      SERVICE                TERMINATION   LABELS
-    ${artifactId}     <HOST_PORT_ADDRESS>             springboot-rest:8080
-    ```
+    oc get route/springboot-rest
+    ``` 
 
-1. Use the Host or Port address to access the REST endpoint.
+    NAME | HOST/PORT | PATH | SERVICES | PORT | TERMINATION
+    ---- | --------- | ---- | -------- | ---- | -----------
+    springboot-rest | <HOST_PORT_ADDRESS> | | springboot-rest | 8080 | 
+
+1. Use host address to access the service HTTP endpoint:
     ```
-    http http://<HOST_PORT_ADDRESS>/greeting
-    http http://<HOST_PORT_ADDRESS>/greeting name==Bruno
+    http http://<HOST_PORT_ADDRESS>/api/greeting
+    http http://<HOST_PORT_ADDRESS>/api/greeting name==Bruno
 
     or 
 
-    curl http://<HOST_PORT_ADDRESS>/greeting
-    curl http://<HOST_PORT_ADDRESS>/greeting -d name=Bruno
+    curl http://<HOST_PORT_ADDRESS>/api/greeting
+    curl http://<HOST_PORT_ADDRESS>/api/greeting -d name=Bruno
     ```

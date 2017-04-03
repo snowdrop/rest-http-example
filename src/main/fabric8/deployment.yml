@@ -8,6 +8,6 @@ spec:
       containers:
         - readinessProbe:
             httpGet:
-              path: /greeting
+              path: /api/greeting
               port: 8080
               scheme: HTTP
