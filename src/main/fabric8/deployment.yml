@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Deployment
 metadata:
-  name: springboot-rest
+  name: ${project.artifactId}
 spec:
   template:
     spec:

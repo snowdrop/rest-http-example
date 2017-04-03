@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Route
 metadata:
-  name: springboot-rest
+  name: ${project.artifactId}
 spec:
   port:
     targetPort: 8080
   to:
     kind: Service
-    name: springboot-rest
+    name: ${project.artifactId}
