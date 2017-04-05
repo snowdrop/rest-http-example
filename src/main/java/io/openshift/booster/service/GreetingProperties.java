@@ -13,21 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.obsidiantoaster.quickstart.service;
 
-public class Greeting {
+package io.openshift.booster.service;
 
-    private final String content;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-    public Greeting() {
-        this.content = null;
+@Component
+@ConfigurationProperties("greeting")
+public class GreetingProperties {
+
+    private String message = "Hello, %s!";
+
+    public String getMessage() {
+        return message;
     }
 
-    public Greeting(String content) {
-        this.content = content;
-    }
-
-    public String getContent() {
-        return content;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

@@ -59,7 +59,7 @@ In order to build and deploy this project, you must have an account on an OpenSh
 1. Use Fabric8 Maven Plugin to launch an S2I process on the OpenShift Online machine & start the pod:
 
     ```
-    mvn clean fabric8:deploy -Popenshift -DskipTests
+    mvn clean fabric8:deploy -Popenshift
     ```
     
 1. Get a route url to access the service:
