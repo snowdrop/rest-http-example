@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.obsidiantoaster.quickstart;
+package io.openshift.booster;
 
+import io.openshift.booster.service.Greeting;
 import org.junit.Before;
-import org.obsidiantoaster.quickstart.service.Greeting;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
