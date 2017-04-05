@@ -1,7 +1,7 @@
 #!/bin/bash
 body='{
 "request": {
-  "message":"Build triggered because of quick_rest_springboot-tomcat change",
+  "message":"Build triggered because of spring-boot-http change",
   "branch":"master"
 }}'
 

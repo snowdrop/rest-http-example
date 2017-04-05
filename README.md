@@ -24,20 +24,12 @@ Name | Description | Version
 
 In order to build and deploy this project, you must have an account on an OpenShift Online (OSO): https://console.dev-preview-int.openshift.com/ instance.
 
-# Build the Project
-
-Execute the following maven command to build the project:
-
-```
-mvn clean install
-```
-
 # Run Locally
 
 1. Execute the following maven command to start the application:
 
     ```
-    mvn spring-boot:run
+    mvn clean spring-boot:run
     ```
 
 1. If the application launched without errors, use one of the following commands to access the HTTP endpoint using curl or httpie:
@@ -67,18 +59,18 @@ mvn clean install
 1. Use Fabric8 Maven Plugin to launch an S2I process on the OpenShift Online machine & start the pod:
 
     ```
-    mvn fabric8:deploy -Popenshift -DskipTests
+    mvn clean fabric8:deploy -Popenshift -DskipTests
     ```
     
 1. Get a route url to access the service:
 
     ```
-    oc get route/springboot-rest
+    oc get route/spring-boot-http
     ``` 
 
     NAME | HOST/PORT | PATH | SERVICES | PORT | TERMINATION
     ---- | --------- | ---- | -------- | ---- | -----------
-    springboot-rest | <HOST_PORT_ADDRESS> | | springboot-rest | 8080 | 
+    spring-boot-http | <HOST_PORT_ADDRESS> | | spring-boot-http | 8080 | 
 
 1. Use host address to access the service HTTP endpoint:
     ```
