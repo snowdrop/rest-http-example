@@ -1,12 +1,7 @@
 language: java
-jdk:
-- oraclejdk8
-after_success:
-- ./.travis/trigger-build.sh
-
-env:
-  global:
-    secure: XKFHEXwyxHF/6Q5zedw17J99PnuJWGK2xlDsqdPqNOMB8VAUsabHTar/tOe9y3dAZjHM7MIn6eg5s97mpSXTo2iQm26RUTjzBHdV7kcnWPCPo+XLSCFD3Qshl2cCj3iSkx3ZgIV6jOz5BT2QGDeBNuTeepykx93kc+QXvfU8GASII6u2IiO9/SjEqrn809eDX/0oRSaRt5CSjs7kDtUbAsmEFCmNtxE081keqGbRcEzOPOGqM10/AatQVbt7wGtuTUbO+JL+A7xucRFh8eVVJQ+v9X1bbVLcr9MLWmTIWQYCfxE9KCaK/NUzF6m/7zb5TEiAw43pr/ZJderwZvc3pRq4QMHnctQAuBVjMma9kfUaVevYd/rKaz1AxtujMBey3Cod138t8wYvOW/AdWH8UINyW8DgKadDUmxQUKsn20IgfO+b0yHAHzW9vaSA4YlXxk0vAj25ay+OJ5dBmqjqsXNKz4/qpb2PFv4n6/p+6nu/SZUylxYRi3RT3O3lJ54REbm8bf3wPyaaGVuee3DxxWahJcAk9bLaCiPMsHt6eVEyn4pnQ4aN/h1QApWBZy4VpMGLt5yT6ia1WPdWB60OSd25pYgQKguo9os+iq066/6e7F8ATKYjc3EOMhw1GvNyGMn45JjmaBHQgpXu4Nuec8Dr18bbdFbdUaj0WYCB5LI=
-notifications:
-  slack:
-    secure: MkeP304+HLXfiDTqmFTifEOTR2+3s3tgzIFSMXenJwuDNK0CaAPUZuMAZcRVhzund/RyOVUeVTWvpgpZWoKMZ2RUfPsFgKQrktBxj2kBchLD32VlWr7GWJkPvhvnkCdwCFp4B7yv83agwNf7O1RRi/KL1qrWiMFSQk14fTCYLDDmpOI8fA5lWnkF8kt0pULV/iFu56/te3ZIIdOqc5rGYWU3lABnPFRLYSOYUYydNGTS2obYlV/NZXhOWY+1t4gM8mEtztJLFeaG8kSXdmg9VYIR6dTNacyHZQRGMgEHLhPOuvWgr8IJLN69Agjsz5dVJ8fAVY4JDATCEdsFgTLvjqWsX7Ty6pEvRB6zLeiYKgjJOp1P6rFQ2eGEMOvNZfb11e7ncH/CXgKQtzkjqIAWz8idT04RbNHj4bt/tO0ohZizyXZ8HdgV+DA1JdBBEeMGlvuIGot8uakVSsXecRQDbpcvykZ3c4rjq2+qf43pH05PMBzADeOYrEatUite31kQPggOWgOSpw0RmXIj01IsJs8qlCT16HbMIKzzhozszkLg5FiAXb9g2jpOQe1a5unWzTg9bVCjWt9lBOycxRnS1Dl4PhWkxr2cleYpu2KQoTEFbuJNGj26z1Dua0WWpAuO1z7w5wltLmBYY7kGEvqxVnG+DkcFvsYRhSX50ipYbPE=
+jdk: oraclejdk8
+before_install:
+  - curl -O http://ftp.cixug.es/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
+  - unzip apache-maven-3.3.9-bin.zip
+  - export M2_HOME=$PWD/apache-maven-3.3.9
+  - export PATH=$M2_HOME/bin:${PATH}
