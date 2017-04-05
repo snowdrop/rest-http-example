@@ -1,1 +1,1 @@
-Quickstart to expose a REST Greeting endpoint using SpringBoot and Apache Tomcat in embedded mode
+Quickstart to expose a HTTP Greeting endpoint using Spring Boot and Apache Tomcat in embedded mode
