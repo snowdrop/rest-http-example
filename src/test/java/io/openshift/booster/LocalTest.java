@@ -15,42 +15,23 @@
  */
 package io.openshift.booster;
 
-import io.openshift.booster.service.Greeting;
+import com.jayway.restassured.RestAssured;
 import org.junit.Before;
-import org.junit.Assert;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.client.RestTemplate;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class BoosterApplicationTest {
+public class LocalTest extends AbstractBoosterApplicationTest {
 
     @Value("${local.server.port}")
     private int port;
 
-    private final RestTemplate template = new RestTemplate();
-
-    private String serviceUrl;
-
     @Before
     public void beforeTest() {
-        serviceUrl = String.format("http://localhost:%d/api/greeting", port);
-    }
-
-    @Test
-    public void testGreetingEndpoint() {
-        Greeting greeting = template.getForObject(serviceUrl, Greeting.class);
-        Assert.assertEquals("Hello, World!", greeting.getContent());
-    }
-
-    @Test
-    public void testGreetingEndpointWithNameParameter() {
-        Greeting greeting = template.getForObject(serviceUrl + "?name=John", Greeting.class);
-        Assert.assertEquals("Hello, John!", greeting.getContent());
+        RestAssured.baseURI = String.format("http://localhost:%d/api/greeting", port);
     }
 
 }
