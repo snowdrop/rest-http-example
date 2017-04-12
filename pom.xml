@@ -20,7 +20,7 @@
   <parent>
     <groupId>io.openshift</groupId>
     <artifactId>booster-parent</artifactId>
-    <version>3</version>
+    <version>4</version>
   </parent>
 
   <groupId>io.openshift.booster</groupId>
