@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
+import io.openshift.booster.service.GreetingProperties;
 import io.openshift.booster.test.OpenShiftTestAssistant;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -52,6 +53,10 @@ public class OpenShiftIT extends AbstractBoosterApplicationTest {
     @AfterClass
     public static void cleanup() {
         assistant.cleanup();
+    }
+
+    protected GreetingProperties getProperties() {
+        return new GreetingProperties();
     }
 
 }

@@ -16,8 +16,10 @@
 package io.openshift.booster;
 
 import com.jayway.restassured.RestAssured;
+import io.openshift.booster.service.GreetingProperties;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -29,9 +31,16 @@ public class LocalTest extends AbstractBoosterApplicationTest {
     @Value("${local.server.port}")
     private int port;
 
+    @Autowired
+    private GreetingProperties properties;
+
     @Before
     public void beforeTest() {
         RestAssured.baseURI = String.format("http://localhost:%d/api/greeting", port);
+    }
+
+    protected GreetingProperties getProperties() {
+        return properties;
     }
 
 }
