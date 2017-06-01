@@ -1,1 +1,1 @@
-http://appdev.openshift.io/docs/mission-http-api-spring-boot-tomcat.html
+http://appdev-stage.openshift.io/docs/spring-boot-runtime.html#mission-http-api-spring-boot-tomcat
