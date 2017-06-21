@@ -43,7 +43,7 @@
     $("#invoke").click(function (e) {
       var n = $("#name").val() || "World";
       $.getJSON("/api/greeting?name=" + n, function (res) {
-        $("#greeting-result").html(JSON.stringify(res));
+        $("#greeting-result").text(JSON.stringify(res));
       });
       e.preventDefault();
     });
