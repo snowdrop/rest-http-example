@@ -149,11 +149,4 @@
       </build>
     </profile>
   </profiles>
-
-  <repositories>
-    <repository>
-      <id>jboss-release</id>
-      <url>https://repository.jboss.org/nexus/service/local/repositories/releases/content/</url>
-    </repository>
-  </repositories>
 </project>
