@@ -42,7 +42,7 @@
       <!-- Spring Boot BOM File -->
       <dependency>
         <groupId>org.jboss.snowdrop</groupId>
-        <artifactId>spring-boot-parent</artifactId>
+        <artifactId>spring-boot-1.4-bom</artifactId>
         <version>${spring-boot.bom.version}</version>
         <type>pom</type>
         <scope>import</scope>
