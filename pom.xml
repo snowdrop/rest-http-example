@@ -25,7 +25,7 @@
 
   <groupId>io.openshift.booster</groupId>
   <artifactId>spring-boot-http</artifactId>
-  <version>6-SNAPSHOT</version>
+  <version>6</version>
 
   <name>Spring Boot - HTTP</name>
   <description>Spring Boot - HTTP</description>
