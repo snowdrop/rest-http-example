@@ -14,13 +14,13 @@
   <xsl:variable name="lgpl_v21_name" select="'GNU Lesser General Public License, Version 2.1'"/>
   <xsl:variable name="lgpl_v21_url" select="'http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html'"/>
 
-  <xsl:variable name="bsd_2_name" select="'The 2-Clause BSD License'"/>
-  <xsl:variable name="bsd_2_url" select="'https://opensource.org/licenses/bsd-license'"/>
+  <xsl:variable name="bsd_2_name" select="'BSD 2-clause &quot;Simplified&quot; License'"/>
+  <xsl:variable name="bsd_2_url" select="'http://www.opensource.org/licenses/bsd-2-clause'"/>
 
-  <xsl:variable name="bsd_3_name" select="'The 3-Clause BSD License'"/>
+  <xsl:variable name="bsd_3_name" select="'BSD 3-clause &quot;New&quot; or &quot;Revised&quot; License'"/>
   <xsl:variable name="bsd_3_url" select="'https://opensource.org/licenses/bsd-3-clause'"/>
 
-  <xsl:variable name="json_name" select="'The JSON License'"/>
+  <xsl:variable name="json_name" select="'JSON License'"/>
   <xsl:variable name="json_url" select="'http://www.json.org/license.html'"/>
 
   <xsl:variable name="mit_name" select="'The MIT License'"/>
@@ -109,5 +109,5 @@
     </license>
   </xsl:template>
 
-  
+
 </xsl:stylesheet>

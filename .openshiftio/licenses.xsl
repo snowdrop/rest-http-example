@@ -113,10 +113,10 @@
     <xsl:param name="filename"/>
 
     <xsl:choose>
-      <xsl:when test="$filename = 'the 2-clause bsd license - bsd-license'">
+      <xsl:when test="$filename = 'bsd 2-clause &quot;simplified&quot; license - bsd-2-clause'">
         <xsl:value-of select="concat($filename, '.txt.html')"/>
       </xsl:when>
-      <xsl:when test="$filename = 'the 3-clause bsd license - bsd-3-clause'">
+      <xsl:when test="$filename = 'bsd 3-clause &quot;new&quot; or &quot;revised&quot; license - bsd-3-clause'">
         <xsl:value-of select="concat($filename, '.txt.html')"/>
       </xsl:when>
       <xsl:when test="$filename = 'the mit license - mit'">
