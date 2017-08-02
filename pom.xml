@@ -31,7 +31,7 @@
   <description>Spring Boot - HTTP</description>
 
   <properties>
-    <spring-boot.bom.version>1</spring-boot.bom.version>
+    <spring-boot.bom.version>2</spring-boot.bom.version>
     <tomcat.version>8.0.36</tomcat.version>
 
     <maven.spring-boot.plugin.version>1.4.1.RELEASE</maven.spring-boot.plugin.version>
