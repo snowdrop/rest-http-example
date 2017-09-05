@@ -15,23 +15,27 @@
  */
 package io.openshift.booster.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
-@RestController
-public class GreetingController {
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
+@Path("/")
+@Component
+public class GreetingEndpoint {
     private final GreetingProperties properties;
 
-    @Autowired
-    public GreetingController(GreetingProperties properties) {
+    public GreetingEndpoint(GreetingProperties properties) {
         this.properties = properties;
     }
 
-    @RequestMapping("/api/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+    @GET
+    @Path("/greeting")
+    @Produces("application/json")
+    public Greeting greeting(@QueryParam("name") @DefaultValue("World") String name) {
         String message = String.format(properties.getMessage(), name);
         return new Greeting(message);
     }
