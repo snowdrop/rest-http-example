@@ -25,30 +25,22 @@
 
   <groupId>io.openshift.booster</groupId>
   <artifactId>spring-boot-http</artifactId>
-  <version>8-SNAPSHOT</version>
+  <version>8-redhat-SNAPSHOT</version>
 
   <name>Spring Boot - HTTP</name>
   <description>Spring Boot - HTTP</description>
 
   <properties>
-    <spring-boot.bom.version>1.4.1.Beta1</spring-boot.bom.version>
+    <spring-boot.bom.version>2.0.0.redhat-77</spring-boot.bom.version>
     <maven.spring-boot.plugin.version>1.4.1.RELEASE</maven.spring-boot.plugin.version>
   </properties>
-
-  <repositories>
-    <repository>
-      <id>redhat-thirdparty</id>
-      <name>RedHat Thirdparty Repository</name>
-      <url>https://repository.jboss.org/nexus/service/local/repositories/thirdparty-releases/content</url>
-    </repository>
-  </repositories>
 
   <dependencyManagement>
     <dependencies>
       <!-- Spring Boot BOM File -->
       <dependency>
-        <groupId>me.snowdrop</groupId>
-        <artifactId>spring-boot-bom</artifactId>
+        <groupId>org.jboss.snowdrop</groupId>
+        <artifactId>spring-boot-1.4-bom</artifactId>
         <version>${spring-boot.bom.version}</version>
         <type>pom</type>
         <scope>import</scope>
@@ -86,16 +78,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-core</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
