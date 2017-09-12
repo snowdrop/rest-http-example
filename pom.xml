@@ -31,9 +31,17 @@
   <description>Spring Boot - HTTP</description>
 
   <properties>
-    <spring-boot.bom.version>1.4.1-SNAPSHOT</spring-boot.bom.version>
+    <spring-boot.bom.version>1.4.1.Beta1</spring-boot.bom.version>
     <maven.spring-boot.plugin.version>1.4.1.RELEASE</maven.spring-boot.plugin.version>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>redhat-thirdparty</id>
+      <name>RedHat Thirdparty Repository</name>
+      <url>https://repository.jboss.org/nexus/service/local/repositories/thirdparty-releases/content</url>
+    </repository>
+  </repositories>
 
   <dependencyManagement>
     <dependencies>
