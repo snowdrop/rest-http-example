@@ -1,1 +1,7 @@
-name: Spring Boot - HTTP
+name: Spring Boot - HTTP Example
+description: A booster demonstrating how to set up a simple REST webservice with Spring Boot on OpenShift
+versions:
+- id: community
+ name: Community Runtime
+- id: redhat
+ name: Red Hat Productized Runtime
