@@ -31,8 +31,9 @@
   <description>Spring Boot - HTTP</description>
 
   <properties>
-    <spring-boot.bom.version>1.4.1.Beta1</spring-boot.bom.version>
+    <spring-boot.bom.version>2</spring-boot.bom.version>
     <maven.spring-boot.plugin.version>1.4.1.RELEASE</maven.spring-boot.plugin.version>
+    <version.ch.qos.logback.logback>1.1.7</version.ch.qos.logback.logback>
   </properties>
 
   <repositories>
@@ -47,8 +48,8 @@
     <dependencies>
       <!-- Spring Boot BOM File -->
       <dependency>
-        <groupId>me.snowdrop</groupId>
-        <artifactId>spring-boot-bom</artifactId>
+        <artifactId>spring-boot-1.4-bom</artifactId>
+        <groupId>org.jboss.snowdrop</groupId>
         <version>${spring-boot.bom.version}</version>
         <type>pom</type>
         <scope>import</scope>
@@ -91,11 +92,13 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
+      <version>${version.ch.qos.logback.logback}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
+      <version>${version.ch.qos.logback.logback}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
