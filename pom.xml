@@ -43,19 +43,6 @@
     </repository>
   </repositories>
 
-<!--  <dependencyManagement>
-    <dependencies>
-      &lt;!&ndash; Spring Boot BOM File &ndash;&gt;
-      <dependency>
-        <groupId>me.snowdrop</groupId>
-        <artifactId>spring-boot-bom</artifactId>
-        <version>${spring-boot.bom.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>-->
-
   <dependencies>
     <!-- Apache Tomcat Dependency required -->
     <dependency>
