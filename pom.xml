@@ -31,7 +31,6 @@
   <description>Spring Boot - HTTP</description>
 
   <properties>
-    <spring-boot.bom.version>1.5.7-SNAPSHOT</spring-boot.bom.version>
     <maven.spring-boot.plugin.version>1.5.7.RELEASE</maven.spring-boot.plugin.version>
   </properties>
 
