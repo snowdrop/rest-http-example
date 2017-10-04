@@ -18,9 +18,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>me.snowdrop</groupId>
-    <artifactId>spring-boot-booster-parent</artifactId>
-    <version>1.5.7-SNAPSHOT</version>
+    <groupId>io.openshift</groupId>
+    <artifactId>booster-parent</artifactId>
+    <version>11-SNAPSHOT</version>
   </parent>
 
   <groupId>io.openshift.booster</groupId>
@@ -31,6 +31,7 @@
   <description>Spring Boot - HTTP</description>
 
   <properties>
+    <spring-boot.bom.version>1.5.7-SNAPSHOT</spring-boot.bom.version>
     <maven.spring-boot.plugin.version>1.5.7.RELEASE</maven.spring-boot.plugin.version>
   </properties>
 
@@ -41,6 +42,18 @@
       <url>https://repository.jboss.org/nexus/service/local/repositories/thirdparty-releases/content</url>
     </repository>
   </repositories>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>me.snowdrop</groupId>
+        <artifactId>spring-boot-bom</artifactId>
+        <version>${spring-boot.bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <!-- Apache Tomcat Dependency required -->
