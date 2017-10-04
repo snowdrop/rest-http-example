@@ -18,9 +18,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>io.openshift</groupId>
-    <artifactId>booster-parent</artifactId>
-    <version>10</version>
+    <groupId>me.snowdrop</groupId>
+    <artifactId>spring-boot-booster-parent</artifactId>
+    <version>1.5.7-SNAPSHOT</version>
   </parent>
 
   <groupId>io.openshift.booster</groupId>
@@ -43,9 +43,9 @@
     </repository>
   </repositories>
 
-  <dependencyManagement>
+<!--  <dependencyManagement>
     <dependencies>
-      <!-- Spring Boot BOM File -->
+      &lt;!&ndash; Spring Boot BOM File &ndash;&gt;
       <dependency>
         <groupId>me.snowdrop</groupId>
         <artifactId>spring-boot-bom</artifactId>
@@ -54,10 +54,9 @@
         <scope>import</scope>
       </dependency>
     </dependencies>
-  </dependencyManagement>
+  </dependencyManagement>-->
 
   <dependencies>
-
     <!-- Apache Tomcat Dependency required -->
     <dependency>
       <groupId>org.apache.tomcat</groupId>
