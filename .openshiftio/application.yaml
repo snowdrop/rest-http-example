@@ -13,7 +13,7 @@ parameters:
 - name: SOURCE_REPOSITORY_REF
   description: The branch name for the application
   displayName: Source Branch
-  value: master
+  value: sb-1.5.x
   required: true
 - name: SOURCE_REPOSITORY_DIR
   description: The location within the source repo of the application
@@ -100,7 +100,7 @@ objects:
       prometheus.io/port: "9779"
       fabric8.io/scm-url: https://github.com/openshiftio/spring-boot-http
       fabric8.io/iconUrl: img/icons/spring-boot.svg
-      fabric8.io/git-branch: master
+      fabric8.io/git-branch: sb-1.5.x
       prometheus.io/scrape: "true"
       fabric8.io/scm-devcon-url: scm:git:git:@github.com:openshiftio/booster-parent.git/spring-boot-http
       fabric8.io/scm-tag: booster-parent-10
@@ -129,7 +129,7 @@ objects:
       fabric8.io/scm-con-url: scm:git:https://github.com/openshiftio/booster-parent.git/spring-boot-http
       fabric8.io/scm-url: https://github.com/openshiftio/spring-boot-http
       fabric8.io/iconUrl: img/icons/spring-boot.svg
-      fabric8.io/git-branch: master
+      fabric8.io/git-branch: sb-1.5.x
       fabric8.io/scm-devcon-url: scm:git:git:@github.com:openshiftio/booster-parent.git/spring-boot-http
       fabric8.io/scm-tag: booster-parent-10
     labels:
@@ -156,7 +156,7 @@ objects:
           fabric8.io/scm-con-url: scm:git:https://github.com/openshiftio/booster-parent.git/spring-boot-http
           fabric8.io/scm-url: https://github.com/openshiftio/spring-boot-http
           fabric8.io/iconUrl: img/icons/spring-boot.svg
-          fabric8.io/git-branch: master
+          fabric8.io/git-branch: sb-1.5.x
           fabric8.io/scm-devcon-url: scm:git:git:@github.com:openshiftio/booster-parent.git/spring-boot-http
           fabric8.io/scm-tag: booster-parent-10
         labels:
