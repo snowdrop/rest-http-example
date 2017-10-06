@@ -31,16 +31,15 @@
   <description>Spring Boot - HTTP</description>
 
   <properties>
-    <spring-boot.bom.version>2.0.0.redhat-77</spring-boot.bom.version>
-    <maven.spring-boot.plugin.version>1.4.1.RELEASE</maven.spring-boot.plugin.version>
+    <spring-boot.bom.version>1.5.7.redhat-13</spring-boot.bom.version>
+    <maven.spring-boot.plugin.version>1.5.7.RELEASE</maven.spring-boot.plugin.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
-      <!-- Spring Boot BOM File -->
       <dependency>
-        <groupId>org.jboss.snowdrop</groupId>
-        <artifactId>spring-boot-1.4-bom</artifactId>
+        <groupId>me.snowdrop</groupId>
+        <artifactId>spring-boot-bom</artifactId>
         <version>${spring-boot.bom.version}</version>
         <type>pom</type>
         <scope>import</scope>
@@ -49,13 +48,6 @@
   </dependencyManagement>
 
   <dependencies>
-
-    <!-- Apache Tomcat Dependency required -->
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-juli</artifactId>
-    </dependency>
-
     <!-- Spring Boot Starters -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -73,6 +65,14 @@
       <groupId>com.fasterxml.jackson.jaxrs</groupId>
       <artifactId>jackson-jaxrs-json-provider</artifactId>
     </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
 
     <!-- Testing -->
     <dependency>
@@ -80,6 +80,7 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
 
   <build>
@@ -120,7 +121,6 @@
             <executions>
               <execution>
                 <id>fmp</id>
-                <phase>package</phase>
                 <goals>
                   <goal>resource</goal>
                   <goal>build</goal>
@@ -149,6 +149,21 @@
           </plugin>
         </plugins>
       </build>
+      <dependencies>
+        <!-- Override OpenShift/Kubernetes Client Version used by the Spring Cloud Kubernetes -->
+        <dependency>
+          <groupId>io.fabric8</groupId>
+          <artifactId>kubernetes-client</artifactId>
+          <version>1.4.34</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>io.fabric8</groupId>
+          <artifactId>openshift-client</artifactId>
+          <version>1.4.34</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 </project>
