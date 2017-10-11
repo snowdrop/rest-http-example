@@ -122,6 +122,12 @@
       <xsl:when test="$filename = 'the mit license - mit'">
         <xsl:value-of select="concat($filename, '.txt.html')"/>
       </xsl:when>
+      <xsl:when test="$filename = 'common development and distribution license 1.1 - license'">
+        <xsl:value-of select="concat($filename, '.html')"/>
+      </xsl:when>
+      <xsl:when test="$filename = 'common development and distribution license (cddl) and gnu public license v.2 w/classpath exception - cddl-gplv2.html'">
+        <xsl:value-of select="'common development and distribution license (cddl) and gnu public license v.2 w_classpath exception - cddl-gplv2.html'"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$filename"/>
       </xsl:otherwise>

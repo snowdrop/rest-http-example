@@ -26,6 +26,15 @@
   <xsl:variable name="mit_name" select="'The MIT License'"/>
   <xsl:variable name="mit_url" select="'https://opensource.org/licenses/mit'"/>
 
+  <xsl:variable name="cddl_11_name" select="'Common Development and Distribution License 1.1'"/>
+  <xsl:variable name="cddl_11_url" select="'https://javaee.github.io/glassfish/LICENSE'"/>
+
+  <xsl:variable name="gpl2_cpe_name" select="'GNU General Public License, Version 2 with the Classpath Exception'"/>
+  <xsl:variable name="gpl2_cpe_url" select="'http://repository.jboss.org/licenses/gpl-2.0-ce.txt'"/>
+
+  <xsl:variable name="cddl_gpl2_cpe_name" select="'Common Development and Distribution License (CDDL) and GNU Public License v.2 w/Classpath Exception'"/>
+  <xsl:variable name="cddl_gpl2_cpe_url" select="'https://netbeans.org/cddl-gplv2.html'"/>
+
   <xsl:template match="@*|node()">
     <xsl:copy>
       <xsl:apply-templates select="@*|node()"/>
@@ -88,6 +97,24 @@
         <xsl:call-template name="license">
           <xsl:with-param name="name" select="$mit_name"/>
           <xsl:with-param name="url" select="$mit_url"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="contains(translate(., $uppercase, $lowercase), 'cddl 1.1')">
+        <xsl:call-template name="license">
+          <xsl:with-param name="name" select="$cddl_11_name"/>
+          <xsl:with-param name="url" select="$cddl_11_url"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="contains(translate(., $uppercase, $lowercase), 'gpl2 w/ cpe')">
+        <xsl:call-template name="license">
+          <xsl:with-param name="name" select="$gpl2_cpe_name"/>
+          <xsl:with-param name="url" select="$gpl2_cpe_url"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="contains(translate(., $uppercase, $lowercase), 'cddl + gplv2 with classpath exception')">
+        <xsl:call-template name="license">
+          <xsl:with-param name="name" select="$cddl_gpl2_cpe_name"/>
+          <xsl:with-param name="url" select="$cddl_gpl2_cpe_url"/>
         </xsl:call-template>
       </xsl:when>
       <!-- If nothing matches, leave original values -->
