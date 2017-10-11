@@ -69,7 +69,7 @@
           <xsl:with-param name="url" select="$apache_v2_url"/>
         </xsl:call-template>
       </xsl:when>
-      <xsl:when test="contains(translate(., $uppercase, $lowercase), 'www.eclipse.org/legal/epl-v10')">
+      <xsl:when test="contains(translate(., $uppercase, $lowercase), 'epl-v10')">
         <xsl:call-template name="license">
           <xsl:with-param name="name" select="$eclipse_v1_name"/>
           <xsl:with-param name="url" select="$eclipse_v1_url"/>
