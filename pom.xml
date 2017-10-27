@@ -31,8 +31,8 @@
   <description>Spring Boot - HTTP</description>
 
   <properties>
-    <spring-boot.bom.version>1.5.7.redhat-13</spring-boot.bom.version>
-    <maven.spring-boot.plugin.version>1.5.7.RELEASE</maven.spring-boot.plugin.version>
+    <spring-boot.bom.version>1.5.8.Beta2-redhat-2</spring-boot.bom.version>
+    <maven.spring-boot.plugin.version>1.5.8.RELEASE</maven.spring-boot.plugin.version>
   </properties>
 
   <dependencyManagement>
