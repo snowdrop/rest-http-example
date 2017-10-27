@@ -35,14 +35,6 @@
     <maven.spring-boot.plugin.version>1.5.8.RELEASE</maven.spring-boot.plugin.version>
   </properties>
 
-  <repositories>
-    <repository>
-      <id>redhat-thirdparty</id>
-      <name>RedHat Thirdparty Repository</name>
-      <url>https://repository.jboss.org/nexus/service/local/repositories/thirdparty-releases/content</url>
-    </repository>
-  </repositories>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
