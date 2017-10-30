@@ -263,6 +263,17 @@
       </licenses>
     </dependency>
     <dependency>
+      <groupId>commons-daemon</groupId>
+      <artifactId>commons-daemon</artifactId>
+      <version>1.0.15.redhat-2</version>
+      <licenses>
+        <license>
+          <name>Apache Software License, Version 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+      </licenses>
+    </dependency>
+    <dependency>
       <groupId>dk.brics.automaton</groupId>
       <artifactId>automaton</artifactId>
       <version>1.11-8</version>
@@ -399,6 +410,28 @@
       </licenses>
     </dependency>
     <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.9.4</version>
+      <licenses>
+        <license>
+          <name>Apache Software License, Version 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+      </licenses>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-launcher</artifactId>
+      <version>1.9.4</version>
+      <licenses>
+        <license>
+          <name>Apache Software License, Version 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+      </licenses>
+    </dependency>
+    <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.3.2</version>
@@ -412,7 +445,7 @@
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-core</artifactId>
-      <version>3.1.12</version>
+      <version>3.1.12.redhat-1</version>
       <licenses>
         <license>
           <name>Apache Software License, Version 2.0</name>
@@ -423,7 +456,7 @@
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-      <version>3.1.12</version>
+      <version>3.1.12.redhat-1</version>
       <licenses>
         <license>
           <name>Apache Software License, Version 2.0</name>
@@ -434,7 +467,7 @@
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-rs-client</artifactId>
-      <version>3.1.12</version>
+      <version>3.1.12.redhat-1</version>
       <licenses>
         <license>
           <name>Apache Software License, Version 2.0</name>
@@ -445,7 +478,7 @@
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-transports-http</artifactId>
-      <version>3.1.12</version>
+      <version>3.1.12.redhat-1</version>
       <licenses>
         <license>
           <name>Apache Software License, Version 2.0</name>
@@ -456,7 +489,7 @@
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-spring-boot-autoconfigure</artifactId>
-      <version>3.1.12</version>
+      <version>3.1.12.redhat-1</version>
       <licenses>
         <license>
           <name>Apache Software License, Version 2.0</name>
@@ -467,7 +500,7 @@
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
-      <version>3.1.12</version>
+      <version>3.1.12.redhat-1</version>
       <licenses>
         <license>
           <name>Apache Software License, Version 2.0</name>
@@ -510,8 +543,19 @@
     </dependency>
     <dependency>
       <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat</artifactId>
+      <version>8.5.20.redhat-5</version>
+      <licenses>
+        <license>
+          <name>Apache Software License, Version 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+      </licenses>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
       <artifactId>tomcat-annotations-api</artifactId>
-      <version>8.5.23</version>
+      <version>8.5.20.redhat-5</version>
       <licenses>
         <license>
           <name>Apache Software License, Version 2.0</name>
@@ -522,7 +566,7 @@
     <dependency>
       <groupId>org.apache.tomcat.embed</groupId>
       <artifactId>tomcat-embed-core</artifactId>
-      <version>8.5.23</version>
+      <version>8.5.20.redhat-5</version>
       <licenses>
         <license>
           <name>Apache Software License, Version 2.0</name>
@@ -533,7 +577,7 @@
     <dependency>
       <groupId>org.apache.tomcat.embed</groupId>
       <artifactId>tomcat-embed-el</artifactId>
-      <version>8.5.23</version>
+      <version>8.5.20.redhat-5</version>
       <licenses>
         <license>
           <name>Apache Software License, Version 2.0</name>
@@ -544,7 +588,7 @@
     <dependency>
       <groupId>org.apache.tomcat.embed</groupId>
       <artifactId>tomcat-embed-websocket</artifactId>
-      <version>8.5.23</version>
+      <version>8.5.20.redhat-5</version>
       <licenses>
         <license>
           <name>Apache Software License, Version 2.0</name>
@@ -637,6 +681,17 @@
         <license>
           <name>Apache Software License, Version 2.0</name>
           <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+      </licenses>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jdt.core.compiler</groupId>
+      <artifactId>ecj</artifactId>
+      <version>4.6.1.redhat-1</version>
+      <licenses>
+        <license>
+          <name>Eclipse Public License, Version 1.0</name>
+          <url>http://www.eclipse.org/legal/epl-v10.html</url>
         </license>
       </licenses>
     </dependency>
