@@ -59,7 +59,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: spring-boot-http:latest
+        name: spring-boot-http:10
     postCommit: {}
     resources: {}
     source:
@@ -73,6 +73,7 @@ objects:
         from:
           kind: ImageStreamTag
           name: runtime:latest
+        incremental: true
         env:
         - name: MAVEN_ARGS_APPEND
           value: "-pl ${SOURCE_REPOSITORY_DIR}"
@@ -103,12 +104,12 @@ objects:
       fabric8.io/git-branch: sb-1.5.x
       prometheus.io/scrape: "true"
       fabric8.io/scm-devcon-url: scm:git:git:@github.com:openshiftio/booster-parent.git/spring-boot-http
-      fabric8.io/scm-tag: booster-parent-10
+      fabric8.io/scm-tag: booster-parent-11
     labels:
       expose: "true"
       app: spring-boot-http
       provider: fabric8
-      version: 8-SNAPSHOT
+      version: "10"
       group: io.openshift.booster
     name: spring-boot-http
   spec:
@@ -125,17 +126,17 @@ objects:
   kind: DeploymentConfig
   metadata:
     annotations:
-      fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=spring-boot-http&var-version=8-SNAPSHOT
+      fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=spring-boot-http&var-version=10
       fabric8.io/scm-con-url: scm:git:https://github.com/openshiftio/booster-parent.git/spring-boot-http
       fabric8.io/scm-url: https://github.com/openshiftio/spring-boot-http
       fabric8.io/iconUrl: img/icons/spring-boot.svg
       fabric8.io/git-branch: sb-1.5.x
       fabric8.io/scm-devcon-url: scm:git:git:@github.com:openshiftio/booster-parent.git/spring-boot-http
-      fabric8.io/scm-tag: booster-parent-10
+      fabric8.io/scm-tag: booster-parent-11
     labels:
       app: spring-boot-http
       provider: fabric8
-      version: 8-SNAPSHOT
+      version: "10"
       group: io.openshift.booster
     name: spring-boot-http
   spec:
@@ -152,17 +153,17 @@ objects:
     template:
       metadata:
         annotations:
-          fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=spring-boot-http&var-version=8-SNAPSHOT
+          fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=spring-boot-http&var-version=10
           fabric8.io/scm-con-url: scm:git:https://github.com/openshiftio/booster-parent.git/spring-boot-http
           fabric8.io/scm-url: https://github.com/openshiftio/spring-boot-http
           fabric8.io/iconUrl: img/icons/spring-boot.svg
           fabric8.io/git-branch: sb-1.5.x
           fabric8.io/scm-devcon-url: scm:git:git:@github.com:openshiftio/booster-parent.git/spring-boot-http
-          fabric8.io/scm-tag: booster-parent-10
+          fabric8.io/scm-tag: booster-parent-11
         labels:
           app: spring-boot-http
           provider: fabric8
-          version: 8-SNAPSHOT
+          version: "10"
           group: io.openshift.booster
       spec:
         containers:
@@ -171,7 +172,7 @@ objects:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: spring-boot-http:latest
+          image: spring-boot-http:10
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
@@ -209,7 +210,7 @@ objects:
         - spring-boot
         from:
           kind: ImageStreamTag
-          name: spring-boot-http:latest
+          name: spring-boot-http:10
       type: ImageChange
 - apiVersion: v1
   kind: Route
@@ -217,7 +218,7 @@ objects:
     labels:
       app: spring-boot-http
       provider: fabric8
-      version: 8-SNAPSHOT
+      version: "10"
       group: io.openshift.booster
     name: spring-boot-http
   spec:
