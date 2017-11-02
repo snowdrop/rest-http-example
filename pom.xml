@@ -24,11 +24,11 @@
   </parent>
 
   <groupId>io.openshift.booster</groupId>
-  <artifactId>spring-boot-http</artifactId>
+  <artifactId>spring-boot-rest-http</artifactId>
   <version>5-redhat-SNAPSHOT</version>
 
-  <name>Spring Boot - HTTP</name>
-  <description>Spring Boot - HTTP</description>
+  <name>Spring Boot - HTTP Booster</name>
+  <description>Spring Boot - HTTP Booster</description>
 
   <properties>
     <spring-boot.bom.version>1.5.8.Final-redhat-1</spring-boot.bom.version>
