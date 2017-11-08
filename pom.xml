@@ -25,7 +25,7 @@
 
   <groupId>io.openshift.booster</groupId>
   <artifactId>spring-boot-rest-http</artifactId>
-  <version>6-redhat-SNAPSHOT</version>
+  <version>6-redhat</version>
 
   <name>Spring Boot - HTTP Booster</name>
   <description>Spring Boot - HTTP Booster</description>
