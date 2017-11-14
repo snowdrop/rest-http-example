@@ -34,7 +34,7 @@
         <section id="main-content">
           <h2 id="common-development-and-distribution-license-cddl-version-11">COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.1</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>1. Definitions.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Definitions.
  
   1.1. "Contributor" means each individual or entity that creates or
   contributes to the creation of Modifications.
@@ -382,27 +382,25 @@
   work with Initial Developer and Contributors to distribute such
   responsibility on an equitable basis. Nothing herein is intended or
   shall be deemed to constitute any admission of liability.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 
 <h2 id="notice-pursuant-to-section-9-of-the-common-development-and-distribution-license-cddl">NOTICE PURSUANT TO SECTION 9 OF THE COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL)</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>The code released under the CDDL shall be governed by the laws of the
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The code released under the CDDL shall be governed by the laws of the
 State of California (excluding conflict-of-law provisions). Any
 litigation relating to this License shall be subject to the jurisdiction
 of the Federal Courts of the Northern District of California and the
 state courts of the State of California, with venue lying in Santa Clara
 County, California.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 
 <h2 id="the-gnu-general-public-license-gpl-version-2-june-1991">The GNU General Public License (GPL) Version 2, June 1991</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Copyright (C) 1989, 1991 Free Software Foundation, Inc.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Copyright (C) 1989, 1991 Free Software Foundation, Inc.
 51 Franklin Street, Fifth Floor
 Boston, MA 02110-1335
 USA
@@ -736,12 +734,11 @@ into proprietary programs. If your program is a subroutine library, you
 may consider it more useful to permit linking proprietary applications
 with the library. If this is what you want to do, use the GNU Library
 General Public License instead of this License.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Certain source files distributed by Oracle America, Inc. and/or its
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Certain source files distributed by Oracle America, Inc. and/or its
 affiliates are subject to the following clarification and special
 exception to the GPLv2, based on the GNU Project exception for its
 Classpath libraries, known as the GNU Classpath Exception, but only
@@ -796,8 +793,7 @@ based on this library.  If you modify this library, you may extend this
 exception to your version of the library, but you are not obligated to
 do so.  If you do not wish to do so, delete this exception statement
 from your version.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
         </section>
