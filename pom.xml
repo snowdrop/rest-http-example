@@ -33,6 +33,8 @@
   <properties>
     <spring-boot.bom.version>1.5.8.Final</spring-boot.bom.version>
     <maven.spring-boot.plugin.version>1.5.8.RELEASE</maven.spring-boot.plugin.version>
+    <arquillian.version>1.1.13.Final</arquillian.version>
+    <arquillian.cube.version>1.9.1</arquillian.cube.version>
   </properties>
 
   <dependencyManagement>
@@ -41,6 +43,22 @@
         <groupId>me.snowdrop</groupId>
         <artifactId>spring-boot-bom</artifactId>
         <version>${spring-boot.bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jboss.arquillian</groupId>
+        <artifactId>arquillian-bom</artifactId>
+        <version>${arquillian.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.arquillian.cube</groupId>
+        <artifactId>arquillian-cube-bom</artifactId>
+        <version>${arquillian.cube.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -67,6 +85,23 @@
     </dependency>
 
     <!-- Testing -->
+    <dependency>
+      <groupId>org.jboss.arquillian.junit</groupId>
+      <artifactId>arquillian-junit-container</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.arquillian.cube</groupId>
+      <artifactId>arquillian-cube-openshift</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>io.undertow</groupId>
+          <artifactId>undertow-core</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
@@ -157,21 +192,6 @@
           </plugin>
         </plugins>
       </build>
-      <dependencies>
-        <!-- Override OpenShift/Kubernetes Client Version used by the Spring Cloud Kubernetes -->
-        <dependency>
-          <groupId>io.fabric8</groupId>
-          <artifactId>kubernetes-client</artifactId>
-          <version>1.4.34</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>io.fabric8</groupId>
-          <artifactId>openshift-client</artifactId>
-          <version>1.4.34</version>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
     </profile>
   </profiles>
 </project>
