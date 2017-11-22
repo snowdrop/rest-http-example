@@ -34,7 +34,6 @@
     <spring-boot.bom.version>1.5.8.Final</spring-boot.bom.version>
     <maven.spring-boot.plugin.version>1.5.8.RELEASE</maven.spring-boot.plugin.version>
     <arquillian.version>1.1.13.Final</arquillian.version>
-    <arquillian.cube.version>1.9.1</arquillian.cube.version>
   </properties>
 
   <dependencyManagement>
