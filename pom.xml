@@ -18,52 +18,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>io.openshift</groupId>
-    <artifactId>booster-parent</artifactId>
-    <version>11</version>
+    <groupId>io.openshift.booster</groupId>
+    <artifactId>spring-boot-booster-parent</artifactId>
+    <version>2</version>
   </parent>
 
-  <groupId>io.openshift.booster</groupId>
   <artifactId>spring-boot-rest-http</artifactId>
   <version>14-SNAPSHOT</version>
 
   <name>Spring Boot - HTTP Booster</name>
   <description>Spring Boot - HTTP Booster</description>
-
-  <properties>
-    <spring-boot.bom.version>1.5.8.Final</spring-boot.bom.version>
-    <maven.spring-boot.plugin.version>1.5.8.RELEASE</maven.spring-boot.plugin.version>
-    <arquillian.version>1.1.13.Final</arquillian.version>
-    <arquillian.cube.version>1.9.1</arquillian.cube.version>
-  </properties>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>me.snowdrop</groupId>
-        <artifactId>spring-boot-bom</artifactId>
-        <version>${spring-boot.bom.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.jboss.arquillian</groupId>
-        <artifactId>arquillian-bom</artifactId>
-        <version>${arquillian.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.arquillian.cube</groupId>
-        <artifactId>arquillian-cube-bom</artifactId>
-        <version>${arquillian.cube.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <dependencies>
     <!-- Spring Boot Starters -->
@@ -126,54 +90,7 @@
     </dependency>
   </dependencies>
 
-  <build>
-    <testResources>
-      <testResource>
-        <directory>src/test/resources</directory>
-        <filtering>true</filtering>
-      </testResource>
-    </testResources>
-
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${maven.spring-boot.plugin.version}</version>
-        <configuration>
-          <classifier>exec</classifier>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
   <profiles>
-    <profile>
-      <id>openshift</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>io.fabric8</groupId>
-            <artifactId>fabric8-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>fmp</id>
-                <goals>
-                  <goal>resource</goal>
-                  <goal>build</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
     <profile>
       <id>openshift-it</id>
       <build>
@@ -186,14 +103,6 @@
                 <app.name>${project.artifactId}</app.name>
               </systemPropertyVariables>
             </configuration>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>integration-test</goal>
-                  <goal>verify</goal>
-                </goals>
-              </execution>
-            </executions>
           </plugin>
         </plugins>
       </build>
