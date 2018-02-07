@@ -96,19 +96,9 @@ objects:
 - apiVersion: v1
   kind: Service
   metadata:
-    annotations:
-      fabric8.io/scm-con-url: scm:git:https://github.com/openshiftio/booster-parent.git/spring-boot-rest-http
-      prometheus.io/port: "9779"
-      fabric8.io/scm-url: https://github.com/openshiftio/spring-boot-rest-http
-      fabric8.io/iconUrl: img/icons/spring-boot.svg
-      fabric8.io/git-branch: sb-1.5.x
-      prometheus.io/scrape: "true"
-      fabric8.io/scm-devcon-url: scm:git:git:@github.com:openshiftio/booster-parent.git/spring-boot-rest-http
-      fabric8.io/scm-tag: booster-parent-11
     labels:
-      expose: "true"
       app: spring-boot-rest-http
-      provider: fabric8
+      provider: snowdrop
       version: "13"
       group: io.openshift.booster
     name: spring-boot-rest-http
@@ -120,31 +110,22 @@ objects:
       targetPort: 8080
     selector:
       app: spring-boot-rest-http
-      provider: fabric8
+      provider: snowdrop
       group: io.openshift.booster
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
-    annotations:
-      fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=spring-boot-rest-http&var-version=13
-      fabric8.io/scm-con-url: scm:git:https://github.com/openshiftio/booster-parent.git/spring-boot-rest-http
-      fabric8.io/scm-url: https://github.com/openshiftio/spring-boot-rest-http
-      fabric8.io/iconUrl: img/icons/spring-boot.svg
-      fabric8.io/git-branch: sb-1.5.x
-      fabric8.io/scm-devcon-url: scm:git:git:@github.com:openshiftio/booster-parent.git/spring-boot-rest-http
-      fabric8.io/scm-tag: booster-parent-11
     labels:
       app: spring-boot-rest-http
-      provider: fabric8
+      provider: snowdrop
       version: "13"
       group: io.openshift.booster
     name: spring-boot-rest-http
   spec:
     replicas: 1
-    revisionHistoryLimit: 2
     selector:
       app: spring-boot-rest-http
-      provider: fabric8
+      provider: snowdrop
       group: io.openshift.booster
     strategy:
       rollingParams:
@@ -152,17 +133,9 @@ objects:
       type: Rolling
     template:
       metadata:
-        annotations:
-          fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=spring-boot-rest-http&var-version=13
-          fabric8.io/scm-con-url: scm:git:https://github.com/openshiftio/booster-parent.git/spring-boot-rest-http
-          fabric8.io/scm-url: https://github.com/openshiftio/spring-boot-rest-http
-          fabric8.io/iconUrl: img/icons/spring-boot.svg
-          fabric8.io/git-branch: sb-1.5.x
-          fabric8.io/scm-devcon-url: scm:git:git:@github.com:openshiftio/booster-parent.git/spring-boot-rest-http
-          fabric8.io/scm-tag: booster-parent-11
         labels:
           app: spring-boot-rest-http
-          provider: fabric8
+          provider: snowdrop
           version: "13"
           group: io.openshift.booster
       spec:
@@ -174,19 +147,10 @@ objects:
                 fieldPath: metadata.namespace
           image: spring-boot-rest-http:13
           imagePullPolicy: IfNotPresent
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 180
           name: spring-boot
           ports:
           - containerPort: 8080
             name: http
-            protocol: TCP
-          - containerPort: 9779
-            name: prometheus
             protocol: TCP
           - containerPort: 8778
             name: jolokia
@@ -197,6 +161,12 @@ objects:
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 180
           resources:
             limits:
               memory: 250Mi
@@ -217,7 +187,7 @@ objects:
   metadata:
     labels:
       app: spring-boot-rest-http
-      provider: fabric8
+      provider: snowdrop
       version: "13"
       group: io.openshift.booster
     name: spring-boot-rest-http
