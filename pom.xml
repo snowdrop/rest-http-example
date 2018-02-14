@@ -29,6 +29,10 @@
   <name>Spring Boot - HTTP Booster</name>
   <description>Spring Boot - HTTP Booster</description>
 
+  <properties>
+    <fabric8-maven-plugin.version>3.5.30</fabric8-maven-plugin.version>
+  </properties>
+
   <dependencies>
     <!-- Spring Boot Starters -->
     <dependency>
