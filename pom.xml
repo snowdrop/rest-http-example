@@ -29,9 +29,7 @@
   <name>Spring Boot - HTTP Booster</name>
   <description>Spring Boot - HTTP Booster</description>
 
-  <properties>
-    
-  </properties>
+  
 
   <dependencies>
     <!-- Spring Boot Starters -->
