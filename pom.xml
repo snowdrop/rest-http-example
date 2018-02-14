@@ -20,7 +20,7 @@
   <parent>
     <groupId>io.openshift.booster</groupId>
     <artifactId>spring-boot-booster-parent</artifactId>
-    <version>1.5.10-5</version>
+    <version>1.5.10-6</version>
   </parent>
 
   <artifactId>spring-boot-rest-http</artifactId>
