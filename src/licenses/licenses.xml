@@ -411,8 +411,8 @@
             <version>2.9.3</version>
             <licenses>
                 <license>
-                    <name>The MIT License (MIT)</name>
-                    <url>http://opensource.org/licenses/MIT</url>
+                    <name>MIT License</name>
+                    <url>https://www.opensource.org/licenses/MIT</url>
                 </license>
             </licenses>
         </dependency>
@@ -1010,7 +1010,7 @@
             <licenses>
                 <license>
                     <name>MIT License</name>
-                    <url>http://www.opensource.org/licenses/MIT</url>
+                    <url>https://www.opensource.org/licenses/MIT</url>
                 </license>
             </licenses>
         </dependency>
@@ -1645,7 +1645,7 @@
             <licenses>
                 <license>
                     <name>MIT License</name>
-                    <url>http://www.opensource.org/licenses/MIT</url>
+                    <url>https://www.opensource.org/licenses/MIT</url>
                 </license>
             </licenses>
         </dependency>
@@ -1656,7 +1656,7 @@
             <licenses>
                 <license>
                     <name>MIT License</name>
-                    <url>http://www.opensource.org/licenses/MIT</url>
+                    <url>https://www.opensource.org/licenses/MIT</url>
                 </license>
             </licenses>
         </dependency>
@@ -1667,7 +1667,7 @@
             <licenses>
                 <license>
                     <name>MIT License</name>
-                    <url>http://www.opensource.org/licenses/MIT</url>
+                    <url>https://www.opensource.org/licenses/MIT</url>
                 </license>
             </licenses>
         </dependency>
@@ -1711,7 +1711,7 @@
             <licenses>
                 <license>
                     <name>MIT License</name>
-                    <url>http://www.opensource.org/licenses/MIT</url>
+                    <url>https://www.opensource.org/licenses/MIT</url>
                 </license>
             </licenses>
         </dependency>
@@ -1722,7 +1722,7 @@
             <licenses>
                 <license>
                     <name>MIT License</name>
-                    <url>http://www.opensource.org/licenses/MIT</url>
+                    <url>https://www.opensource.org/licenses/MIT</url>
                 </license>
             </licenses>
         </dependency>
@@ -1744,7 +1744,7 @@
             <licenses>
                 <license>
                     <name>MIT License</name>
-                    <url>http://www.opensource.org/licenses/MIT</url>
+                    <url>https://www.opensource.org/licenses/MIT</url>
                 </license>
             </licenses>
         </dependency>
