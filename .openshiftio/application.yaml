@@ -3,8 +3,9 @@ kind: Template
 metadata:
   name: spring-boot-rest-http
   annotations:
-    iconClass: icon-jboss
+    iconClass: icon-spring
     tags: spring-boot, rest, java, microservice
+    openshift.io/display-name: Spring Boot - REST Http Endpoint
     openshift.io/provider-display-name: "Red Hat, Inc."
     openshift.io/documentation-url: "https://appdev.prod-preview.openshift.io/docs/spring-boot-runtime.html#mission-http-api-spring-boot-tomcat"
     description: >-
