@@ -1,10 +1,14 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: launchpad-builder
+  name: spring-boot-rest-http
   annotations:
-    description: This template creates a Build Configuration using an S2I builder.
-    tags: instant-app
+    iconClass: icon-jboss
+    tags: spring-boot, rest, java, microservice
+    openshift.io/provider-display-name: "Red Hat, Inc."
+    openshift.io/documentation-url: "https://appdev.prod-preview.openshift.io/docs/spring-boot-runtime.html#mission-http-api-spring-boot-tomcat"
+    description: >-
+      The REST API Level 0 Mission provides a basic example of mapping business operations to a remote procedure call endpoint over HTTP using a REST framework.
 parameters:
 - name: SOURCE_REPOSITORY_URL
   description: The source URL for the application
@@ -59,14 +63,13 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: spring-boot-rest-http:13
+        name: spring-boot-rest-http:BOOSTER_VERSION
     postCommit: {}
     resources: {}
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
         ref: ${SOURCE_REPOSITORY_REF}
-      #contextDir: ${SOURCE_REPOSITORY_DIR}
       type: Git
     strategy:
       sourceStrategy:
@@ -99,7 +102,7 @@ objects:
     labels:
       app: spring-boot-rest-http
       provider: snowdrop
-      version: "13"
+      version: BOOSTER_VERSION
       group: io.openshift.booster
     name: spring-boot-rest-http
   spec:
@@ -118,7 +121,7 @@ objects:
     labels:
       app: spring-boot-rest-http
       provider: snowdrop
-      version: "13"
+      version: BOOSTER_VERSION
       group: io.openshift.booster
     name: spring-boot-rest-http
   spec:
@@ -136,7 +139,7 @@ objects:
         labels:
           app: spring-boot-rest-http
           provider: snowdrop
-          version: "13"
+          version: BOOSTER_VERSION
           group: io.openshift.booster
       spec:
         containers:
@@ -180,7 +183,7 @@ objects:
         - spring-boot
         from:
           kind: ImageStreamTag
-          name: spring-boot-rest-http:13
+          name: spring-boot-rest-http:BOOSTER_VERSION
       type: ImageChange
 - apiVersion: v1
   kind: Route
@@ -188,7 +191,7 @@ objects:
     labels:
       app: spring-boot-rest-http
       provider: snowdrop
-      version: "13"
+      version: BOOSTER_VERSION
       group: io.openshift.booster
     name: spring-boot-rest-http
   spec:
