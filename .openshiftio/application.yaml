@@ -52,7 +52,7 @@ objects:
     name: runtime
   spec:
     tags:
-    - name: latest
+    - name: "RUNTIME_VERSION"
       from:
         kind: DockerImage
         name: registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:RUNTIME_VERSION
@@ -103,7 +103,7 @@ objects:
     labels:
       app: spring-boot-rest-http
       provider: snowdrop
-      version: BOOSTER_VERSION
+      version: "BOOSTER_VERSION"
       group: io.openshift.booster
     name: spring-boot-rest-http
   spec:
@@ -122,7 +122,7 @@ objects:
     labels:
       app: spring-boot-rest-http
       provider: snowdrop
-      version: BOOSTER_VERSION
+      version: "BOOSTER_VERSION"
       group: io.openshift.booster
     name: spring-boot-rest-http
   spec:
@@ -140,7 +140,7 @@ objects:
         labels:
           app: spring-boot-rest-http
           provider: snowdrop
-          version: BOOSTER_VERSION
+          version: "BOOSTER_VERSION"
           group: io.openshift.booster
       spec:
         containers:
@@ -192,7 +192,7 @@ objects:
     labels:
       app: spring-boot-rest-http
       provider: snowdrop
-      version: BOOSTER_VERSION
+      version: "BOOSTER_VERSION"
       group: io.openshift.booster
     name: spring-boot-rest-http
   spec:
