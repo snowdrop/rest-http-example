@@ -1,7 +1,0 @@
-spec:
-  template:
-    spec:
-      containers:
-        - resources:
-              limits:
-                memory: 250Mi
