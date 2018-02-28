@@ -171,9 +171,6 @@ objects:
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 180
-          resources:
-            limits:
-              memory: 250Mi
           securityContext:
             privileged: false
     triggers:
