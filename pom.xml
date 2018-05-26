@@ -24,7 +24,7 @@
   </parent>
 
   <artifactId>spring-boot-rest-http</artifactId>
-  <version>1.5.12-3-redhat-SNAPSHOT</version>
+  <version>1.5.13-1-redhat-SNAPSHOT</version>
 
   <name>Spring Boot - HTTP Booster</name>
   <description>Spring Boot - HTTP Booster</description>
