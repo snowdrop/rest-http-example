@@ -18,7 +18,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>io.openshift.booster</groupId>
+    <groupId>io.openshift</groupId>
     <artifactId>booster-parent</artifactId>
     <version>22</version>
   </parent>
@@ -26,6 +26,7 @@
   <artifactId>spring-boot-rest-http</artifactId>
   <version>1.5.13-2-SNAPSHOT</version>
 
+  <groupId>io.openshift.booster</groupId>
   <name>Spring Boot - HTTP Booster</name>
   <description>Spring Boot - HTTP Booster</description>
 
