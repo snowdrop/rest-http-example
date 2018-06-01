@@ -67,7 +67,7 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
-        <scope>import</scope>
+        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
