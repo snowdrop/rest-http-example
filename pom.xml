@@ -19,8 +19,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>io.openshift.booster</groupId>
-    <artifactId>spring-boot-booster-parent</artifactId>
-    <version>1.5.13-2</version>
+    <artifactId>booster-parent</artifactId>
+    <version>22</version>
   </parent>
 
   <artifactId>spring-boot-rest-http</artifactId>
