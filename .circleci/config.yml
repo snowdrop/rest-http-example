@@ -1,0 +1,60 @@
+version: 2
+jobs:
+  OPENSHIFT_3.9.0:
+    machine: true
+
+    steps:
+      - checkout
+
+      - run:
+          command: |
+            kube_version=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+            curl -LO https://storage.googleapis.com/kubernetes-release/release/${kube_version}/bin/linux/amd64/kubectl && \
+                chmod +x kubectl && sudo mv kubectl /usr/local/bin/
+            echo "Installed kubectl CLI tool"
+
+            oc_tool_version="openshift-origin-server-v3.9.0-191fece-linux-64bit"
+            curl -LO https://github.com/openshift/origin/releases/download/v3.9.0/${oc_tool_version}.tar.gz && \
+                tar -xvzf ${oc_tool_version}.tar.gz && chmod +x $PWD/${oc_tool_version}/oc && sudo mv $PWD/${oc_tool_version}/oc /usr/local/bin/ && \
+                rm -rf ${oc_tool_version}.tar.gz
+            echo "Installed OC CLI tool"
+
+            tmp=`mktemp`
+            echo 'DOCKER_OPTS="$DOCKER_OPTS --insecure-registry 172.30.0.0/16"' > ${tmp}
+            sudo mv ${tmp} /etc/default/docker
+            sudo mount --make-shared /
+            sudo service docker restart
+            echo "Configured Docker daemon with insecure-registry"
+
+            oc cluster up --version=v3.9.0
+            sleep 10
+            oc login -u system:admin
+            echo "Configured OpenShift cluster : v3.9.0"
+
+      # based on this: https://discuss.circleci.com/t/circle-2-0-caching-is-too-limited-to-be-very-useful/11694/10
+      - restore_cache:
+          key: spring-boot-http-booster-{{ .Branch }}-{{ checksum "pom.xml" }}
+          key: spring-boot-http-booster-{{ .Branch }}
+          key: spring-boot-http-booster
+
+      # Will download all deps needed into .m2
+      - run: ./mvnw dependency:go-offline
+
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: spring-boot-http-booster-{{ .Branch }}-{{ checksum "pom.xml" }}
+
+      - run:
+          command:  ./mvnw clean verify -Popenshift,openshift-it
+          no_output_timeout: 3600
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - OPENSHIFT_3.9.0:
+          filters:
+            branches:
+              only: master
