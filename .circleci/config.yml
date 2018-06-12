@@ -20,7 +20,7 @@ jobs:
             echo "Installed OC CLI tool"
 
             tmp=`mktemp`
-            echo 'DOCKER_OPTS="$DOCKER_OPTS --insecure-registry 172.30.0.0/16"' > ${tmp}
+            echo 'DOCKER_OPTS="$DOCKER_OPTS --insecure-registry 172.30.0.0/16 --insecure-registry registry.access.redhat.com"' > ${tmp}
             sudo mv ${tmp} /etc/default/docker
             sudo mount --make-shared /
             sudo service docker restart
@@ -47,7 +47,43 @@ jobs:
           key: spring-boot-http-booster-{{ .Branch }}-{{ checksum "pom.xml" }}
 
       - run:
-          command:  ./mvnw clean verify -Popenshift,openshift-it
+          name: run tests against s2i build
+          command: |
+            # create the necessary vars for both PR and regular commit cases
+            if [ -z "$CIRCLE_PR_REPONAME" ]; then
+              SOURCE_REPOSITORY_URL="https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
+              SOURCE_REPOSITORY_REF=${CIRCLE_BRANCH}
+            else
+              SOURCE_REPOSITORY_URL="https://github.com/${CIRCLE_PR_USERNAME}/${CIRCLE_PR_REPONAME}"
+              SOURCE_REPOSITORY_REF=${CIRCLE_SHA1}
+            fi
+
+            # deploy application
+            oc new-project s2i
+            oc create -f .openshiftio/application.yaml
+            oc new-app --template=spring-boot-rest-http -p SOURCE_REPOSITORY_URL=${SOURCE_REPOSITORY_URL} -p SOURCE_REPOSITORY_REF=${SOURCE_REPOSITORY_REF}
+
+            sleep 30 # needed in order to bypass the 'Pending' state
+            # wait for the app to stand up
+            timeout 300s bash -c 'while [[ $(oc get pod -o json | jq  ".items[] | select(.metadata.name | contains(\"build\"))  | .status  " | jq -rs "sort_by(.startTme) | last | .phase") == "Running" ]]; do sleep 20; done; echo ""'
+
+            # launch the tests without deploying the application
+            ./mvnw verify -Dfabric8.skip=true -Popenshift,openshift-it
+
+      - run:
+          name: Cleanup s2i build
+          command: |
+            oc delete all --all
+            sleep 5
+            oc delete project s2i
+            sleep 10
+            echo "Cleaned up s2i build"
+
+      - run:
+          name: run tests against fmp build
+          command:  |
+            oc new-project fmp
+            ./mvnw clean verify -Popenshift,openshift-it
           no_output_timeout: 3600
 
 workflows:
