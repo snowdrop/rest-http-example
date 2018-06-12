@@ -1,0 +1,96 @@
+version: 2
+jobs:
+  OPENSHIFT_3.9.0:
+    machine: true
+
+    steps:
+      - checkout
+
+      - run:
+          command: |
+            kube_version=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+            curl -LO https://storage.googleapis.com/kubernetes-release/release/${kube_version}/bin/linux/amd64/kubectl && \
+                chmod +x kubectl && sudo mv kubectl /usr/local/bin/
+            echo "Installed kubectl CLI tool"
+
+            oc_tool_version="openshift-origin-server-v3.9.0-191fece-linux-64bit"
+            curl -LO https://github.com/openshift/origin/releases/download/v3.9.0/${oc_tool_version}.tar.gz && \
+                tar -xvzf ${oc_tool_version}.tar.gz && chmod +x $PWD/${oc_tool_version}/oc && sudo mv $PWD/${oc_tool_version}/oc /usr/local/bin/ && \
+                rm -rf ${oc_tool_version}.tar.gz
+            echo "Installed OC CLI tool"
+
+            tmp=`mktemp`
+            echo 'DOCKER_OPTS="$DOCKER_OPTS --insecure-registry 172.30.0.0/16 --insecure-registry registry.access.redhat.com"' > ${tmp}
+            sudo mv ${tmp} /etc/default/docker
+            sudo mount --make-shared /
+            sudo service docker restart
+            echo "Configured Docker daemon with insecure-registry"
+
+            oc cluster up --version=v3.9.0
+            sleep 10
+            oc login -u system:admin
+            echo "Configured OpenShift cluster : v3.9.0"
+
+      # based on this: https://discuss.circleci.com/t/circle-2-0-caching-is-too-limited-to-be-very-useful/11694/10
+      - restore_cache:
+          key: spring-boot-http-booster-{{ .Branch }}-{{ checksum "pom.xml" }}
+          key: spring-boot-http-booster-{{ .Branch }}
+          key: spring-boot-http-booster
+
+      # Will download all deps needed into .m2
+      - run: ./mvnw dependency:go-offline
+
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: spring-boot-http-booster-{{ .Branch }}-{{ checksum "pom.xml" }}
+
+      - run:
+          name: run tests against s2i build
+          command: |
+            # create the necessary vars for both PR and regular commit cases
+            if [ -z "$CIRCLE_PR_REPONAME" ]; then
+              SOURCE_REPOSITORY_URL="https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
+              SOURCE_REPOSITORY_REF=${CIRCLE_BRANCH}
+            else
+              SOURCE_REPOSITORY_URL="https://github.com/${CIRCLE_PR_USERNAME}/${CIRCLE_PR_REPONAME}"
+              SOURCE_REPOSITORY_REF=${CIRCLE_SHA1}
+            fi
+
+            # deploy application
+            oc new-project s2i
+            oc create -f .openshiftio/application.yaml
+            oc new-app --template=spring-boot-rest-http -p SOURCE_REPOSITORY_URL=${SOURCE_REPOSITORY_URL} -p SOURCE_REPOSITORY_REF=${SOURCE_REPOSITORY_REF}
+
+            sleep 30 # needed in order to bypass the 'Pending' state
+            # wait for the app to stand up
+            timeout 300s bash -c 'while [[ $(oc get pod -o json | jq  ".items[] | select(.metadata.name | contains(\"build\"))  | .status  " | jq -rs "sort_by(.startTme) | last | .phase") == "Running" ]]; do sleep 20; done; echo ""'
+
+            # launch the tests without deploying the application
+            ./mvnw verify -Dfabric8.skip=true -Popenshift,openshift-it
+
+      - run:
+          name: Cleanup s2i build
+          command: |
+            oc delete all --all
+            sleep 5
+            oc delete project s2i
+            sleep 10
+            echo "Cleaned up s2i build"
+
+      - run:
+          name: run tests against fmp build
+          command:  |
+            oc new-project fmp
+            ./mvnw clean verify -Popenshift,openshift-it
+          no_output_timeout: 3600
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - OPENSHIFT_3.9.0:
+          filters:
+            branches:
+              ignore: redhat
