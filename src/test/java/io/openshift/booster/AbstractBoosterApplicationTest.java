@@ -18,8 +18,8 @@ package io.openshift.booster;
 import io.openshift.booster.service.GreetingProperties;
 import org.junit.Test;
 
-import static com.jayway.restassured.RestAssured.given;
-import static com.jayway.restassured.RestAssured.when;
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 import static org.hamcrest.core.Is.is;
 
 public abstract class AbstractBoosterApplicationTest {
