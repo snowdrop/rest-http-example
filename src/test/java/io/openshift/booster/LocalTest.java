@@ -15,8 +15,8 @@
  */
 package io.openshift.booster;
 
-import com.jayway.restassured.RestAssured;
 import io.openshift.booster.service.GreetingProperties;
+import io.restassured.RestAssured;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
