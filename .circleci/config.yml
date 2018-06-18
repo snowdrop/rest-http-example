@@ -93,4 +93,6 @@ workflows:
       - OPENSHIFT_3.9.0:
           filters:
             branches:
-              ignore: redhat
+              ignore:
+               - /.*redhat.*/
+               - /.*rh.*/
