@@ -18,8 +18,8 @@ package io.openshift.booster;
 
 import java.net.URL;
 
-import com.jayway.restassured.RestAssured;
 import io.openshift.booster.service.GreetingProperties;
+import io.restassured.RestAssured;
 import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.jboss.arquillian.junit.Arquillian;
