@@ -17,26 +17,16 @@ package io.openshift.booster.service;
 
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 
 @Path("/")
 @Component
 public class GreetingEndpoint {
-    private final GreetingProperties properties;
-
-    public GreetingEndpoint(GreetingProperties properties) {
-        this.properties = properties;
-    }
-
     @GET
     @Path("/greeting")
     @Produces("application/json")
     public Greeting greeting(@QueryParam("name") @DefaultValue("World") String name) {
-        String message = String.format(properties.getMessage(), name);
+        final String message = String.format(Greeting.FORMAT, name);
         return new Greeting(message);
     }
 }

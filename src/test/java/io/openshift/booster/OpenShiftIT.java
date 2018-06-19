@@ -16,15 +16,14 @@
 
 package io.openshift.booster;
 
-import java.net.URL;
-
-import io.openshift.booster.service.GreetingProperties;
 import io.restassured.RestAssured;
 import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+
+import java.net.URL;
 
 @RunWith(Arquillian.class)
 public class OpenShiftIT extends AbstractBoosterApplicationTest {
@@ -37,9 +36,4 @@ public class OpenShiftIT extends AbstractBoosterApplicationTest {
     public void setup() throws Exception {
         RestAssured.baseURI = baseURL + "api/greeting";
     }
-
-    protected GreetingProperties getProperties() {
-        return new GreetingProperties();
-    }
-
 }

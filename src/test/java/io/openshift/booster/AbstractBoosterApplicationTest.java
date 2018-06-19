@@ -15,7 +15,7 @@
  */
 package io.openshift.booster;
 
-import io.openshift.booster.service.GreetingProperties;
+import io.openshift.booster.service.Greeting;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
@@ -29,7 +29,7 @@ public abstract class AbstractBoosterApplicationTest {
         when().get()
                 .then()
                 .statusCode(200)
-                .body("content", is(String.format(getProperties().getMessage(), "World")));
+                .body("content", is(String.format(Greeting.FORMAT, "World")));
     }
 
     @Test
@@ -39,9 +39,6 @@ public abstract class AbstractBoosterApplicationTest {
                 .get()
                 .then()
                 .statusCode(200)
-                .body("content", is(String.format(getProperties().getMessage(), "John")));
+                .body("content", is(String.format(Greeting.FORMAT, "John")));
     }
-
-    protected abstract GreetingProperties getProperties();
-
 }
