@@ -25,7 +25,7 @@
 
   <groupId>io.openshift.booster</groupId>
   <artifactId>spring-boot-rest-http</artifactId>
-  <version>1.5.13-2-SNAPSHOT</version>
+  <version>1.5.14-1-SNAPSHOT</version>
 
   <name>Spring Boot - HTTP Booster</name>
   <description>Spring Boot - HTTP Booster</description>
