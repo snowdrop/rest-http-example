@@ -33,9 +33,10 @@ jobs:
 
       # based on this: https://discuss.circleci.com/t/circle-2-0-caching-is-too-limited-to-be-very-useful/11694/10
       - restore_cache:
-          key: spring-boot-http-booster-{{ .Branch }}-{{ checksum "pom.xml" }}
-          key: spring-boot-http-booster-{{ .Branch }}
-          key: spring-boot-http-booster
+          keys:
+            - spring-boot-http-booster-{{ .Branch }}-{{ checksum "pom.xml" }}
+            - spring-boot-http-booster-{{ .Branch }}
+            - spring-boot-http-booster
 
       # Will download all deps needed into .m2
       - run: ./mvnw -s .circleci/settings.xml dependency:go-offline
