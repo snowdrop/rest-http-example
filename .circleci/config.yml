@@ -83,7 +83,7 @@ jobs:
           name: run tests against fmp build
           command:  |
             oc new-project fmp
-            ./mvnw -s .circleci/settings.xml clean verify -Popenshift,openshift-it
+            .circleci/run_tests_with_fmp.sh -s .circleci/settings.xml
           no_output_timeout: 3600
 
 workflows:
