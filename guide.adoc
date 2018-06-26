@@ -1,0 +1,197 @@
+= Understanding how to deploy a simple RESTful service and front-end on OpenShift using Spring Boot and Apache CXF
+
+This document will guide you through the steps to create a simple "Hello World" RESTful web service using
+http://cxf.apache.org/[Apache CXF] and https://spring.io/projects/spring-boot[Spring Boot]. The functionality is
+similar to the application being developed in
+https://spring.io/guides/gs/rest-service/[Spring Boot's guide on building RESTful services]. However, where the Spring
+Boot guide uses Spring-specific annotations to define the endpoint and its method, we will use standard
+https://jcp.org/en/jsr/detail?id=370[JAX-RS] annotations, which make it easier to reuse endpoints implementations across
+servers, should you want to target a different platform than Spring Boot at some point. Moreover, you will also
+understand the steps needed to deploy your application on an OpenShift cluster.
+
+== What you'll build
+
+The application you will be building exposes a very simple greeting web service accepting `GET` HTTP requests to
+`/api/greeting`, responding with a JSON message in the form `{"content":"Hello, World!"}`. The
+message can be customized by passing the `name` query parameter to the request as in
+`http://localhost:8080/api/greeting?name=John` which would result in the following response: `{"content":"Hello,
+John!"}`.
+Additionally, a very simple front-end is provided using HTML and jQuery to interact with the greeting endpoint
+from a more user-friendly interface than query the service using https://curl.haxx.se/[`cURL`].
+
+NOTE: While we will go over the implementation, we will focus mostly on the specifics needed to get your application running on
+OpenShift as opposed to detailing all the Spring Boot-specific implementation.
+
+== What you'll need
+
+* Java 8
+* Access to an OpenShift cluster whether locally via https://www.openshift.org/minishift/[minishift] or using the different
+  flavors of https://www.openshift.com/products[OpenShift products]
+
+
+== Endpoint
+
+The application is composed of a RESTful service which code can be found in the `src/main/java/io/openshift/booster/service`
+directory. It is split in two classes: `GreetingEndpoint`, which is implements the endpoint itself, and `Greeting` which is a
+simple class representing the payload sent back to users of the endpoint.
+
+Let's look at the `Greeting` class first, which is pretty simple:
+```java
+public class Greeting {
+
+    public static final String FORMAT = "Hello, %s!"; #<1>
+
+    private final String content; #<2>
+
+    public Greeting() {
+        this.content = null;
+    }
+
+    public Greeting(String content) {
+        this.content = content;
+    }
+
+    public String getContent() {
+        return content;
+    }
+}
+```
+<1> `FORMAT` constant that can be used by clients of the class to create greeting messages in the expected format
+<2> `content` field which will be used to populate our JSON payload
+This `Greeting` class will be automatically marshalled by Jackson using the accessor.
+
+Let's now look at the `GreetingEndpoint` class, short and sweet but packing quite a punch, thanks to annotations:
+```java
+import javax.ws.rs.DefaultValue; # <1>
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+
+import org.springframework.stereotype.Component;
+
+@Path("/greeting") # <2>
+@Component # <3>
+public class GreetingEndpoint {
+    @GET # <4>
+    @Produces("application/json") # <5>
+    public Greeting greeting(@QueryParam("name") @DefaultValue("World") String name) { #<6>
+        final String message = String.format(Greeting.FORMAT, name); #<7>
+        return new Greeting(message); #<8>
+    }
+}
+```
+<1> Standard JAX-RS annotation imports
+<2> Specify that this class is a JAX-RS root resource and that the endpoint will answer requests on `/greeting`
+<3> Mark the endpoint as a Spring component to be managed by Spring Boot. In conjunction with the `cxf.jaxrs.component-scan` property set to `true` in `application.properties`, this allows CXF to create a JAX-RS endpoint from the auto-discovered JAX-RS root resources.
+<4> Mark the `greeting` method as answering HTTP `GET` requests
+<5> Specify that the method returns JSON content (`application/json` content type)
+<6> The `name` method parameter is annotated with `@QueryParam("name")` to specify that it is passed as a query parameter in the URL when the service is invoked and that its default value is `World` if none is provided (thanks to the `@DefaultValue("World")` annotation)
+<7> We format the message using the `Greeting.FORMAT` constant…
+<8> and return a `Greeting` instance with the proper message. This object will be automatically serialized to JSON using https://github.com/FasterXML/jackson[Jackson] as we will see later.
+
+As you can see, there isn't much to it as far as code goes.
+
+We still need to configure CXF and Spring Boot properly for everything to work well.
+
+On the Spring Boot side, we need an entry point to our service in the form a class annotated with `@SpringBootApplication`, also giving us the opportunity to further configure our stack:
+```java
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication #<1>
+public class BoosterApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(BoosterApplication.class, args);
+    }
+
+    @Bean
+    public JacksonJsonProvider jsonProvider() { #<2>
+        return new JacksonJsonProvider(); 
+    }
+}
+```
+<1> Activates auto-configuration, component scan and marks the class as providing configuration using the https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-using-springbootapplication-annotation.html[`@SpringBootApplication` annotation]. This also allows to package the application as a jar that can be run as a typical application. Spring Boot will then start the embedded Tomcat server.
+<2> Specifies that the JSON provider to be used by CXF (which uses http://cxf.apache.org/docs/configuration.html[Spring as basis of its configuration]) should be Jackson.
+
+NOTE: You'll note that, contrary to https://docs.spring.io/spring/docs/4.3.18.RELEASE/spring-framework-reference/htmlsingle/#mvc[Spring MVC] where Jackson only needs to be present on the classpath for it to be used, Apache CXF requires Jackson to be explicitly configured. This could be done via XML but we might as well leverage the `@SpringBootApplication` configuration capability.
+
+Let's now look at the content of `application.properties` which we need to further configure CXF:
+```properties
+cxf.path:/api #<1>
+cxf.jaxrs.component-scan:true #<2>
+```
+<1> Specify that CXF will answer to requests sent to the `/api` context. Our endpoint root resource is annotated with `@Path("/greeting")` which means that the full context for our endpoint will be `/api/greeting`.
+<2> As mentioned above when we looked at the `GreetingEndpoint` class, we need to set that property to `true` to activate automatic creation of endpoint based on resource detection.
+
+== Frontend
+
+Let's take a quick look at our frontend. It's implemented as a static HTML `src/resources/static/index.html` file served from the root of the embedded Tomcat server. The basic idea is similar to what is explained in the https://spring.io/guides/gs/consuming-rest-jquery/[onsuming a RESTful Web Service with jQuery] Spring Boot guide so we will only focus on the salient parts for our purpose.
+
+In our case, our service is running on the same server so we don't need to worry about https://spring.io/understanding/CORS[CORS]. Moreover, for the same reason, we don't need any extra code for Spring Boot to start Tomcat. 
+
+The simple UI consists in a form to specify which name to pass to the greeting service and then invoke it:
+```html
+<form class="form-inline">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="World"> #<1>
+    </div>
+    <button id="invoke" type="submit" class="btn btn-success">Invoke</button> #<2>
+</form>
+<p class="lead">Result:</p>
+<pre><code id="greeting-result">Invoke the service to see the result.</code></pre> #<3>
+```
+<1> Text input to enter the name to pass to the greeting service
+<2> Button to trigger the call to the greeting service
+<3> Placeholder text that will be replaced by the result of the service call
+
+and the embedded jQuery script:
+```js
+  $(document).ready(function () {
+    $("#invoke").click(function (e) { #<1>
+      var n = $("#name").val() || "World"; #<2>
+      $.getJSON("/api/greeting?name=" + n, function (res) { #<3>
+        $("#greeting-result").text(JSON.stringify(res)); #<4>
+      });
+      e.preventDefault();
+    });
+  });
+```
+<1> Add a `click` even handler to the button with the `invoke` id
+<2> Retrieve the value of the `name` input to pass to the greeting server
+<3> Invoke the RESTful endpoint and retrieve the JSON response
+<4> Replace the content of the element with the `greeting-result` id with the result of the invocation
+
+== Building and testing the application locally
+
+You can run the application using `./mvnw spring-boot:run`. 
+It's also possible to build the JAR file with `./mvnw clean package` and run it like a traditional Java application:
+
+    java -jar target/spring-boot-rest-http-<version>-exec.jar
+
+where `<version>` corresponds to the current version of the project.
+Once the application is started, you can visit http://localhost:8080/index.html to see the frontend of the application and interact with the greeting service.
+
+Let's look at the important parts of the Maven project
+
+== Deploying the application on OpenShift
+
+Now that we've seen the gist of the application and how to run it locally, let's look at what's needed to deploy it on OpenShift.
+
+TODO: explain s2i?
+
+== Testing on OpenShift
+
+TODO?
+
+
+== See Also
+
+* http://cxf.apache.org/docs/springboot.html[Apache CXF Spring Boot configuration]
+* http://cxf.apache.org/docs/configuration.html[Apache CXF configuration]
+* http://www.baeldung.com/spring-boot-devtools[Introduction to Spring Boot devtools]
+* https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html[Spring Boot devtools documentation]
