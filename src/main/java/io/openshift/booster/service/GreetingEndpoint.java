@@ -23,11 +23,10 @@ import javax.ws.rs.QueryParam;
 
 import org.springframework.stereotype.Component;
 
-@Path("/")
+@Path("/greeting")
 @Component
 public class GreetingEndpoint {
     @GET
-    @Path("/greeting")
     @Produces("application/json")
     public Greeting greeting(@QueryParam("name") @DefaultValue("World") String name) {
         final String message = String.format(Greeting.FORMAT, name);
