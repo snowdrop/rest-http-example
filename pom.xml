@@ -191,7 +191,7 @@
               <systemPropertyVariables>
                 <app.name>${project.artifactId}</app.name>
               </systemPropertyVariables>
-              <classesDirectory>${project.build.directory}/${artifactId}.jar.original</classesDirectory>
+              <classesDirectory>${project.build.directory}/${project.build.finalName}.${project.packaging}.original</classesDirectory>
             </configuration>
             <executions>
               <execution>
