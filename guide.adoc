@@ -171,7 +171,7 @@ and the embedded jQuery script:
 You can run the application using `./mvnw spring-boot:run`. 
 It's also possible to build the JAR file with `./mvnw clean package` and run it like a traditional Java application:
 
-    java -jar target/spring-boot-rest-http-<version>-exec.jar
+    java -jar target/spring-boot-rest-http-<version>.jar
 
 where `<version>` corresponds to the current version of the project.
 Once the application is started, you can visit http://localhost:8080/index.html to see the frontend of the application and interact with the greeting service.
