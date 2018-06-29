@@ -37,7 +37,24 @@ simple class representing the payload sent back to users of the endpoint.
 
 Let's look at the `Greeting` class first, which is pretty simple:
 ```java
-include::./src/main/java/io/openshift/booster/service/Greeting.java[tags=snippet-greeting]
+public class Greeting {
+
+    public static final String FORMAT = "Hello, %s!"; #<1>
+
+    private final String content; #<2>
+
+    public Greeting() {
+        this.content = null;
+    }
+
+    public Greeting(String content) {
+        this.content = content;
+    }
+
+    public String getContent() {
+        return content;
+    }
+}
 ```
 <1> `FORMAT` constant that can be used by clients of the class to create greeting messages in the expected format
 <2> `content` field which will be used to populate our JSON payload
