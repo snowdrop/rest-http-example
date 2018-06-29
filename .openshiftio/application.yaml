@@ -33,7 +33,7 @@ parameters:
 - name: ARTIFACT_COPY_ARGS
   description: Syntax to be used to copy uberjar files to the target directory
   displayName: Copy Args
-  value: '*-exec.jar'
+  value: '*.jar'
   required: true
 - name: GITHUB_WEBHOOK_SECRET
   description: A secret string used to configure the GitHub webhook.
