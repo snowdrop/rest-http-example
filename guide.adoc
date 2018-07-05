@@ -1,13 +1,15 @@
 = Understanding how to deploy a simple RESTful service and front-end on OpenShift using Spring Boot and Apache CXF
 
-This document will guide you through the steps to create a simple "Hello World" RESTful web service using
-http://cxf.apache.org/[Apache CXF] and https://spring.io/projects/spring-boot[Spring Boot]. The functionality is
-similar to the application being developed in
+This document will guide you through the steps to create a simple "Hello World" https://jcp.org/en/jsr/detail?id=370[JAX-RS]
+based, RESTful web service using http://cxf.apache.org/[Apache CXF] and https://spring.io/projects/spring-boot[Spring Boot].
+While learning how to use JAX-RS with Spring Boot is interesting in itself, we will detail the steps and mechanisms involved in
+deploying the application on an OpenShift cluster in an effort to develop a truly cloud-native application with a workflow
+focused on making things natural to Java developers.
+
+Conceptually, the application is similar to the one developed in
 https://spring.io/guides/gs/rest-service/[Spring Boot's guide on building RESTful services]. However, where the Spring
-Boot guide uses Spring-specific annotations to define the endpoint and its method, we will use standard
-https://jcp.org/en/jsr/detail?id=370[JAX-RS] annotations, which make it easier to reuse endpoints implementations across
-servers, should you want to target a different platform than Spring Boot at some point. Moreover, you will also
-understand the steps needed to deploy your application on an OpenShift cluster.
+Boot guide uses Spring-specific annotations to define the endpoint and its method, we will use standard annotations, making it
+easier to reuse endpoints implementations across servers, should you want to target a different platform than Spring Boot at some point.
 
 == What you'll build
 
