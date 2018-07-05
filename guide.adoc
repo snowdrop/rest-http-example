@@ -119,7 +119,7 @@ public class BoosterApplication {
 <1> Activates auto-configuration, component scan and marks the class as providing configuration using the https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-using-springbootapplication-annotation.html[`@SpringBootApplication` annotation]. This also allows to package the application as a jar that can be run as a typical application. Spring Boot will then start the embedded Tomcat server.
 <2> Specifies that the JSON provider to be used by CXF (which uses http://cxf.apache.org/docs/configuration.html[Spring as basis of its configuration]) should be Jackson.
 
-NOTE: You'll note that, contrary to https://docs.spring.io/spring/docs/4.3.18.RELEASE/spring-framework-reference/htmlsingle/#mvc[Spring MVC] where Jackson only needs to be present on the classpath for it to be used, Apache CXF requires Jackson to be explicitly configured. This could be done via XML but we might as well leverage the `@SpringBootApplication` configuration capability.
+NOTE: You'll notice that, contrary to https://docs.spring.io/spring/docs/4.3.18.RELEASE/spring-framework-reference/htmlsingle/#mvc[Spring MVC] where Jackson only needs to be present on the classpath for it to be used, Apache CXF requires Jackson to be explicitly configured. This could be done via XML but we might as well leverage the `@SpringBootApplication` configuration capability.
 
 Let's now look at the content of `application.properties` which we need to further configure CXF:
 ```properties
@@ -282,7 +282,7 @@ Let's now look at the build configuration:
 
 == Deploying the application on OpenShift
 
-Now that we've seen the gist of the application and how to run it locally, let's look at what's needed to deploy it on OpenShift. This is accomplished using the http://maven.fabric8.io/[Fabric8 Maven Plugin] (aka FMP). FMP brings your Java applications to OpenShift. Tightly integrated with Maven, it leverages the existing build configuration to focus on two tasks: building Docker images and creating OpenShift (or plain Kubenertes) resource descriptors. Since our application is built using Maven, it makes sense to continue to leverage that tool to generate whatever is necessary to deploy and run our application on OpenShift.
+Now that we've seen the gist of the application and how to run it locally, let's look at what's needed to deploy it on OpenShift. This is accomplished using the http://maven.fabric8.io/[Fabric8 Maven Plugin] (aka FMP). FMP brings your Java applications to OpenShift. Tightly integrated with Maven, it leverages the existing build configuration to focus on two tasks: building Docker images and creating OpenShift (or plain Kubernetes) resource descriptors. Since our application is built using Maven, it makes sense to continue to leverage that tool to generate whatever is necessary to deploy and run our application on OpenShift.
 
 NOTE: The following steps assume that you are currently connected to a running OpenShift cluster via `oc login`. By doing so, FMP will be able to determine that you are targeting an OpenShift deployment automatically and take additional steps to generate OpenShift-specific descriptors (as opposed to generic Kubernetes ones).
 
