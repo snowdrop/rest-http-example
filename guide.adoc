@@ -33,8 +33,8 @@ OpenShift as opposed to detailing all the Spring Boot-specific implementation.
 
 == Endpoint
 
-The application is composed of a RESTful service which code can be found in the `src/main/java/io/openshift/booster/service`
-directory. It is split in two classes: `GreetingEndpoint`, which is implements the endpoint itself, and `Greeting` which is a
+The application is composed of a RESTful service. Its code can be found in the `src/main/java/io/openshift/booster/service`
+directory. It is split in two classes: `GreetingEndpoint`, which implements the endpoint itself, and `Greeting` which is a
 simple class representing the payload sent back to users of the endpoint.
 
 Let's look at the `Greeting` class first, which is pretty simple:
