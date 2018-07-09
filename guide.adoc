@@ -163,7 +163,7 @@ and the embedded jQuery script:
     });
   });
 ```
-<1> Add a `click` even handler to the button with the `invoke` id
+<1> Add a `click` event handler to the button with the `invoke` id
 <2> Retrieve the value of the `name` input to pass to the greeting server
 <3> Invoke the RESTful endpoint and retrieve the JSON response
 <4> Replace the content of the element with the `greeting-result` id with the result of the invocation
