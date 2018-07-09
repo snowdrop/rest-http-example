@@ -15,30 +15,37 @@
  */
 package io.openshift.booster;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.core.Is.is;
+
 import io.openshift.booster.service.Greeting;
 import org.junit.Test;
 
-import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
-import static org.hamcrest.core.Is.is;
-
 public abstract class AbstractBoosterApplicationTest {
+
+    private static final String GREETING_PATH = "api/greeting";
 
     @Test
     public void testGreetingEndpoint() {
-        when().get()
-                .then()
-                .statusCode(200)
-                .body("content", is(String.format(Greeting.FORMAT, "World")));
+        given()
+           .baseUri(baseURI())
+           .get(GREETING_PATH)
+           .then()
+           .statusCode(200)
+           .body("content", is(String.format(Greeting.FORMAT, "World")));
     }
 
     @Test
     public void testGreetingEndpointWithNameParameter() {
-        given().param("name", "John")
-                .when()
-                .get()
-                .then()
-                .statusCode(200)
-                .body("content", is(String.format(Greeting.FORMAT, "John")));
+        given()
+           .baseUri(baseURI())
+           .param("name", "John")
+           .when()
+           .get(GREETING_PATH)
+           .then()
+           .statusCode(200)
+           .body("content", is(String.format(Greeting.FORMAT, "John")));
     }
+
+    protected abstract String baseURI();
 }
