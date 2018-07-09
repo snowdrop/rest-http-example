@@ -15,8 +15,6 @@
  */
 package io.openshift.booster;
 
-import io.restassured.RestAssured;
-import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,8 +27,8 @@ public class LocalTest extends AbstractBoosterApplicationTest {
     @Value("${local.server.port}")
     private int port;
 
-    @Before
-    public void beforeTest() {
-        RestAssured.baseURI = String.format("http://localhost:%d/api/greeting", port);
+    @Override
+    public String baseURI() {
+        return String.format("http://localhost:%d", port);
     }
 }
