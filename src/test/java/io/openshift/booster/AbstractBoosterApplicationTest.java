@@ -15,33 +15,37 @@
  */
 package io.openshift.booster;
 
-import io.openshift.booster.service.GreetingProperties;
-import org.junit.Test;
-
-import static com.jayway.restassured.RestAssured.given;
-import static com.jayway.restassured.RestAssured.when;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
+
+import io.openshift.booster.service.Greeting;
+import org.junit.Test;
 
 public abstract class AbstractBoosterApplicationTest {
 
+    private static final String GREETING_PATH = "api/greeting";
+
     @Test
     public void testGreetingEndpoint() {
-        when().get()
-                .then()
-                .statusCode(200)
-                .body("content", is(String.format(getProperties().getMessage(), "World")));
+        given()
+           .baseUri(baseURI())
+           .get(GREETING_PATH)
+           .then()
+           .statusCode(200)
+           .body("content", is(String.format(Greeting.FORMAT, "World")));
     }
 
     @Test
     public void testGreetingEndpointWithNameParameter() {
-        given().param("name", "John")
-                .when()
-                .get()
-                .then()
-                .statusCode(200)
-                .body("content", is(String.format(getProperties().getMessage(), "John")));
+        given()
+           .baseUri(baseURI())
+           .param("name", "John")
+           .when()
+           .get(GREETING_PATH)
+           .then()
+           .statusCode(200)
+           .body("content", is(String.format(Greeting.FORMAT, "John")));
     }
 
-    protected abstract GreetingProperties getProperties();
-
+    protected abstract String baseURI();
 }
