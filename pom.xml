@@ -27,8 +27,8 @@
   <name>Spring Boot - HTTP Booster</name>
   <description>Spring Boot - HTTP Booster</description>
   <properties>
-    <spring-boot-bom.version>1.5.14.Final</spring-boot-bom.version>
-    <spring-boot.version>1.5.14.RELEASE</spring-boot.version>
+    <spring-boot-bom.version>1.6.10.Dummy6</spring-boot-bom.version>
+    <spring-boot.version>1.6.10.RELEASE</spring-boot.version>
     <arquillian.version>1.4.0.Final</arquillian.version>
     <awaitility.version>3.1.0</awaitility.version>
     <rest-assured.version>3.1.0</rest-assured.version>
