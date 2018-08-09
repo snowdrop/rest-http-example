@@ -69,7 +69,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: spring-boot-rest-http:BOOSTER_VERSION
+        name: spring-boot-rest-http:1.5.15-2-redhat
     postCommit: {}
     resources: {}
     source:
