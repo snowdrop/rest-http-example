@@ -110,11 +110,4 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - OPENSHIFT_3.9.0:
-          filters:
-            branches:
-              ignore:
-               - /.*redhat.*/
-               - /.*rh.*/
-               - /temp-community/
-               - /temp-prod/               
+      - OPENSHIFT_3.9.0             
