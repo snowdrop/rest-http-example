@@ -25,7 +25,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class OpenShiftIT extends AbstractBoosterApplicationTest {
 
-    @AwaitRoute(path = "/health")
+    @AwaitRoute(path = "/actuator/health")
     @RouteURL("${app.name}")
     private URL baseURL;
 
