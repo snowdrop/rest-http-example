@@ -29,7 +29,7 @@ jobs:
 
                 pushd /tmp > /dev/null
                 #Clone the BOM from Github, checkout the tag that matches the BOM version and install it locally
-                git clone https://github.com/snowdrop/spring-boot-bom.git
+                git clone --branch sb-2.1.x https://github.com/snowdrop/spring-boot-bom.git
                 cd spring-boot-bom
                 git fetch --all --tags --prune
                 git checkout tags/${bom_version}
