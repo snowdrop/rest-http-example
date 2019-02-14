@@ -19,6 +19,11 @@ parameters:
   description: The release version number of application
   displayName: Release version
   value: 1.0.0
+- name: RUNTIME_VERSION
+  displayName: OpenJDK 8 image version to use
+  description: Specifies which version of the OpenShift OpenJDK 8 image to use
+  value: 1.3-8
+  required: true
 - name: SOURCE_REPOSITORY_URL
   description: The source URL for the application
   displayName: Source URL
@@ -62,10 +67,10 @@ objects:
     name: runtime
   spec:
     tags:
-    - name: "latest"
+    - name: "${RUNTIME_VERSION}"
       from:
         kind: DockerImage
-        name: registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
+        name: registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:${RUNTIME_VERSION}
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -88,7 +93,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: 'runtime:latest'
+          name: runtime:${RUNTIME_VERSION}
         incremental: true
         env:
         - name: MAVEN_ARGS_APPEND
