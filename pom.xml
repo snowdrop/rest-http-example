@@ -23,11 +23,11 @@
   </parent>
   <groupId>io.openshift.booster</groupId>
   <artifactId>spring-boot-rest-http</artifactId>
-  <version>1.5.19-2-SNAPSHOT</version>
+  <version>1.5.19-2-redhat</version>
   <name>Spring Boot - HTTP Booster</name>
   <description>Spring Boot - HTTP Booster</description>
   <properties>
-    <spring-boot-bom.version>1.5.19.Final</spring-boot-bom.version>
+    <spring-boot-bom.version>1.5.19.Final-redhat-00001</spring-boot-bom.version>
     <spring-boot.version>1.5.19.RELEASE</spring-boot.version>
     <arquillian.version>1.4.0.Final</arquillian.version>
     <awaitility.version>3.1.0</awaitility.version>
