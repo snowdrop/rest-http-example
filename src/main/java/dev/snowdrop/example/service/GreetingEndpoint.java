@@ -13,25 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openshift.booster.service;
+package dev.snowdrop.example.service;
 
-// tag::snippet-greeting[]
-public class Greeting {
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
-    public static final String FORMAT = "Hello, %s!";
+import org.springframework.stereotype.Component;
 
-    private final String content;
-
-    public Greeting() {
-        this.content = null;
-    }
-
-    public Greeting(String content) {
-        this.content = content;
-    }
-
-    public String getContent() {
-        return content;
+@Path("/greeting")
+@Component
+public class GreetingEndpoint {
+    @GET
+    @Produces("application/json")
+    public Greeting greeting(@QueryParam("name") @DefaultValue("World") String name) {
+        final String message = String.format(Greeting.FORMAT, name);
+        return new Greeting(message);
     }
 }
-// end::snippet-greeting[]
