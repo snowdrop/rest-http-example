@@ -33,7 +33,7 @@ OpenShift as opposed to detailing all the Spring Boot-specific implementation.
 
 == Endpoint
 
-The application is composed of a RESTful service. Its code can be found in the `src/main/java/dev.snowdrop.example/service`
+The application is composed of a RESTful service. Its code can be found in the `src/main/java/dev/snowdrop/example/service`
 directory. It is split in two classes: `GreetingEndpoint`, which implements the endpoint itself, and `Greeting` which is a
 simple class representing the payload sent back to users of the endpoint.
 
