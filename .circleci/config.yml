@@ -15,9 +15,9 @@ jobs:
       # based on this: https://discuss.circleci.com/t/circle-2-0-caching-is-too-limited-to-be-very-useful/11694/10
       - restore_cache:
           keys:
-            - spring-boot-http-booster-{{ .Branch }}-{{ checksum "pom.xml" }}
-            - spring-boot-http-booster-{{ .Branch }}
-            - spring-boot-http-booster
+            - rest-http-example-{{ .Branch }}-{{ checksum "pom.xml" }}
+            - rest-http-example-{{ .Branch }}
+            - rest-http-example
 
       - run:
           name: Install Maven dependencies locally
@@ -45,7 +45,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-          key: spring-boot-http-booster-{{ .Branch }}-{{ checksum "pom.xml" }}
+          key: rest-http-example-{{ .Branch }}-{{ checksum "pom.xml" }}
 
       - run:
           name: run tests against s2i build

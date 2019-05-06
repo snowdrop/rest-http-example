@@ -109,7 +109,7 @@ objects:
       app: spring-boot-rest-http
       provider: snowdrop
       version: "BOOSTER_VERSION"
-      group: io.openshift.booster
+      group: dev.snowdrop.example
     name: spring-boot-rest-http
   spec:
     ports:
@@ -120,7 +120,7 @@ objects:
     selector:
       app: spring-boot-rest-http
       provider: snowdrop
-      group: io.openshift.booster
+      group: dev.snowdrop.example
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
@@ -128,14 +128,14 @@ objects:
       app: spring-boot-rest-http
       provider: snowdrop
       version: "BOOSTER_VERSION"
-      group: io.openshift.booster
+      group: dev.snowdrop.example
     name: spring-boot-rest-http
   spec:
     replicas: 1
     selector:
       app: spring-boot-rest-http
       provider: snowdrop
-      group: io.openshift.booster
+      group: dev.snowdrop.example
     strategy:
       rollingParams:
         timeoutSeconds: 3600
@@ -146,7 +146,7 @@ objects:
           app: spring-boot-rest-http
           provider: snowdrop
           version: "BOOSTER_VERSION"
-          group: io.openshift.booster
+          group: dev.snowdrop.example
       spec:
         containers:
         - env:
@@ -195,7 +195,7 @@ objects:
       app: spring-boot-rest-http
       provider: snowdrop
       version: "BOOSTER_VERSION"
-      group: io.openshift.booster
+      group: dev.snowdrop.example
     name: spring-boot-rest-http
   spec:
     port:

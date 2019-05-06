@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openshift.booster;
+package dev.snowdrop.example;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.springframework.boot.SpringApplication;
@@ -21,10 +21,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class BoosterApplication {
+public class ExampleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BoosterApplication.class, args);
+        SpringApplication.run(ExampleApplication.class, args);
     }
 
     @Bean

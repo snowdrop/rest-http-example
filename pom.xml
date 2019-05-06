@@ -21,11 +21,11 @@
     <artifactId>booster-parent</artifactId>
     <version>23</version>
   </parent>
-  <groupId>io.openshift.booster</groupId>
-  <artifactId>spring-boot-rest-http</artifactId>
+  <groupId>dev.snowdrop.example</groupId>
+  <artifactId>rest-http</artifactId>
   <version>1.5.19-3-SNAPSHOT</version>
-  <name>Spring Boot - HTTP Booster</name>
-  <description>Spring Boot - HTTP Booster</description>
+  <name>Spring Boot - HTTP Example</name>
+  <description>Spring Boot - HTTP Example</description>
   <properties>
     <spring-boot-bom.version>1.5.19.Final</spring-boot-bom.version>
     <spring-boot.version>1.5.19.RELEASE</spring-boot.version>

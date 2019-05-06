@@ -13,24 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package dev.snowdrop.example;
 
-package io.openshift.booster;
-
-import java.net.URL;
-import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
-import org.arquillian.cube.openshift.impl.enricher.RouteURL;
-import org.jboss.arquillian.junit.Arquillian;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(Arquillian.class)
-public class OpenShiftIT extends AbstractBoosterApplicationTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class LocalTest extends AbstractExampleApplicationTest {
 
-    @AwaitRoute(path = "/health")
-    @RouteURL("${app.name}")
-    private URL baseURL;
+    @Value("${local.server.port}")
+    private int port;
 
     @Override
     public String baseURI() {
-        return baseURL.toString();
+        return String.format("http://localhost:%d", port);
     }
 }
