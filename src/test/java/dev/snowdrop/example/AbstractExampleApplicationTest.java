@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openshift.booster;
+package dev.snowdrop.example;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
 
-import io.openshift.booster.service.Greeting;
+import dev.snowdrop.example.service.Greeting;
 import org.junit.Test;
 
-public abstract class AbstractBoosterApplicationTest {
+public abstract class AbstractExampleApplicationTest {
 
     private static final String GREETING_PATH = "api/greeting";
 
