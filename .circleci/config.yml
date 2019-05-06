@@ -62,7 +62,7 @@ jobs:
             # deploy application
             oc new-project s2i
             oc create -f .openshiftio/application.yaml
-            oc new-app --template=spring-boot-rest-http -p SOURCE_REPOSITORY_URL=${SOURCE_REPOSITORY_URL} -p SOURCE_REPOSITORY_REF=${SOURCE_REPOSITORY_REF}
+            oc new-app --template=rest-http -p SOURCE_REPOSITORY_URL=${SOURCE_REPOSITORY_URL} -p SOURCE_REPOSITORY_REF=${SOURCE_REPOSITORY_REF}
 
             sleep 30 # needed in order to bypass the 'Pending' state
             # wait for the app to stand up
