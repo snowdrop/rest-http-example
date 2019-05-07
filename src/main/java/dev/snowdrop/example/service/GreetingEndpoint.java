@@ -13,22 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openshift.booster;
+package dev.snowdrop.example.service;
 
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class LocalTest extends AbstractBoosterApplicationTest {
+import org.springframework.stereotype.Component;
 
-    @Value("${local.server.port}")
-    private int port;
-
-    @Override
-    public String baseURI() {
-        return String.format("http://localhost:%d", port);
+@Path("/greeting")
+@Component
+public class GreetingEndpoint {
+    @GET
+    @Produces("application/json")
+    public Greeting greeting(@QueryParam("name") @DefaultValue("World") String name) {
+        final String message = String.format(Greeting.FORMAT, name);
+        return new Greeting(message);
     }
 }
