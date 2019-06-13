@@ -23,11 +23,11 @@
   </parent>
   <groupId>dev.snowdrop.example</groupId>
   <artifactId>rest-http</artifactId>
-  <version>1.5.19-6-SNAPSHOT</version>
+  <version>1.5.19-6-redhat</version>
   <name>Spring Boot - HTTP Example</name>
   <description>Spring Boot - HTTP Example</description>
   <properties>
-    <spring-boot-bom.version>1.5.19.SP1</spring-boot-bom.version>
+    <spring-boot-bom.version>1.5.19.SP1-redhat-00003</spring-boot-bom.version>
     <spring-boot.version>1.5.19.RELEASE</spring-boot.version>
     <arquillian.version>1.4.0.Final</arquillian.version>
     <awaitility.version>3.1.0</awaitility.version>
