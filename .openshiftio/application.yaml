@@ -14,7 +14,7 @@ parameters:
 - name: RUNTIME_VERSION
   displayName: OpenJDK 8 image version to use
   description: Specifies which version of the OpenShift OpenJDK 8 image to use
-  value: 1.3-8
+  value: latest
   required: true
 - name: SOURCE_REPOSITORY_URL
   description: The source URL for the application
