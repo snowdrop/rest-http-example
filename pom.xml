@@ -31,7 +31,7 @@
     <arquillian-cube.version>1.15.3</arquillian-cube.version>
     <awaitility.version>3.1.0</awaitility.version>
     <rest-assured.version>3.1.0</rest-assured.version>
-    <openjdk18-openshift.version>1.3</openjdk18-openshift.version>
+    <openjdk18-openshift.version>latest</openjdk18-openshift.version>
     <fabric8.generator.from>
       registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:${openjdk18-openshift.version}
     </fabric8.generator.from>
