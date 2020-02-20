@@ -4,7 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/part-of: http-api-example
     app.kubernetes.io/runtime-version: ${spring-boot.version}
-    app.kubernetes.io/runtime: spring-boot
+    app.kubernetes.io/runtime: snowdrop
     app.kubernetes.io/name: http-api
     app.kubernetes.io/component: frontend
 spec:
