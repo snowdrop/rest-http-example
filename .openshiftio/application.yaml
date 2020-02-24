@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/part-of: http-api-example
     app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-    app.kubernetes.io/runtime: snowdrop
+    app.kubernetes.io/runtime: spring-boot
     app.kubernetes.io/name: http-api
     app.kubernetes.io/component: frontend
   annotations:
@@ -75,7 +75,7 @@ objects:
     labels:
       app.kubernetes.io/part-of: http-api-example
       app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-      app.kubernetes.io/runtime: snowdrop
+      app.kubernetes.io/runtime: spring-boot
       app.kubernetes.io/name: http-api
       app.kubernetes.io/component: frontend
     annotations:
@@ -127,7 +127,7 @@ objects:
       group: dev.snowdrop.example
       app.kubernetes.io/part-of: http-api-example
       app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-      app.kubernetes.io/runtime: snowdrop
+      app.kubernetes.io/runtime: spring-boot
       app.kubernetes.io/name: http-api
       app.kubernetes.io/component: frontend
     annotations:
@@ -153,7 +153,7 @@ objects:
       group: dev.snowdrop.example
       app.kubernetes.io/part-of: http-api-example
       app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-      app.kubernetes.io/runtime: snowdrop
+      app.kubernetes.io/runtime: spring-boot
       app.kubernetes.io/name: http-api
       app.kubernetes.io/component: frontend
     annotations:
@@ -178,7 +178,7 @@ objects:
           group: dev.snowdrop.example
           app.kubernetes.io/part-of: http-api-example
           app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-          app.kubernetes.io/runtime: snowdrop
+          app.kubernetes.io/runtime: spring-boot
           app.kubernetes.io/name: http-api
           app.kubernetes.io/component: frontend
         annotations:
@@ -234,7 +234,7 @@ objects:
       group: dev.snowdrop.example
       app.kubernetes.io/part-of: http-api-example
       app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-      app.kubernetes.io/runtime: snowdrop
+      app.kubernetes.io/runtime: spring-boot
       app.kubernetes.io/name: http-api
       app.kubernetes.io/component: frontend
     annotations:
