@@ -24,18 +24,18 @@ jobs:
           command: |
             # Need to exclude tests since Maven will fail. See https://stackoverflow.com/q/14694139/2504224
             if ! ./mvnw -q -s .circleci/settings.xml dependency:go-offline; then
-                bom_version=$(grep -oPm1 "(?<=<spring-boot.bom.version>)[^<]+" pom.xml)
-                echo "Need to checkout the Spring Boot BOM by checking it out from Github using version: ${bom_version}"
+                parent_version=$(awk '/<parent>/{flag=1;next}/<\/parent>/{flag=0}flag' pom.xml | tail -1 | xargs | sed -e 's/<version>\(.*\)<\/version>/\1/')
+                echo "Need to checkout the snowdrop-dependencies by checking it out from Github using version: ${parent_version}"
 
                 pushd /tmp > /dev/null
-                #Clone the BOM from Github, checkout the tag that matches the BOM version and install it locally
-                git clone --branch sb-2.1.x https://github.com/snowdrop/spring-boot-bom.git
+                # Clone snowdrop-dependencies from Github, checkout the required branch/tag and install it locally
+                git clone https://github.com/snowdrop/spring-boot-bom.git
                 cd spring-boot-bom
                 git fetch --all --tags --prune
-                git checkout tags/${bom_version}
+                git checkout ${parent_version}
                 mvn install
 
-                echo "Installed BOM from source"
+                echo "Installed snowdrop-dependencies from source"
 
                 popd > /dev/null
                 #Re-execute command since the BOM has now been installed to the local .m2 directory
