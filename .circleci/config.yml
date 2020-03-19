@@ -24,8 +24,8 @@ jobs:
           command: |
             # Need to exclude tests since Maven will fail. See https://stackoverflow.com/q/14694139/2504224
             if ! ./mvnw -q -s .circleci/settings.xml dependency:go-offline; then
-#                parent_version=$(awk '/<parent>/{flag=1;next}/<\/parent>/{flag=0}flag' pom.xml | tail -1 | xargs | sed -e 's/<version>\(.*\)<\/version>/\1/')
-#                TODO
+                # parent_version=$(awk '/<parent>/{flag=1;next}/<\/parent>/{flag=0}flag' pom.xml | tail -1 | xargs | sed -e 's/<version>\(.*\)<\/version>/\1/')
+                # TODO
                 parent_version=sb-2.2.x
                 echo "[WARNING] use tag instead of working branch once snowdrop-dependencies is released"
                 echo "Need to checkout the snowdrop-dependencies by checking it out from Github using version: ${parent_version}"
