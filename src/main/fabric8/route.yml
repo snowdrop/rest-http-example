@@ -1,3 +1,5 @@
+apiVersion: route.openshift.io/v1
+type: Route
 metadata:
   annotations:
     app.kubernetes.io/vcs-uri: git@github.com:snowdrop/rest-http-example.git
