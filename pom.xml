@@ -32,6 +32,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <arquillian.version>1.4.0.Final</arquillian.version>
     <arquillian-cube.version>1.15.3</arquillian-cube.version>
+    <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
     <openjdk18-openshift.version>latest</openjdk18-openshift.version>
     <fabric8.generator.from>
       registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:${openjdk18-openshift.version}
