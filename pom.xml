@@ -19,12 +19,12 @@
   <parent>
     <groupId>dev.snowdrop</groupId>
     <artifactId>snowdrop-dependencies</artifactId>
-    <version>2.2.6.Beta5</version>
+    <version>2.2.6.Final-redhat-00001</version>
   </parent>
 
   <groupId>dev.snowdrop.example</groupId>
   <artifactId>rest-http</artifactId>
-  <version>2.2.6-4-SNAPSHOT</version>
+  <version>2.2.6-4-redhat</version>
   <name>Spring Boot - HTTP Example</name>
   <description>Spring Boot - HTTP Example</description>
   <properties>
