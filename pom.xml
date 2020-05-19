@@ -185,11 +185,11 @@
                       <value>frontend</value>
                     </property>
                     <property>
-                      <name>app.kubernetes.io/runtime</name>
-                      <value>spring-boot</value>
+                      <name>app.openshift.io/runtime</name>
+                      <value>rh-spring-boot</value>
                     </property>
                     <property>
-                      <name>app.kubernetes.io/runtime-version</name>
+                      <name>app.openshift.io/runtime-version</name>
                       <value>${spring-boot.version}</value>
                     </property>
                   </all>

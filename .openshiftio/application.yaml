@@ -4,8 +4,8 @@ metadata:
   name: rest-http
   labels:
     app.kubernetes.io/part-of: http-api-example
-    app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-    app.kubernetes.io/runtime: spring-boot
+    app.openshift.io/runtime-version: "SPRING_BOOT_VERSION"
+    app.openshift.io/runtime: rh-spring-boot
     app.kubernetes.io/name: http-api
     app.kubernetes.io/component: frontend
   annotations:
@@ -74,8 +74,8 @@ objects:
     name: rest-http
     labels:
       app.kubernetes.io/part-of: http-api-example
-      app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-      app.kubernetes.io/runtime: spring-boot
+      app.openshift.io/runtime-version: "SPRING_BOOT_VERSION"
+      app.openshift.io/runtime: rh-spring-boot
       app.kubernetes.io/name: http-api
       app.kubernetes.io/component: frontend
     annotations:
@@ -126,8 +126,8 @@ objects:
       version: "BOOSTER_VERSION"
       group: dev.snowdrop.example
       app.kubernetes.io/part-of: http-api-example
-      app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-      app.kubernetes.io/runtime: spring-boot
+      app.openshift.io/runtime-version: "SPRING_BOOT_VERSION"
+      app.openshift.io/runtime: rh-spring-boot
       app.kubernetes.io/name: http-api
       app.kubernetes.io/component: frontend
     annotations:
@@ -152,8 +152,8 @@ objects:
       version: "BOOSTER_VERSION"
       group: dev.snowdrop.example
       app.kubernetes.io/part-of: http-api-example
-      app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-      app.kubernetes.io/runtime: spring-boot
+      app.openshift.io/runtime-version: "SPRING_BOOT_VERSION"
+      app.openshift.io/runtime: rh-spring-boot
       app.kubernetes.io/name: http-api
       app.kubernetes.io/component: frontend
     annotations:
@@ -177,8 +177,8 @@ objects:
           version: "BOOSTER_VERSION"
           group: dev.snowdrop.example
           app.kubernetes.io/part-of: http-api-example
-          app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-          app.kubernetes.io/runtime: spring-boot
+          app.openshift.io/runtime-version: "SPRING_BOOT_VERSION"
+          app.openshift.io/runtime: rh-spring-boot
           app.kubernetes.io/name: http-api
           app.kubernetes.io/component: frontend
         annotations:
@@ -233,8 +233,8 @@ objects:
       version: "BOOSTER_VERSION"
       group: dev.snowdrop.example
       app.kubernetes.io/part-of: http-api-example
-      app.kubernetes.io/runtime-version: "SPRING_BOOT_VERSION"
-      app.kubernetes.io/runtime: spring-boot
+      app.openshift.io/runtime-version: "SPRING_BOOT_VERSION"
+      app.openshift.io/runtime: rh-spring-boot
       app.kubernetes.io/name: http-api
       app.kubernetes.io/component: frontend
     annotations:
