@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/vcs-uri: git@github.com:snowdrop/rest-http-example.git
   labels:
     app.kubernetes.io/part-of: http-api-example
-    app.kubernetes.io/runtime-version: ${spring-boot.version}
-    app.kubernetes.io/runtime: spring-boot
+    app.openshift.io/runtime-version: ${spring-boot.version}
+    app.openshift.io/runtime: rh-spring-boot
     app.kubernetes.io/name: http-api
     app.kubernetes.io/component: frontend
 spec:
