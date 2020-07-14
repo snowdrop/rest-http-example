@@ -18,15 +18,15 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>dev.snowdrop.example</groupId>
   <artifactId>rest-http</artifactId>
-  <version>2.1.13-4-SNAPSHOT</version>
+  <version>2.1.15-1-SNAPSHOT</version>
   <name>Spring Boot - HTTP Example</name>
   <description>Spring Boot - HTTP Example</description>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
-    <spring-boot-bom.version>2.1.13.Beta1</spring-boot-bom.version>
-    <spring-boot.version>2.1.13.RELEASE</spring-boot.version>
+    <spring-boot-bom.version>2.1.15.Beta2</spring-boot-bom.version>
+    <spring-boot.version>2.1.15.RELEASE</spring-boot.version>
     <arquillian.version>1.4.0.Final</arquillian.version>
     <arquillian-cube.version>1.15.3</arquillian-cube.version>
     <awaitility.version>3.1.0</awaitility.version>
