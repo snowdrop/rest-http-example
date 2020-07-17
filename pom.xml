@@ -25,7 +25,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
-    <spring-boot-bom.version>2.1.15.Beta2</spring-boot-bom.version>
+    <spring-boot-bom.version>2.1.15.Final</spring-boot-bom.version>
     <spring-boot.version>2.1.15.RELEASE</spring-boot.version>
     <arquillian.version>1.4.0.Final</arquillian.version>
     <arquillian-cube.version>1.15.3</arquillian-cube.version>
