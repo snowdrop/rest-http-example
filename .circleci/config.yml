@@ -2,15 +2,15 @@ version: 2.1
 orbs:
   # defined at https://github.com/snowdrop/circleci-orbs
   # needs to have been published before being used here
-  openshift: snowdrop/openshift@0.1.0
+  openshift: snowdrop/openshift@0.4.0
 jobs:
-  openshift39:
+  openshift:
     machine: true
 
     steps:
       - checkout
 
-      - openshift/launch_openshift_39
+      - openshift/launch_openshift
 
       # based on this: https://discuss.circleci.com/t/circle-2-0-caching-is-too-limited-to-be-very-useful/11694/10
       - restore_cache:
@@ -91,4 +91,4 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - openshift39
+      - openshift
