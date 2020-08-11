@@ -304,7 +304,7 @@ Let's look at the parts that deal with configuring the Fabric8 Maven Plugin:
     <fabric8-maven-plugin.version>3.5.40</fabric8-maven-plugin.version> #<1>
     ...
 
-    <fabric8.generator.from>registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.2</fabric8.generator.from> #<2>
+    <fabric8.generator.from>registry.access.redhat.com/ubi8/openjdk-8:1.3</fabric8.generator.from> #<2>
     <fabric8.openshift.trimImageInContainerSpec>true</fabric8.openshift.trimImageInContainerSpec> #<3>
     <fabric8.skip.build.pom>true</fabric8.skip.build.pom> #<4>
   </properties>
@@ -330,7 +330,7 @@ Let's look at the parts that deal with configuring the Fabric8 Maven Plugin:
 ```
 <1> Specify which version of FMP to use in a property, to be used in the plugin definition later on.
 <2> Specify which Docker base image to use when generating the images for our application. The base image will serve as the foundation on top of which the FMP plugin adds our application to create a container ready to be deployed on a Kubernetes cluster. In this case, the base image is the
-https://access.redhat.com/containers/?tab=overview&platform=openshift#/registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift[Red Hat supported OpenJDK 8 image] since our application is, at its code, a Java application. The example's parent specifies that version `1.2` should be used but this property is overridden in the example itself to use a more recent version. We will look later at how this is done in our example (essentially, redefining the `fabric8.generator.from` property but with a twist)!
+https://access.redhat.com/containers/?tab=overview&platform=openshift#/registry.access.redhat.com/ubi8/openjdk-8[Red Hat supported OpenJDK 8 image] since our application is, at its code, a Java application. The example's parent specifies that version `1.2` should be used but this property is overridden in the example itself to use a more recent version. We will look later at how this is done in our example (essentially, redefining the `fabric8.generator.from` property but with a twist)!
 <3> This configuration property is only needed if running on OpenShift `3.7` version earlier than `3.7.2` to work around an issue between an older version of FMP and OpenShift `3.7`. This property might be removed in future versions of the boosters. For more details on this issue, see https://github.com/fabric8io/fabric8-maven-plugin/issues/1130#issuecomment-366216830 (and below).
 <4> This configuration property instructs FMP to not build modules with the `pom` type. Without this property, This was required for an older version of FMP and might become needed again. For more details on this issue, see https://github.com/fabric8io/fabric8-maven-plugin/issues/1184#issuecomment-368308674 (and below).
 <5> Specify that we want to use the Fabric8 Maven Plugin at the version that we previously specified.
@@ -343,9 +343,9 @@ Now that we've seen the configuration of the plugin in the booster parent, let's
 ...
   <properties>
     ...
-    <openjdk18-openshift.version>1.3</openjdk18-openshift.version> #<2>
+    <ubi.version>1.3</ubi.version> #<2>
     <fabric8.generator.from>
-      registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:${openjdk18-openshift.version} #<3>
+      registry.access.redhat.com/ubi8/openjdk-8:${ubi.version} #<3>
     </fabric8.generator.from>
   </properties>
   ...
@@ -372,7 +372,7 @@ Now that we've seen the configuration of the plugin in the booster parent, let's
 ...
 ```
 <1> Since we don't want the Docker image / OpenShift resource descriptor generation process executed by FMP when we only want to run the application locally, we "hide" the FMP execution behind an `openshift` profile.
-<2> Earlier, we said that we would redefine the version of the base image used to perform our builds. This is how we do it: instead of re-defining the whole `fabric8.generator.from` property, we introduce a new `openjdk18-openshift.version` property, which we set to the desired value and
+<2> Earlier, we said that we would redefine the version of the base image used to perform our builds. This is how we do it: instead of re-defining the whole `fabric8.generator.from` property, we introduce a new `ubi.version` property, which we set to the desired value and
 <3> ... use that property when specifying the `fabric8.generator.from` property, thus allowing us to easily change the image version without touching the base image identifier.
 <4> We bind the plugin https://maven.fabric8.io/#fabric8:resource[`resource`] and https://maven.fabric8.io/#fabric8:build[`build`] goals to Maven's lifecycle so that they are automatically run when we execute a Maven build. The `resource` goal creates the OpenShift resource descriptors (by default a https://docs.openshift.org/latest/architecture/core_concepts/pods_and_services.html#services[`Service`] along with an associated https://docs.openshift.org/latest/architecture/networking/routes.html[`Route`] and a https://docs.openshift.org/latest/architecture/core_concepts/deployments.html#deployments-and-deployment-configurations[`DeploymentConfig`]) while `build` creates a Docker image using the https://docs.openshift.org/latest/architecture/core_concepts/builds_and_image_streams.html#source-build[Source-to-Image (S2I) build process] by default using the base image we specified above.
 
