@@ -21,6 +21,7 @@ jobs:
 
       - run:
           name: Install Maven dependencies locally
+          no_output_timeout: 20m
           command: |
             # Need to exclude tests since Maven will fail. See https://stackoverflow.com/q/14694139/2504224
             if ! ./mvnw -q -s .circleci/settings.xml dependency:go-offline; then
@@ -69,7 +70,7 @@ jobs:
             timeout 300s bash -c 'while [[ $(oc get pod -o json | jq  ".items[] | select(.metadata.name | contains(\"build\"))  | .status  " | jq -rs "sort_by(.startTme) | last | .phase") == "Running" ]]; do sleep 20; done; echo ""'
 
             # launch the tests without deploying the application
-            ./mvnw -s .circleci/settings.xml verify -Dfabric8.skip=true -Popenshift,openshift-it
+            ./mvnw -s .circleci/settings.xml verify -Popenshift,openshift-it -Dunmanaged-test=true
 
       - run:
           name: Cleanup s2i build
@@ -81,10 +82,10 @@ jobs:
             echo "Cleaned up s2i build"
 
       - run:
-          name: run tests against fmp build
+          name: run tests against dekorate build
           command:  |
             oc new-project fmp
-            .circleci/run_tests_with_fmp.sh -s .circleci/settings.xml
+            .circleci/run_tests_with_dekorate.sh -s .circleci/settings.xml
           no_output_timeout: 3600
 
 workflows:
