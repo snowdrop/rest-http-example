@@ -18,8 +18,9 @@ package dev.snowdrop.example;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
 
+import org.junit.jupiter.api.Test;
+
 import dev.snowdrop.example.service.Greeting;
-import org.junit.Test;
 
 public abstract class AbstractExampleApplicationTest {
 

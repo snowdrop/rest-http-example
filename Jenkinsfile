@@ -4,6 +4,6 @@ node("launchpad-maven") {
     sh "mvn test"
   }
   stage("Deploy") {
-    sh "mvn fabric8:deploy -Popenshift -DskipTests"
+    sh "mvn clean install -Popenshift -Ddekorate.deploy=true -DskipTests"
   }
 }
