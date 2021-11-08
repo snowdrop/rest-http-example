@@ -82,9 +82,9 @@ jobs:
             echo "Cleaned up s2i build"
 
       - run:
-          name: run tests against dekorate build
+          name: run tests against Dekorate build
           command:  |
-            oc new-project fmp
+            oc new-project dekorate
             .circleci/run_tests_with_dekorate.sh -s .circleci/settings.xml
           no_output_timeout: 3600
 
