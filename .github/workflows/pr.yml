@@ -1,0 +1,74 @@
+name: "Pull Request Build"
+on:
+  - pull_request
+jobs:
+  linux-build-local:
+    name: PR - Linux - JVM ${{ matrix.java }} - Local
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 8 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Cache .m2 registry
+        uses: actions/cache@v2.1.6
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-maven-
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'adopt'
+      - name: Build
+        run: ./mvnw -s .github/mvn-settings.xml clean verify
+  linux-build-ocp:
+    name: PR - Linux - JVM ${{ matrix.java }} - OpenShift ${{ matrix.openshift }}
+    needs: linux-build-local
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 8 ]
+        openshift: [ v3.11.0 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Cache .m2 registry
+        uses: actions/cache@v2.1.6
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-maven-
+      - name: Setup OpenShift
+        uses: manusa/actions-setup-openshift@v1.1.3
+        with:
+          oc version: ${{ matrix.openshift }}
+          dns ip: 1.1.1.1
+          github token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'adopt'
+      - name: Build Project using Dekorate
+        run: |
+          oc new-project dekorate
+          ./mvnw -s .github/mvn-settings.xml clean verify -Popenshift,openshift-it
+      - name: Delete Project using Dekorate
+        run: oc delete project dekorate
+      - name: Build Project using S2i
+        run: |
+          oc new-project s2i
+          oc create -f .openshiftio/application.yaml
+          oc new-app --template=rest-http -p SOURCE_REPOSITORY_URL="${{ github.event.pull_request.head.repo.owner.html_url }}/${{ github.event.pull_request.head.repo.name }}" -p SOURCE_REPOSITORY_REF=${{ github.head_ref }}
+
+          sleep 30 # needed in order to bypass the 'Pending' state
+          # wait for the app to stand up
+          timeout 300s bash -c 'while [[ $(oc get pod -o json | jq  ".items[] | select(.metadata.name | contains(\"build\"))  | .status  " | jq -rs "sort_by(.startTme) | last | .phase") == "Running" ]]; do sleep 20; done; echo ""'
+
+          # launch the tests without deploying the application
+          ./mvnw -s .github/mvn-settings.xml clean verify -Popenshift,openshift-it -Dunmanaged-test=true
+      - name: Delete Project using S2i
+        run: oc delete project s2i
