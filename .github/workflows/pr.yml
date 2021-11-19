@@ -1,0 +1,75 @@
+name: "Pull Request Build"
+on:
+  - pull_request
+jobs:
+  linux-build-local:
+    name: PR - Linux - JVM ${{ matrix.java }} - Local
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 8 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'adopt'
+      - name: Build
+        run: ./mvnw -s .github/mvn-settings.xml clean verify
+  linux-build-ocp-dekorate:
+    name: PR - Linux - JVM ${{ matrix.java }} - OpenShift ${{ matrix.openshift }} - Dekorate
+    needs: linux-build-local
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 8 ]
+        openshift: [ v3.11.0 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Setup OpenShift
+        uses: manusa/actions-setup-openshift@v1.1.3
+        with:
+          oc version: ${{ matrix.openshift }}
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'adopt'
+      - name: Build Project
+        run: ./mvnw -s .github/mvn-settings.xml clean verify -Popenshift,openshift-it
+  linux-build-ocp-s2i:
+    name: PR - Linux - JVM ${{ matrix.java }} - OpenShift ${{ matrix.openshift }} - S2i
+    needs: linux-build-local
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 8 ]
+        openshift: [ v3.11.0 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
+      - name: Setup OpenShift
+        uses: manusa/actions-setup-openshift@v1.1.3
+        with:
+          oc version: ${{ matrix.openshift }}
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'adopt'
+      - name: Build Project
+        run: |
+          oc create -f .openshiftio/application.yaml
+          oc new-app --template=rest-http -p SOURCE_REPOSITORY_URL=${{ env.GITHUB_REPOSITORY_SLUG }} -p SOURCE_REPOSITORY_REF=${{ env.GITHUB_REF_SLUG }}
+
+          sleep 30 # needed in order to bypass the 'Pending' state
+          # wait for the app to stand up
+          timeout 300s bash -c 'while [[ $(oc get pod -o json | jq  ".items[] | select(.metadata.name | contains(\"build\"))  | .status  " | jq -rs "sort_by(.startTme) | last | .phase") == "Running" ]]; do sleep 20; done; echo ""'
+
+          # launch the tests without deploying the application
+          ./mvnw -s .github/mvn-settings.xml clean verify -Popenshift,openshift-it -Dunmanaged-test=true
