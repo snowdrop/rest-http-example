@@ -20,6 +20,7 @@ jobs:
           echo " - ${{ github.ref }}"
           echo " - ${{ github.head_ref }}"
           echo " - ${{ github.base_ref }}"
+          echo " - ${{ github.event.pull_request.head.repo.owner.login }}"
           echo "Slug variables"
           echo " - ${{ env.GITHUB_REF_SLUG }}"
           echo " - ${{ env.GITHUB_HEAD_REF_SLUG }}"
@@ -35,16 +36,3 @@ jobs:
           echo "Short SHA variables"
           echo " - ${{ env.GITHUB_SHA_SHORT }}"
           # output e.g. : ffac537e
-      - uses: FranzDiebold/github-env-vars-action@v1.2.0
-      - name: Print environment variables
-        run: |
-          echo "GITHUB_REPOSITORY_SLUG=$GITHUB_REPOSITORY_SLUG"
-          echo "GITHUB_REPOSITORY_OWNER=$GITHUB_REPOSITORY_OWNER"
-          echo "GITHUB_REPOSITORY_OWNER_SLUG=$GITHUB_REPOSITORY_OWNER_SLUG"
-          echo "GITHUB_REPOSITORY_NAME=$GITHUB_REPOSITORY_NAME"
-          echo "GITHUB_REPOSITORY_NAME_SLUG=$GITHUB_REPOSITORY_NAME_SLUG"
-          echo "GITHUB_REF_SLUG=$GITHUB_REF_SLUG"
-          echo "GITHUB_REF_NAME=$GITHUB_REF_NAME"
-          echo "GITHUB_REF_NAME_SLUG=$GITHUB_REF_NAME_SLUG"
-          echo "GITHUB_SHA_SHORT=$GITHUB_SHA_SHORT"
-
