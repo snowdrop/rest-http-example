@@ -97,6 +97,25 @@
       <groupId>io.dekorate</groupId>
       <artifactId>openshift-junit</artifactId>
       <scope>test</scope>
+      <!-- SMELL: We need to exclude annotations, otherwise Openshift always uses the Docker build in tests -->
+      <exclusions>
+        <exclusion>
+          <groupId>io.dekorate</groupId>
+          <artifactId>openshift-annotations</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.dekorate</groupId>
+      <artifactId>kubernetes-junit</artifactId>
+      <scope>test</scope>
+      <!-- SMELL: We need to exclude annotations, otherwise Openshift always uses the Docker build in tests -->
+      <exclusions>
+        <exclusion>
+          <groupId>io.dekorate</groupId>
+          <artifactId>kubernetes-annotations</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
   <build>
@@ -139,6 +158,37 @@
               <systemPropertyVariables>
                 <app.name>${project.artifactId}</app.name>
               </systemPropertyVariables>
+              <includes>
+                <include>**/*OpenShiftIT.class</include>
+              </includes>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>kubernetes-it</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>${maven-failsafe-plugin.version}</version>
+            <configuration>
+              <systemPropertyVariables>
+                <app.name>${project.artifactId}</app.name>
+              </systemPropertyVariables>
+              <includes>
+                <include>**/*KubernetesIT.class</include>
+              </includes>
             </configuration>
             <executions>
               <execution>
@@ -158,6 +208,15 @@
         <dependency>
           <groupId>io.dekorate</groupId>
           <artifactId>openshift-spring-starter</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>kubernetes</id>
+      <dependencies>
+        <dependency>
+          <groupId>io.dekorate</groupId>
+          <artifactId>kubernetes-spring-starter</artifactId>
         </dependency>
       </dependencies>
     </profile>
