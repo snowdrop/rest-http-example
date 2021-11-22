@@ -16,11 +16,6 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>dev.snowdrop</groupId>
-    <artifactId>snowdrop-dependencies</artifactId>
-    <version>2.4.9.Final</version>
-  </parent>
 
   <groupId>dev.snowdrop.example</groupId>
   <artifactId>rest-http</artifactId>
@@ -69,6 +64,25 @@
     </pluginRepository>
   </pluginRepositories>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.dekorate</groupId>
+        <artifactId>dekorate-bom</artifactId>
+        <version>2.7.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>dev.snowdrop</groupId>
+        <artifactId>snowdrop-dependencies</artifactId>
+        <version>2.4.9.Final</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -97,25 +111,11 @@
       <groupId>io.dekorate</groupId>
       <artifactId>openshift-junit</artifactId>
       <scope>test</scope>
-      <!-- SMELL: We need to exclude annotations, otherwise Openshift always uses the Docker build in tests -->
-      <exclusions>
-        <exclusion>
-          <groupId>io.dekorate</groupId>
-          <artifactId>openshift-annotations</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>io.dekorate</groupId>
       <artifactId>kubernetes-junit</artifactId>
       <scope>test</scope>
-      <!-- SMELL: We need to exclude annotations, otherwise Openshift always uses the Docker build in tests -->
-      <exclusions>
-        <exclusion>
-          <groupId>io.dekorate</groupId>
-          <artifactId>kubernetes-annotations</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
   </dependencies>
   <build>
