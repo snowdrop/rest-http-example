@@ -12,17 +12,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
-      - name: Cache .m2 registry
-        uses: actions/cache@v2.1.6
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
-          restore-keys: ${{ runner.os }}-maven-
       - name: Setup Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v2.3.1
         with:
           java-version: ${{ matrix.java }}
           distribution: 'adopt'
+          cache: 'maven'
       - name: Build
         run: ./mvnw -s .github/mvn-settings.xml clean verify
   linux-build-ocp:
@@ -36,23 +31,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
-      - name: Cache .m2 registry
-        uses: actions/cache@v2.1.6
+      - name: Setup Java
+        uses: actions/setup-java@v2.3.1
         with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
-          restore-keys: ${{ runner.os }}-maven-
+          java-version: ${{ matrix.java }}
+          distribution: 'adopt'
+          cache: 'maven'
       - name: Setup OpenShift
         uses: manusa/actions-setup-openshift@v1.1.3
         with:
           oc version: ${{ matrix.openshift }}
           dns ip: 1.1.1.1
           github token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          java-version: ${{ matrix.java }}
-          distribution: 'adopt'
       - name: Build Project using Dekorate
         run: |
           oc new-project dekorate
@@ -83,22 +73,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
-      - name: Cache .m2 registry
-        uses: actions/cache@v2.1.6
+      - name: Setup Java
+        uses: actions/setup-java@v2.3.1
         with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
-          restore-keys: ${{ runner.os }}-maven-
+          java-version: ${{ matrix.java }}
+          distribution: 'adopt'
+          cache: 'maven'
       - name: Kubernetes KinD Cluster
         uses: container-tools/kind-action@v1
         with:
           version: v0.11.1
           registry: true
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          java-version: ${{ matrix.java }}
-          distribution: 'adopt'
       - name: Build Project using Dekorate
         run: |
           kubectl create namespace k8s
