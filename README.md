@@ -2,13 +2,25 @@
 
 https://appdev.openshift.io/docs/spring-boot-runtime.html#mission-http-api-spring-boot
 
-## Running on OpenShift using S2i:
+## Deploying application on OpenShift using Dekorate:
 
 ```
-mvn clean verify -Popenshift,openshift-it
+mvn clean verify -Popenshift -Ddekorate.push=true
 ```
 
-## Running on Kubernetes with External Registry:
+## Running Tests on OpenShift using Dekorate:
+
+```
+sh run_tests_with_dekorate.sh
+```
+
+## Running Tests on OpenShift using S2i from Source:
+
+```
+sh run_tests_with_s2i.sh
+```
+
+## Running Tests on Kubernetes with External Registry:
 
 ```
 mvn clean verify clean verify -Pkubernetes,kubernetes-it -Ddekorate.docker.registry=<url to your registry, example: quay.io> -Ddekorate.push=true
