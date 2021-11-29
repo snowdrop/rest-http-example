@@ -46,7 +46,7 @@ jobs:
       - name: Build Project using Dekorate
         run: |
           oc new-project dekorate
-          ./mvnw -s .github/mvn-settings.xml clean verify -Popenshift,openshift-it
+          sh run_tests_with_dekorate.sh
       - name: Delete Project using Dekorate
         run: oc delete project dekorate
       - name: Build Project using S2i
@@ -60,7 +60,7 @@ jobs:
           timeout 300s bash -c 'while [[ $(oc get pod -o json | jq  ".items[] | select(.metadata.name | contains(\"build\"))  | .status  " | jq -rs "sort_by(.startTme) | last | .phase") == "Running" ]]; do sleep 20; done; echo ""'
 
           # launch the tests without deploying the application
-          ./mvnw -s .github/mvn-settings.xml clean verify -Popenshift,openshift-it -Dunmanaged-test=true
+          sh run_tests_with_s2i.sh
       - name: Delete Project using S2i
         run: oc delete project s2i
   linux-build-kubernetes:
