@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/snowdrop/rest-http-example/tree/master.svg?style=shield)](https://circleci.com/gh/snowdrop/rest-http-example/tree/master)
+# REST HTTP Spring Boot Example
 
 https://appdev.openshift.io/docs/spring-boot-runtime.html#mission-http-api-spring-boot
 
@@ -31,5 +31,5 @@ sh run_tests_with_s2i.sh
 ## Running Tests on Kubernetes with External Registry:
 
 ```
-mvn clean verify clean verify -Pkubernetes,kubernetes-it -Ddekorate.docker.registry=<url to your registry, example: quay.io> -Ddekorate.push=true
+mvn clean verify -Pkubernetes,kubernetes-it -Ddekorate.docker.registry=<url to your registry, example: quay.io> -Ddekorate.push=true
 ```
