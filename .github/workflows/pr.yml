@@ -46,7 +46,7 @@ jobs:
       - name: Build Project using Dekorate
         run: |
           oc new-project dekorate
-          sh run_tests_with_dekorate.sh
+          ./run_tests_with_dekorate.sh
       - name: Delete Project using Dekorate
         run: oc delete project dekorate
       - name: Clean folder
@@ -54,7 +54,7 @@ jobs:
       - name: Build Project using S2i
         run: |
           oc new-project s2i
-          sh run_tests_with_s2i.sh "${{ github.event.pull_request.head.repo.owner.html_url }}/${{ github.event.pull_request.head.repo.name }}" ${{ github.head_ref }}
+          ./run_tests_with_s2i.sh "${{ github.event.pull_request.head.repo.owner.html_url }}/${{ github.event.pull_request.head.repo.name }}" ${{ github.head_ref }}
       - name: Delete Project using S2i
         run: oc delete project s2i
   linux-build-kubernetes:

@@ -19,7 +19,7 @@ mvn clean verify -Popenshift -Ddekorate.deploy=true
 ## Running Tests on OpenShift using Dekorate
 
 ```
-sh run_tests_with_dekorate.sh
+./run_tests_with_dekorate.sh
 ```
 
 ## Running Tests on OpenShift using S2i from Source
