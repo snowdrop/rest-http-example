@@ -13,7 +13,7 @@ https://appdev.openshift.io/docs/spring-boot-runtime.html#mission-http-api-sprin
 ## Deploying application on OpenShift using Dekorate
 
 ```
-mvn clean verify -Popenshift -Ddekorate.push=true
+mvn clean verify -Popenshift -Ddekorate.deploy=true
 ```
 
 ## Running Tests on OpenShift using Dekorate
