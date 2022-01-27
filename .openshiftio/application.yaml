@@ -241,6 +241,7 @@ objects:
       app.kubernetes.io/vcs-uri: git@github.com:snowdrop/rest-http-example.git
     name: rest-http
   spec:
+    path: /
     port:
       targetPort: 8080
     to:

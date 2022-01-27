@@ -58,7 +58,7 @@ jobs:
       - name: Delete Project using S2i
         run: oc delete project s2i
   linux-build-kubernetes:
-    name: PR - Linux - JVM ${{ matrix.java }} - Kubernetes ${{ matrix.kubernetes }}
+    name: PR - Linux - JVM ${{ matrix.java }} - Kubernetes
     needs: linux-build-ocp
     runs-on: ubuntu-latest
     if: ${{ false }}  # It needs Dekorate profiles to configure. See https://github.com/dekorateio/dekorate/pull/824

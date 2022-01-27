@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 SOURCE_REPOSITORY_URL=${1:-https://github.com/snowdrop/rest-http-example}
-SOURCE_REPOSITORY_REF=${2:-sb-2.4.x}
+SOURCE_REPOSITORY_REF=${2:-sb-2.5.x}
 
 source scripts/waitFor.sh
 
