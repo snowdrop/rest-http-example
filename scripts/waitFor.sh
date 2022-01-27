@@ -16,8 +16,7 @@ waitFor() {
       return 1
     fi
     sleep $LOOP
-    echo "Waiting for pod to be created..."
-    idx=$((idx+1))
+    let "idx+=1"
   done
   # Wait for pod to be ready
   if [[ $(oc wait --for=condition=ready --timeout=$READY_TIMEOUT pod -l $POD_LABEL=$NAME | grep "condition met" | wc -l) -eq 0 ]] ; then

@@ -97,33 +97,11 @@
       <groupId>io.dekorate</groupId>
       <artifactId>openshift-junit</artifactId>
       <scope>test</scope>
-      <!--
-      Workaround: We need to exclude annotations, otherwise Openshift always uses the Docker build in tests.
-      Reported by https://github.com/dekorateio/dekorate/issues/821.
-      The same happens with Dekorate 2.7.0.
-      -->
-      <exclusions>
-        <exclusion>
-          <groupId>io.dekorate</groupId>
-          <artifactId>openshift-annotations</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>io.dekorate</groupId>
       <artifactId>kubernetes-junit</artifactId>
       <scope>test</scope>
-      <!--
-      Workaround: We need to exclude annotations, otherwise Openshift always uses the Docker build in tests.
-      Reported by https://github.com/dekorateio/dekorate/issues/821.
-      The same happens with Dekorate 2.7.0.
-      -->
-      <exclusions>
-        <exclusion>
-          <groupId>io.dekorate</groupId>
-          <artifactId>kubernetes-annotations</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
   </dependencies>
   <build>
