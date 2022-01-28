@@ -1,0 +1,7 @@
+apiVersion: v1
+name: rest-http
+version: 0.0.1-SNAPSHOT
+dependencies:
+  - name: spring-boot-example-app
+    version: 0.0.1
+    repository: http://snowdrop.github.io/helm
