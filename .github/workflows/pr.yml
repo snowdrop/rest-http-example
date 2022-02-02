@@ -61,7 +61,6 @@ jobs:
         run: |
           oc new-project helm
           ./run_tests_with_helm.sh "${{ github.event.pull_request.head.repo.owner.html_url }}/${{ github.event.pull_request.head.repo.name }}" ${{ github.head_ref }}
-      - uses: azure/setup-helm@v1
       - name: Delete Project using Helm
         run: oc delete project helm
   linux-build-kubernetes:
