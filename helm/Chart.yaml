@@ -1,5 +1,5 @@
 apiVersion: v2
-name: rest-http
+name: spring-boot-example-rest-http
 version: 0.0.1-SNAPSHOT
 description: A Helm chart to build and deploy Spring Boot application with REST endpoints
 keywords:
