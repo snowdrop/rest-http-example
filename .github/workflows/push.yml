@@ -1,0 +1,33 @@
+name: "Push Images"
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - sb-2.5.x
+jobs:
+  push:
+    name: Push Images to Quay.io
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 11 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Setup Java
+        uses: actions/setup-java@v2.3.1
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'adopt'
+          cache: 'maven'
+      - name: Quay.io Login
+        run: docker login quay.io -u="${{secrets.QUAY_USER}}" -p="${{secrets.QUAY_TOKEN}}"
+      - name: Build
+        run: ./mvnw -s .github/mvn-settings.xml clean package
+      - name: Push Image to Quay.io
+        run: |
+          CONTAINER_REGISTRY=quay.io/snowdrop
+          IMAGE=spring-boot-rest-http-example:2.5.8
+          docker build . -t $IMAGE
+          docker tag $IMAGE $CONTAINER_REGISTRY/$IMAGE
+          docker push $CONTAINER_REGISTRY/$IMAGE
