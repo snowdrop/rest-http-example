@@ -102,6 +102,12 @@
       <groupId>io.dekorate</groupId>
       <artifactId>kubernetes-junit</artifactId>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>io.dekorate</groupId>
+          <artifactId>docker-annotations</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
   <build>

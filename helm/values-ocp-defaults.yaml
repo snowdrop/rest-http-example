@@ -1,0 +1,8 @@
+app:
+  route:
+    expose: true
+  s2i:
+    # Default s2i source repository
+    source:
+      repo: https://github.com/snowdrop/rest-http-example
+      ref: sb-2.5.x
