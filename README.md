@@ -27,7 +27,7 @@ First, make sure you have installed [the Helm command line](https://helm.sh/docs
 Then, you need to install the example by doing:
 
 ```
-helm install rest-http ./helm -n <K8s namespace> -f ./helm/values-ocp-defaults.yaml --set app.s2i.source.repo=https://github.com/snowdrop/rest-http-example --set app.s2i.source.ref=<branch-to-use>
+helm install rest-http ./helm --set app.route.expose=true --set app.s2i.source.repo=https://github.com/snowdrop/rest-http-example --set app.s2i.source.ref=<branch-to-use>
 ```
 
 **note**: Replace `<branch-to-use>` with one branch from `https://github.com/snowdrop/rest-http-example/branches/all`.
@@ -47,7 +47,7 @@ Requirements:
 You need to install the example by doing:
 
 ```
-helm install rest-http ./helm -n <k8s namespace> --set app.docker.image=quay.io/snowdrop/spring-boot-rest-http-example --set app.ingress.host=<your k8s domain>
+helm install rest-http ./helm --set app.ingress.host=<your k8s domain>
 ```
 
 And to uninstall the chart, execute:
