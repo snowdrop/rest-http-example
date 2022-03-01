@@ -19,7 +19,7 @@
   <parent>
     <groupId>dev.snowdrop</groupId>
     <artifactId>snowdrop-dependencies</artifactId>
-    <version>2.5.10.Alpha3</version>
+    <version>2.5.10.Alpha4</version>
   </parent>
 
   <groupId>dev.snowdrop.example</groupId>
