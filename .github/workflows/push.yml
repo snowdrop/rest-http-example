@@ -27,7 +27,7 @@ jobs:
       - name: Push Image to Quay.io
         run: |
           CONTAINER_REGISTRY=quay.io/snowdrop
-          IMAGE=spring-boot-rest-http-example:2.5.8
+          IMAGE=spring-boot-rest-http-example:2.5
           docker build . -t $IMAGE
           docker tag $IMAGE $CONTAINER_REGISTRY/$IMAGE
           docker push $CONTAINER_REGISTRY/$IMAGE
