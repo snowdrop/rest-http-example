@@ -62,6 +62,13 @@ helm uninstall rest-http
 ./run_tests_with_dekorate.sh
 ```
 
+Alternativelly, tests can be executed against a specific Spring Boot version by passing the
+version as a `-v` parameter.
+
+```bash
+./run_tests_with_dekorate.sh -v "2.6.7"
+```
+
 ## Running Tests on OpenShift using S2i from Source
 
 ```
