@@ -1,0 +1,162 @@
+kind: Template
+apiVersion: template.openshift.io/v1
+metadata:
+  name: openjdk-to-openj9-transition
+  annotations:
+    description: >-
+      An Openshift template that will create 3 new ImageStreams and build a new application container to utilize
+      IBM Semeru OpenJ9 instead of the OpenJDK based on a specified Red Hat Openshift container image.
+
+    openshift.io/long-description: >-
+      The input parameters to the template:
+        - RED_HAT_CONTAINER_IMAGE - The product container image from the Red Hat Image Catalog​.
+        - OPENJDK_APP_IMAGESTREAM_NAME - The user defined name for the OpenJDK product image stream​.
+        - IBM_SEMERU_CONTAINER_IMAGE - IBM Semeru OpenJ9 container image from the IBM Image Catalog​.
+        - OPENJ9_APP_IMAGESTREAM_NAME - The user defined name for the created OpenJ9 product image stream​.
+
+      The build config copies the /opt directory from the IBM_SEMERU_CONTAINER_IMAGE into the OPENJDK_APP_IMAGESTREAM_NAME
+      and creates the new image OPENJ9_APP_IMAGESTREAM_NAME. Both image streams OPENJDK_APP_IMAGESTREAM_NAME
+      and IBM_SEMERU_CONTAINER_IMAGE will periodically check to ensure that the images are up to date with
+      their linked image catalogs. The build config will automatically rebuild upon any config changes or
+      if any input image streams are updated.
+message: >-
+  Your new application container image with IBM Semeru OpenJ9 will be available in your internal OpenShift repository:
+  image-registry.openshift-image-registry.svc:5000/${NAMESPACE}/${OPENJ9_APP_IMAGESTREAM_NAME}:latest
+objects:
+  - kind: ImageStream
+    apiVersion: image.openshift.io/v1
+    metadata:
+      name: ibm-semeru-runtimes
+      namespace: ${NAMESPACE}
+      labels:
+        app: ibm-semeru-runtimes-imagestream
+    spec:
+      lookupPolicy:
+        local: false
+      tags:
+        - name: latest
+          from:
+            kind: DockerImage
+            name: ${IBM_SEMERU_CONTAINER_IMAGE}
+          importPolicy:
+            scheduled: true
+  - kind: ImageStream
+    apiVersion: image.openshift.io/v1
+    metadata:
+      name: ${OPENJDK_APP_IMAGESTREAM_NAME}
+      namespace: ${NAMESPACE}
+      labels:
+        app: red-hat-container-with-openjdk-runtime-imagestream
+    spec:
+      lookupPolicy:
+        local: true
+      tags:
+        - name: latest
+          from:
+            kind: DockerImage
+            name: ${RED_HAT_CONTAINER_IMAGE}
+          importPolicy:
+            scheduled: true
+  - kind: ImageStream
+    apiVersion: image.openshift.io/v1
+    metadata:
+      name: ${OPENJ9_APP_IMAGESTREAM_NAME}
+      namespace: ${NAMESPACE}
+      labels:
+        app: red-hat-container-with-ibm-semeru-runtime-imagestream
+    spec:
+      lookupPolicy:
+        local: true
+  - kind: BuildConfig
+    apiVersion: build.openshift.io/v1
+    metadata:
+      name: ${OPENJ9_APP_IMAGESTREAM_NAME}
+      labels:
+        app: red-hat-openjdk-to-ibm-semeru-buildconfig
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: ${OPENJ9_APP_IMAGESTREAM_NAME}:latest
+          namespace: ${NAMESPACE}
+      source:
+        images:
+          - from:
+              kind: ImageStreamTag
+              name: ibm-semeru-runtimes:latest
+              namespace: ${NAMESPACE}
+            paths:
+              - sourcePath: /opt
+                destinationDir: ./opt
+        dockerfile: |-
+          FROM -
+          COPY opt /
+          USER 0
+          RUN rpm -e --nodeps java-11-openjdk java-11-openjdk-headless java-11-openjdk-devel || echo "Java 11 not installed"
+          USER 185
+      strategy:
+        type: Docker
+        dockerStrategy:
+          imageOptimizationPolicy: SkipLayers
+          from:
+            kind: ImageStreamTag
+            name: ${OPENJDK_APP_IMAGESTREAM_NAME}:latest
+          env:
+            - name: JAVA_HOME
+              value: "/opt/java/openjdk"
+            - name: PATH
+              value: "/opt/java/openjdk/bin:$PATH"
+            - name: JAVA_TOOL_OPTIONS
+              value: ${JAVA_TOOL_OPTIONS}
+      triggers:
+        - type: ConfigChange
+        - type: ImageChange
+          imageChange:
+            automatic: true
+            from:
+              kind: ImageStreamTag
+              name: ibm-semeru-runtimes:latest
+        - type: ImageChange
+          imageChange:
+            automatic: true
+            from:
+              kind: ImageStreamTag
+              name: ${OPENJDK_APP_IMAGESTREAM_NAME}:latest
+parameters:
+  - name: RED_HAT_CONTAINER_IMAGE
+    displayName: Red Hat Container Image
+    description: >-
+      The product container image from the Red Hat Image Catalog​.
+      E.g: registry.redhat.io/rh-sso-7/sso75-openshift-rhel8:latest
+    required: true
+  - name: OPENJDK_APP_IMAGESTREAM_NAME
+    displayName: Red Hat Container ImageStream Name
+    description: >-
+      The user defined name for the created OpenJDK product ImageStream​.
+    required: true
+  - name: IBM_SEMERU_CONTAINER_IMAGE
+    displayName: IBM Semeru Runtimes Container Image
+    description: >-
+      IBM Semeru OpenJ9 container image from the IBM Image Catalog​.
+      E.g: icr.io/appcafe/ibm-semeru-runtimes:open-{8/11/17}-{jdk,jre}-{ubi/ubi-minimal}
+    required: true
+  - name: OPENJ9_APP_IMAGESTREAM_NAME
+    displayName: The user defined name for the created OpenJ9 product ImageStream​
+    description: >-
+      The new name for IBM Semeru Container ImageStream that the BuildConfig will output to. This will create the new container image that will have IBM Semeru copied into.
+    required: true
+  - name: NAMESPACE
+    displayName: OpenShift Namespace
+    description: >-
+      The namespace that the BuildConfig and ImageStream will reside.
+    value: "openshift"
+    required: true
+  - name: JAVA_TOOL_OPTIONS
+    displayName: Java Tool Options
+    description: >-
+      Default Java Options provided by the IBM Semeru Runtimes container image.
+    value: "-XX:+IgnoreUnrecognizedVMOptions -XX:+PortableSharedCache -XX:+IdleTuningGcOnIdle -Xshareclasses:name=openj9_system_scc,cacheDir=/opt/java/.scc,readonly,nonFatal"
+    required: false
+labels:
+  app:  openjdk-to-openj9-transition
+  template: openjdk-to-openj9-transition
