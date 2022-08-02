@@ -13,3 +13,6 @@ tmp
 
 # VSCodium
 .vscode
+
+# Misc
+*.versionsBackup
