@@ -18,17 +18,21 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>dev.snowdrop.example</groupId>
   <artifactId>rest-http</artifactId>
-  <version>2.5.12-3-SNAPSHOT</version>
-  <name>Spring Boot - HTTP Example</name>
-  <description>Spring Boot - HTTP Example</description>
+  <version>2.9.3-SNAPSHOT</version>
+  <name>Dekorate - Spring Boot - HTTP Example</name>
+  <description>Dekorate - Spring Boot - HTTP Example</description>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-    <spring-boot.version>2.5.12</spring-boot.version>
+
+    <spring-boot.version>2.7.2</spring-boot.version>
+
     <dekorate.version>2.9.3</dekorate.version>
     <resteasy-spring-boot-starter.version>3.9.2.Final</resteasy-spring-boot-starter.version>
+
+    <!-- Overriden from Spring Boot -->
   </properties>
   <licenses>
     <license>
