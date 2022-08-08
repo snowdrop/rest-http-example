@@ -28,8 +28,8 @@
   <name>Spring Boot - HTTP Example</name>
   <description>Spring Boot - HTTP Example</description>
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
     <spring-boot.version>2.5.12</spring-boot.version>

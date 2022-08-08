@@ -19,9 +19,9 @@ metadata:
       The REST API Level 0 Mission provides a basic example of mapping business operations to a remote procedure call endpoint over HTTP using a REST framework.
 parameters:
 - name: RUNTIME_VERSION
-  displayName: OpenJDK 8 image version to use
-  description: Specifies which version of the OpenShift OpenJDK 8 image to use
-  value: "1.3"
+  displayName: OpenJDK 11 image version to use
+  description: Specifies which version of the OpenShift OpenJDK 11 image to use
+  value: "1.14"
   required: true
 - name: SOURCE_REPOSITORY_URL
   description: The source URL for the application
@@ -67,7 +67,7 @@ objects:
     - name: "${RUNTIME_VERSION}"
       from:
         kind: DockerImage
-        name: registry.access.redhat.com/ubi8/openjdk-8:${RUNTIME_VERSION}
+        name: registry.access.redhat.com/ubi8/openjdk-11:${RUNTIME_VERSION}
 - apiVersion: v1
   kind: BuildConfig
   metadata:
