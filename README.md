@@ -5,6 +5,7 @@ https://appdev.openshift.io/docs/spring-boot-runtime.html#mission-http-api-sprin
 ## Table of Contents
 
 * [REST HTTP Spring Boot Example](#rest-http-spring-boot-example)
+    * [Prerequisites](#prerequisites)
     * [Deploying application on OpenShift using Dekorate](#deploying-application-on-openshift-using-dekorate)
     * [Deploying application on OpenShift using Helm](#deploying-application-on-openshift-using-helm)
     * [Deploying application on Kubernetes using Helm](#deploying-application-on-kubernetes-using-helm)
@@ -13,6 +14,10 @@ https://appdev.openshift.io/docs/spring-boot-runtime.html#mission-http-api-sprin
     * [Running Tests on OpenShift using Helm](#running-tests-on-openshift-using-helm)
     * [Running Tests on Kubernetes with External Registry](#running-tests-on-kubernetes-with-external-registry)
     * [Running Tests on Kubernetes with Helm](#running-tests-on-kubernetes-using-helm)
+
+## Prerequisites
+
+- JDK 11+ installed with JAVA_HOME configured appropriately
 
 ## Deploying application on OpenShift using Dekorate
 
