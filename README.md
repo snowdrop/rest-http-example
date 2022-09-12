@@ -67,6 +67,13 @@ helm uninstall rest-http
 ./run_tests_with_dekorate.sh
 ```
 
+Alternativelly, tests can be executed against a specific Spring Boot or Dekorate version by passing the
+version as a `-D<variable property name>=value` parameter. For instance overriding both the Spring Boot and the Dekorate versions using their corresponding version properties is done the following way:
+
+```bash
+./run_tests_with_dekorate.sh -Dspring-boot.version=2.7.3 -Ddekorate.version=2.11.1
+```
+
 ## Running Tests on OpenShift using S2i from Source
 
 ```

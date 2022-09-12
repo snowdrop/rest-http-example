@@ -16,15 +16,9 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>dev.snowdrop</groupId>
-    <artifactId>snowdrop-dependencies</artifactId>
-    <version>2.5.12.Final</version>
-  </parent>
-
   <groupId>dev.snowdrop.example</groupId>
   <artifactId>rest-http</artifactId>
-  <version>2.5.12-3-SNAPSHOT</version>
+  <version>2.7.2-1-SNAPSHOT</version>
   <name>Spring Boot - HTTP Example</name>
   <description>Spring Boot - HTTP Example</description>
   <properties>
@@ -32,6 +26,12 @@
     <maven.compiler.target>11</maven.compiler.target>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+
+    <spring-boot.version>2.7.2</spring-boot.version>
+    <dekorate.version>2.11.0</dekorate.version>
+    <resteasy-spring-boot-starter.version>3.9.2.Final</resteasy-spring-boot-starter.version>
+
+    <!-- Overriden from Spring Boot -->
   </properties>
   <licenses>
     <license>
@@ -78,6 +78,25 @@
     </pluginRepository>
   </pluginRepositories>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.dekorate</groupId>
+        <artifactId>dekorate-spring-bom</artifactId>
+        <version>${dekorate.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -86,6 +105,7 @@
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-spring-boot-starter</artifactId>
+      <version>${resteasy-spring-boot-starter.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -130,6 +150,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
         <configuration/>
         <executions>
           <execution>
