@@ -28,8 +28,8 @@
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
 
     <spring-boot.version>2.7.2</spring-boot.version>
-    <dekorate.version>2.11.0</dekorate.version>
-    <resteasy-spring-boot-starter.version>3.9.4.Final</resteasy-spring-boot-starter.version>
+    <dekorate.version>2.11.0.redhat-00004</dekorate.version>
+    <resteasy-spring-boot-starter.version>3.9.4.Final-redhat-00003</resteasy-spring-boot-starter.version>
 
     <!-- Overriden from Spring Boot -->
   </properties>
