@@ -90,7 +90,15 @@ jobs:
           ./run_tests_with_helm_in_k8s.sh $KIND_REGISTRY helm
       - name: Delete Project using Helm
         run: kubectl delete namespace helm
-      # - name: Build Project using Dekorate
-      #  run: |
-      #    kubectl create namespace k8s
-      #    ./mvnw -s .github/mvn-settings.xml clean verify -Pkubernetes,kubernetes-it -Ddekorate.docker.registry=kind-registry:5000 -Dkubernetes.namespace=k8s -Ddekorate.push=true
+      - name: Build Project using Dekorate
+        run: |
+          kubectl create namespace k8s
+          ./mvnw -s .github/mvn-settings.xml clean verify -Pkubernetes,kubernetes-it -Ddekorate.docker.registry=kind-registry:5000 -Dkubernetes.namespace=k8s -Ddekorate.push=true
+      - name: Delete Project using K8s
+        run: kubectl delete namespace k8s
+      - name: Build Project using the generated Helm by Dekorate
+        run: |
+          kubectl create namespace genhelm
+          ./run_tests_with_generated_helm_in_k8s.sh $KIND_REGISTRY genhelm
+      - name: Delete Project using the generated Helm by Dekorate
+        run: kubectl delete namespace genhelm

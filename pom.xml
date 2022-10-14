@@ -28,7 +28,7 @@
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
 
     <spring-boot.version>2.7.2</spring-boot.version>
-    <dekorate.version>2.11.0</dekorate.version>
+    <dekorate.version>3.0.2</dekorate.version>
     <resteasy-spring-boot-starter.version>3.9.4.Final</resteasy-spring-boot-starter.version>
 
     <!-- Overriden from Spring Boot -->
@@ -239,6 +239,15 @@
         <dependency>
           <groupId>io.dekorate</groupId>
           <artifactId>kubernetes-spring-starter</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>helm</id>
+      <dependencies>
+        <dependency>
+          <groupId>io.dekorate</groupId>
+          <artifactId>helm-annotations</artifactId>
         </dependency>
       </dependencies>
     </profile>
