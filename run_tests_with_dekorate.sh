@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-# Run OpenShift Tests
+# Run Tests
 eval "./mvnw -s .github/mvn-settings.xml clean verify -Popenshift,openshift-it $@"

@@ -20,5 +20,5 @@ if [[ $(waitFor "rest-http" "app.kubernetes.io/name") -eq 1 ]] ; then
   exit 1
 fi
 
-# Run OpenShift Tests
+# Run Tests
 ./mvnw -s .github/mvn-settings.xml clean verify -Pkubernetes-it -Dunmanaged-test=true -Dkubernetes.namespace=$K8S_NAMESPACE
