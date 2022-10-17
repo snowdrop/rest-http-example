@@ -17,19 +17,18 @@
 package dev.snowdrop.example;
 
 import java.io.IOException;
-import java.net.URL;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 import io.dekorate.testing.annotation.Inject;
-import io.dekorate.testing.openshift.annotation.OpenshiftIntegrationTest;
+import io.dekorate.testing.annotation.KubernetesIntegrationTest;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.LocalPortForward;
 
 @DisabledIfSystemProperty(named = "unmanaged-test", matches = "true")
-@OpenshiftIntegrationTest
+@KubernetesIntegrationTest
 public class ManagedKubernetesIT extends AbstractExampleApplicationTest {
 
     @Inject
