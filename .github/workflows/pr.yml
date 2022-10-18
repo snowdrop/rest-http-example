@@ -46,7 +46,7 @@ jobs:
       - name: Build Project using Dekorate
         run: |
           oc new-project dekorate
-          ./run_tests_with_dekorate.sh
+          ./run_tests_with_dekorate_in_ocp.sh
       - name: Delete Project using Dekorate
         run: oc delete project dekorate
       - name: Clean folder
@@ -93,7 +93,7 @@ jobs:
       - name: Build Project using Dekorate
         run: |
           kubectl create namespace k8s
-          ./mvnw -s .github/mvn-settings.xml clean verify -Pkubernetes,kubernetes-it -Ddekorate.docker.registry=kind-registry:5000 -Dkubernetes.namespace=k8s -Ddekorate.push=true
+          ./run_tests_with_dekorate_in_k8s.sh $KIND_REGISTRY k8s
       - name: Delete Project using K8s
         run: kubectl delete namespace k8s
       - name: Build Project using the generated Helm by Dekorate
