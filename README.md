@@ -64,7 +64,7 @@ helm uninstall rest-http
 ## Running Tests on OpenShift using Dekorate
 
 ```
-./run_tests_with_dekorate.sh
+./run_tests_with_dekorate_in_ocp.sh
 ```
 
 Alternativelly, tests can be executed against a specific Spring Boot or Dekorate version by passing the
