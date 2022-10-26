@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 CONTAINER_REGISTRY=${1:-localhost:5000}
 K8S_NAMESPACE=${2:-genhelm}
+MAVEN_OPTS=${3:-}
 
 source scripts/waitFor.sh
 oc project $K8S_NAMESPACE
 
 # Build
-./mvnw -s .github/mvn-settings.xml clean package -Pkubernetes,helm -Ddekorate.helm.name=rest-http
+./mvnw -s .github/mvn-settings.xml clean package -Pkubernetes,helm -Ddekorate.helm.name=rest-http $MAVEN_OPTS
 
 # Create docker image and tag it in registry
 IMAGE=rest-http:latest
@@ -21,4 +22,4 @@ if [[ $(waitFor "rest-http" "app.kubernetes.io/name") -eq 1 ]] ; then
 fi
 
 # Run Tests
-./mvnw -s .github/mvn-settings.xml clean verify -Pkubernetes-it -Dunmanaged-test=true -Dkubernetes.namespace=$K8S_NAMESPACE
+./mvnw -s .github/mvn-settings.xml clean verify -Pkubernetes-it -Dunmanaged-test=true -Dkubernetes.namespace=$K8S_NAMESPACE $MAVEN_OPTS
