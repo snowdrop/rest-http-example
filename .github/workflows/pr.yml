@@ -46,7 +46,7 @@ jobs:
       - name: Build Project using Dekorate
         run: |
           oc new-project dekorate
-          ./run_tests_with_dekorate_in_ocp.sh
+          ./run_tests_with_dekorate_in_ocp.sh -s .github/mvn-settings.xml
       - name: Delete Project using Dekorate
         run: oc delete project dekorate
       - name: Clean folder
