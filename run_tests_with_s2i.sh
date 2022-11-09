@@ -11,12 +11,10 @@ while [ $# -gt 0 ]; do
   if [[ $1 == *"--"* ]]; then
     param="${1/--/}"
     case $1 in
-      --repository-url) SOURCE_REPOSITORY_URL=$2;;
-      --branch-to-test) SOURCE_REPOSITORY_REF=$2;;
+      --repository-url) SOURCE_REPOSITORY_URL="$2";;
+      --branch-to-test) SOURCE_REPOSITORY_REF="$2";;
       --maven-settings) MAVEN_SETTINGS_REF="-s $2";;
     esac;
-    declare $param="$2"
-    echo $1 $2
   fi
   shift
 done
