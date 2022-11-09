@@ -54,7 +54,7 @@ jobs:
       - name: Build Project using S2i
         run: |
           oc new-project s2i
-          ./run_tests_with_s2i.sh "${{ github.event.pull_request.head.repo.owner.html_url }}/${{ github.event.pull_request.head.repo.name }}" ${{ github.head_ref }}
+          ./run_tests_with_s2i.sh --repository-url "${{ github.event.pull_request.head.repo.owner.html_url }}/${{ github.event.pull_request.head.repo.name }}" --branch-to-test ${{ github.head_ref }} --maven-settings ".github/mvn-settings.xml"
       - name: Delete Project using S2i
         run: oc delete project s2i
       - name: Build Project using Helm

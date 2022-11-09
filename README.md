@@ -80,10 +80,14 @@ version as a `-D<variable property name>=value` parameter. For instance overridi
 ./run_tests_with_s2i.sh
 ```
 
-This script can take 2 parameters referring to the repository and the branch to use to source the images from.
+This script can take up to 3 parameters which are:
+
+* `--repository-url`: repository to use to source the images from
+* `--branch-to-test`: branch to use to source the images from
+* `--maven-settings`: custom maven settings file
 
 ```bash
-./run_tests_with_s2i.sh "https://github.com/snowdrop/rest-http-example" branch-to-test
+./run_tests_with_s2i.sh --repository-url "https://github.com/snowdrop/rest-http-example" --branch-to-test branch-to-test --maven-settings "${HOME}/.m2/my-custom-maven-settings.xml"
 ```
 
 ## Running Tests on OpenShift using Helm
