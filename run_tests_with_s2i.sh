@@ -5,6 +5,7 @@
 #   . --maven-settings
 SOURCE_REPOSITORY_URL="https://github.com/snowdrop/rest-http-example"
 SOURCE_REPOSITORY_REF="sb-2.7.x"
+MAVEN_SETTINGS_REF=""
 
 while [ $# -gt 0 ]; do
   if [[ $1 == *"--"* ]]; then
