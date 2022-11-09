@@ -1,6 +1,25 @@
 #!/usr/bin/env bash
-SOURCE_REPOSITORY_URL=${1:-https://github.com/snowdrop/rest-http-example}
-SOURCE_REPOSITORY_REF=${2:-sb-2.7.x}
+# Parameters allowed:
+#   . --repository-url
+#   . --branch-to-test
+#   . --maven-settings
+SOURCE_REPOSITORY_URL="https://github.com/snowdrop/rest-http-example"
+SOURCE_REPOSITORY_REF="sb-2.7.x"
+MAVEN_SETTINGS_REF=""
+
+while [ $# -gt 0 ]; do
+  if [[ $1 == *"--"* ]]; then
+    param="${1/--/}"
+    case $1 in
+      --repository-url) SOURCE_REPOSITORY_URL=$2;;
+      --branch-to-test) SOURCE_REPOSITORY_REF=$2;;
+      --maven-settings) MAVEN_SETTINGS_REF="-s $2";;
+    esac;
+    declare $param="$2"
+    echo $1 $2
+  fi
+  shift
+done
 
 source scripts/waitFor.sh
 
@@ -12,4 +31,4 @@ if [[ $(waitFor "rest-http" "app") -eq 1 ]] ; then
 fi
 
 # Run Tests
-./mvnw -s .github/mvn-settings.xml clean verify -Popenshift,openshift-it -Dunmanaged-test=true
+eval "./mvnw ${MAVEN_SETTINGS_REF} clean verify -Popenshift,openshift-it -Dunmanaged-test=true"
