@@ -52,6 +52,10 @@ parameters:
   description: Maven Nexus Repository to be used during build phase
   displayName:
   required: false
+- name: MAVEN_ARGS_APPEND
+  description: Extra arguments passed to mvn.
+  displayName:
+  required: false
 objects:
 - apiVersion: v1
   kind: ImageStream
@@ -107,6 +111,8 @@ objects:
           value: "${MAVEN_MIRROR_URL}"
         - name: ARTIFACT_COPY_ARGS
           value: "${ARTIFACT_COPY_ARGS}"
+        - name: MAVEN_ARGS_APPEND
+          value: "${MAVEN_ARGS_APPEND}"
       type: Source
     triggers:
     - github:
