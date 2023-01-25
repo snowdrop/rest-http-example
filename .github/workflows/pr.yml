@@ -42,7 +42,7 @@ jobs:
         with:
           oc version: ${{ matrix.openshift }}
           dns ip: 1.1.1.1
-          github token: ${{ secrets.GH_TOKEN }}
+          github token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Project using Dekorate
         run: |
           oc new-project dekorate
