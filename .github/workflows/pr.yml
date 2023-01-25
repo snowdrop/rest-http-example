@@ -38,7 +38,7 @@ jobs:
           distribution: 'adopt'
           cache: 'maven'
       - name: Setup OpenShift
-        uses: manusa/actions-setup-openshift@v1.1.3
+        uses: manusa/actions-setup-openshift@v1.1.4
         with:
           oc version: ${{ matrix.openshift }}
           dns ip: 1.1.1.1
