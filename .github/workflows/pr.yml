@@ -23,7 +23,8 @@ jobs:
   linux-build-ocp:
     name: PR - Linux - JVM ${{ matrix.java }} - OpenShift ${{ matrix.openshift }}
     needs: linux-build-local
-    runs-on: ubuntu-latest
+    # the action "manusa/actions-setup-openshift@v1.1.4" only works in ubuntu-20.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         java: [ 11 ]
