@@ -17,7 +17,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>dev.snowdrop.example</groupId>
   <artifactId>rest-http</artifactId>
-  <version>2.7.2-12-SNAPSHOT</version>
+  <version>2.7.8-1-SNAPSHOT</version>
   <name>Spring Boot - HTTP Example</name>
   <description>Spring Boot - HTTP Example</description>
   <properties>
@@ -26,7 +26,7 @@
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
 
-    <spring-boot.version>2.7.2</spring-boot.version>
+    <spring-boot.version>2.7.8</spring-boot.version>
     <dekorate.version>2.11.5</dekorate.version>
     <resteasy-spring-boot-starter.version>3.9.4.Final</resteasy-spring-boot-starter.version>
 
