@@ -31,7 +31,7 @@
     <resteasy-spring-boot-starter.version>3.9.4.Final</resteasy-spring-boot-starter.version>
 
     <!-- Overriden from Spring Boot -->
-  </properties>
+  <dekorate>2.11.6</dekorate><resteasy-spring-boot-starter>3.9.4.Final</resteasy-spring-boot-starter></properties>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
