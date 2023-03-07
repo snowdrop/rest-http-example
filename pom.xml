@@ -17,7 +17,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>dev.snowdrop.example</groupId>
   <artifactId>rest-http</artifactId>
-  <version>2.7.9-1-redhat</version>
+  <version>2.7.9-2-SNAPSHOT</version>
   <name>Spring Boot - HTTP Example</name>
   <description>Spring Boot - HTTP Example</description>
   <properties>
@@ -31,7 +31,7 @@
     <resteasy-spring-boot-starter.version>3.9.4.Final</resteasy-spring-boot-starter.version>
 
     <!-- Overriden from Spring Boot -->
-  <dekorate>2.11.5.redhat-00008</dekorate><resteasy-spring-boot-starter>3.9.4.Final-redhat-00009</resteasy-spring-boot-starter></properties>
+  <dekorate>2.11.6</dekorate><resteasy-spring-boot-starter>3.9.4.Final</resteasy-spring-boot-starter></properties>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
